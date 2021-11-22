@@ -1,8 +1,8 @@
 # Seli's Branch
 
-##Resources 
+## Resources 
 
-###Bottom Navigation Bar
+### Bottom Navigation Bar
 
 https://www.youtube.com/watch?v=Chso6xrJ6aU&list=LL&index=3
 ↳ Created fragments
