@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home"
+    <item
+        android:title="@string/nav_home"
         android:id="@+id/home_Screen"
         android:icon="@drawable/home_selector" />
 
 
-    <item android:title="Fortune Wheel"
+    <item
+        android:title="@string/nav_fortune_wheel"
         android:id="@+id/wheel"
         android:icon="@drawable/wheel_selector" />
 
 
-    <item android:title="Wishlist"
+    <item
+        android:title="@string/nav_wishlist"
         android:id="@+id/wishlist"
         android:icon="@drawable/wishlist_selector"/>
 
 
-    <item android:title="Shopping cart"
+    <item
+        android:title="@string/nav_shopping_bag"
         android:id="@+id/shopping_Bag"
         android:icon="@drawable/bag_selector" />
 
 
-    <item android:title="Account"
+    <item
+        android:title="@string/nav_account"
         android:id="@+id/account"
         android:icon="@drawable/account_selector" />
 
