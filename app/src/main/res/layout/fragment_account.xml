@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView45"
+        android:id="@+id/joinUsAsASellerIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="532dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/joinUsAsASellerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="540dp"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView43"
+        android:id="@+id/contactUsIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="480dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/aboutUsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="432dp"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView44"
+        android:id="@+id/aboutUsIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="428dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/contactUsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="484dp"
@@ -117,7 +117,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView41"
+        android:id="@+id/vouchersIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="376dp"
@@ -139,7 +139,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView32"
+        android:id="@+id/addressBookText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="332dp"
@@ -150,7 +150,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView42"
+        android:id="@+id/addressBookIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="324dp"
@@ -172,7 +172,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/vouchersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="380dp"
@@ -183,7 +183,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView40"
+        android:id="@+id/myOrdersIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="276dp"
@@ -194,7 +194,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/myOrdersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="284dp"
@@ -227,7 +227,7 @@
         app:menu="@menu/bottom_menu" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/accountDetailsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="232dp"
@@ -238,7 +238,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView39"
+        android:id="@+id/accountDetailsIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="224dp"

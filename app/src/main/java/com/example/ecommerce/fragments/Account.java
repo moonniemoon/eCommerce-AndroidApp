@@ -1,13 +1,20 @@
 package com.example.ecommerce.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
+import com.example.ecommerce.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +22,8 @@ import com.example.ecommerce.R;
  * create an instance of this fragment.
  */
 public class Account extends Fragment {
+
+    private TextView accountDetails, myOrders, addressBook, vouchers, aboutUs, contactUs, joinUsAsASeller;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,10 +59,24 @@ public class Account extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        accountDetails.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Fragment accountDetailsFragment = new AccountDetails();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.account, accountDetailsFragment ); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();
+            }
+        });
     }
 
     @Override

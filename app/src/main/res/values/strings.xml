@@ -8,5 +8,6 @@
     <string name="nav_wishlist">Wishlist</string>
     <string name="nav_shopping_bag">Shopping Bag</string>
     <string name="nav_account">Account</string>
+    <string name="forgot_password"><u>Forgot your password?</u></string>
 
 </resources>
