@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_account"
+    android:background="@color/white"
     tools:context=".fragments.Account">
 
     <View
@@ -232,6 +234,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="232dp"
         android:text="Account Details"
+        android:clickable="true"
         app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
