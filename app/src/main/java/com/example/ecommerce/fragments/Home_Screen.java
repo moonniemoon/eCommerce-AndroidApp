@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ecommerce.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +64,12 @@ public class Home_Screen extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_homescreen, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+       // FirebaseRecyclerOptions<>
     }
 }
