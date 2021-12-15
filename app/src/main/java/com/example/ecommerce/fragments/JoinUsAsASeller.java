@@ -1,15 +1,57 @@
 package com.example.ecommerce.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+
+import javax.xml.transform.Result;
 
 public class JoinUsAsASeller extends Fragment {
+
+    // https://www.youtube.com/watch?v=emDhMx_2-1E&list=PLxefhmF0pcPlqmH_VfWneUjfuqhreUz-O&index=13
+
+    private Boolean flag = false;
+    private String companyName, companyName2, eMail, phone, passWord;
+    private EditText inputCompanyName, inputEmail, inputPhone, inputPassword;
+    private Button attachLogo, submitForm;
+    private static final int GalleryPick = 1;
+    private Uri ImageUri;
+    private String companyRandomKey, downloadImageUrl;
+    private StorageReference companyLogo;
+    private DatabaseReference CompanyRef;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,7 +95,149 @@ public class JoinUsAsASeller extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_joinusasaseller, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_joinusasaseller, container, false);
+
+        companyLogo = FirebaseStorage.getInstance().getReference().child("Company Logo");
+        CompanyRef = FirebaseDatabase.getInstance().getReference().child("Companies");
+
+        attachLogo = (Button) RootView.findViewById(R.id.attachLogo_Button);
+        submitForm = (Button) RootView.findViewById(R.id.submitFormButton);
+        inputCompanyName = (EditText) RootView.findViewById(R.id.companyNameEditText);
+        inputEmail = (EditText) RootView.findViewById(R.id.emailEditText);
+        inputPhone = (EditText) RootView.findViewById(R.id.phoneNumberEditText);
+        inputPassword = (EditText) RootView.findViewById(R.id.passwordEditText);
+
+        attachLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGallery();
+            }
+        });
+
+        submitForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ValidateCompanyData();
+            }
+        });
+
+        return RootView;
     }
+
+    private void OpenGallery() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, GalleryPick);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GalleryPick && resultCode == Activity.RESULT_OK && data!=null) {
+            ImageUri = data.getData();
+        }
+    }
+
+
+    private void ValidateCompanyData() {
+        companyName = inputCompanyName.getText().toString();
+        eMail = inputEmail.getText().toString();
+        phone = inputPhone.getText().toString();
+        passWord = inputPassword.getText().toString();
+
+        if (ImageUri == null) {
+            Toast.makeText(getActivity(), "Please attach a logo and background image... " , Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(companyName)) {
+            Toast.makeText(getActivity(), "Please enter a company name..." , Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(eMail)) {
+            Toast.makeText(getActivity(), "Please enter an email..." , Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(getActivity(), "Please enter a phone number..." , Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(passWord)) {
+            Toast.makeText(getActivity(), "Please enter a password..." , Toast.LENGTH_LONG).show();
+        } else {
+            StoreCompanyInformation();
+        }
+    }
+
+
+    private void StoreCompanyInformation() {
+        companyName2 = companyName.replace(" ", "");
+        companyRandomKey = companyName2;
+
+        final StorageReference filePath1 = companyLogo.child(ImageUri.getLastPathSegment() + companyRandomKey + ".png");
+
+        final UploadTask uploadTask1 = filePath1.putFile(ImageUri);
+
+        uploadTask1.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                String message = e.toString();
+            }
+
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getActivity(), "Image uploaded successfully..." , Toast.LENGTH_LONG).show();
+
+                Task<Uri> urlTask1 = uploadTask1.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+
+                        downloadImageUrl = filePath1.getDownloadUrl().toString();
+                        return filePath1.getDownloadUrl();
+                    }
+
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+                            downloadImageUrl = task.getResult().toString();
+                            //Toast.makeText(getActivity(), "saved url to database successfully!" , Toast.LENGTH_LONG).show();
+                            SaveCompanyInfoToDatavase();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void SaveCompanyInfoToDatavase() {
+        HashMap<String, Object> companyMap = new HashMap<>();
+        companyMap.put("cID", companyRandomKey);
+        companyMap.put("name", companyName);
+        companyMap.put("email", eMail);
+        companyMap.put("phone", phone);
+        companyMap.put("password", passWord);
+        companyMap.put("logo", downloadImageUrl);
+
+        CompanyRef.child(companyRandomKey).updateChildren(companyMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), "SUCCESS!" , Toast.LENGTH_LONG).show();
+
+                        }
+                        else {
+                            Toast.makeText(getActivity(), "UNSUCCESSFUL!" , Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
+    private void changeFragment(Fragment fragment){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_joinUsAsASeller, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 }
