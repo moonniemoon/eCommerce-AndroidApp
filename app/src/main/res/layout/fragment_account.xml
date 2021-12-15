@@ -2,17 +2,123 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_account"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_account"
     android:background="@color/white"
+    android:foregroundTint="#F86BAD"
     tools:context=".fragments.Account">
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="532dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="480dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="428dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="324dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="276dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/joinUsAsASellerFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="520dp"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/contactUsFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="472dp"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/aboutUsFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="420dp"
+        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/vouchersFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="368dp"
+        app:layout_constraintHorizontal_bias="0.864"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/addressBookFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="316dp"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
     <View
         android:id="@+id/divider34"
         android:layout_width="350dp"
         android:layout_height="1dp"
-        android:layout_marginTop="576dp"
+        android:layout_marginTop="568dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -233,8 +339,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="232dp"
-        android:text="Account Details"
         android:clickable="true"
+        android:text="Account Details"
         app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -264,21 +370,75 @@
 
     <ImageView
         android:id="@+id/imageView48"
-        android:layout_width="425dp"
-        android:layout_height="155dp"
-        android:src="@drawable/img"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="4dp" />
+        android:layout_width="428dp"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/accountbackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:src="@drawable/account_profilepic"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_width="111dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/profilepic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/accountDetailsFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="216dp"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/myOrdersFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="224dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="224dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="376dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 
-public class AccountDetails extends Fragment {
+public class ChangePassword extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class AccountDetails extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AccountDetails() {
+    public ChangePassword() {
         // Required empty public constructor
     }
 
@@ -59,20 +59,13 @@ public class AccountDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_accountdetails, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_changepassword, container, false);
 
         ImageView backButton= (ImageView) RootView.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Account());
-            }
-        });
-        FrameLayout changePasswordLayout= (FrameLayout) RootView.findViewById(R.id.changePasswordFrameLayout);
-        changePasswordLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new ChangePassword());
+                changeFragment(new AccountDetails());
             }
         });
         return RootView;
@@ -81,8 +74,9 @@ public class AccountDetails extends Fragment {
     private void changeFragment(Fragment fragment){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_accountdetails, fragment);
+        fragmentTransaction.replace(R.id.fragment_changepassword, fragment);
         fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.hide(this);
         fragmentTransaction.commit();
     }
 }

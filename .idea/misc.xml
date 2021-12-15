@@ -5,10 +5,13 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/account_accountdetails_selector.xml" value="0.5421875" />
+        <entry key="app/src/main/res/drawable/account_backdrop_background.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/account_gray.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/account_selector.xml" value="0.5421875" />
+        <entry key="app/src/main/res/drawable/back_icon.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_account.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.5421875" />
+        <entry key="app/src/main/res/drawable/ic_pinkarrow.xml" value="0.5421875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.43931159420289856" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_accountdetails.xml" value="0.5260416666666666" />

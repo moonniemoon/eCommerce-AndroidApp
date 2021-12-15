@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -77,29 +78,29 @@ public class Account extends Fragment {
         // Inflate the layout for this fragment
         View RootView = inflater.inflate(R.layout.fragment_account, container, false);
 
-        TextView accountDetails = (TextView) RootView.findViewById(R.id.accountDetailsText);
-        accountDetails.setOnClickListener(new View.OnClickListener() {
+        FrameLayout accountDetailsLayout= (FrameLayout) RootView.findViewById(R.id.accountDetailsFrameLayout);
+        accountDetailsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new AccountDetails());
             }
         });
-        TextView myOrders = (TextView) RootView.findViewById(R.id.myOrdersText);
-        myOrders.setOnClickListener(new View.OnClickListener() {
+        FrameLayout myOrdersLayout = (FrameLayout) RootView.findViewById(R.id.myOrdersFrameLayout);
+        myOrdersLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new AccountDetails());
             }
         });
-        TextView addressBook = (TextView) RootView.findViewById(R.id.addressBookText);
-        addressBook.setOnClickListener(new View.OnClickListener() {
+        FrameLayout addressBookLayout = (FrameLayout) RootView.findViewById(R.id.addressBookFrameLayout);
+        addressBookLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new AccountDetails());
             }
         });
-        TextView joinUsAsASeller = (TextView) RootView.findViewById(R.id.joinUsAsASellerText);
-        joinUsAsASeller.setOnClickListener(new View.OnClickListener() {
+        FrameLayout joinUsAsASellerLayout = (FrameLayout) RootView.findViewById(R.id.joinUsAsASellerFrameLayout);
+        joinUsAsASellerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeFragment(new JoinUsAsASeller());
