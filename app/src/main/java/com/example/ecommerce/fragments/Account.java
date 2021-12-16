@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.activities.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -28,6 +30,7 @@ import org.w3c.dom.Text;
  * create an instance of this fragment.
  */
 public class Account extends Fragment {
+    private FirebaseAuth mFirebaseAuth;
 
     private TextView accountDetails, myOrders, addressBook, vouchers, aboutUs, contactUs, joinUsAsASeller;
 
@@ -75,38 +78,44 @@ public class Account extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_account, container, false);
+        /*FirebaseUser firebaseUser =  mFirebaseAuth.getCurrentUser();
+        if(firebaseUser!=null){*/
+            View RootView = inflater.inflate(R.layout.fragment_account, container, false);
 
-        FrameLayout accountDetailsLayout= (FrameLayout) RootView.findViewById(R.id.accountDetailsFrameLayout);
-        accountDetailsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new AccountDetails());
-            }
-        });
-        FrameLayout myOrdersLayout = (FrameLayout) RootView.findViewById(R.id.myOrdersFrameLayout);
-        myOrdersLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new AccountDetails());
-            }
-        });
-        FrameLayout addressBookLayout = (FrameLayout) RootView.findViewById(R.id.addressBookFrameLayout);
-        addressBookLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new AccountDetails());
-            }
-        });
-        FrameLayout joinUsAsASellerLayout = (FrameLayout) RootView.findViewById(R.id.joinUsAsASellerFrameLayout);
-        joinUsAsASellerLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new JoinUsAsASeller());
-            }
-        });
-        return RootView;
+            FrameLayout accountDetailsLayout= (FrameLayout) RootView.findViewById(R.id.accountDetailsFrameLayout);
+            accountDetailsLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new AccountDetails());
+                }
+            });
+            FrameLayout myOrdersLayout = (FrameLayout) RootView.findViewById(R.id.myOrdersFrameLayout);
+            myOrdersLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new AccountDetails());
+                }
+            });
+            FrameLayout addressBookLayout = (FrameLayout) RootView.findViewById(R.id.addressBookFrameLayout);
+            addressBookLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new AccountDetails());
+                }
+            });
+            FrameLayout joinUsAsASellerLayout = (FrameLayout) RootView.findViewById(R.id.joinUsAsASellerFrameLayout);
+            joinUsAsASellerLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new JoinUsAsASeller());
+                }
+            });
+            return RootView;
+       /* }
+        else {
+            View RootView = inflater.inflate(R.layout.fragment_login, container, false);
+            return RootView;
+        }*/
     }
 
     private void changeFragment(Fragment fragment){
