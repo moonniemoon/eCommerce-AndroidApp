@@ -1,14 +1,20 @@
 package com.example.ecommerce.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.ecommerce.activities.HomeActivity;
 import com.example.ecommerce.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +22,13 @@ import com.example.ecommerce.R;
  * create an instance of this fragment.
  */
 public class Home_Screen extends Fragment {
+
+    private DatabaseReference BoutiqueRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    FirebaseRecyclerAdapter adapter;
+
+    private Button button;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,14 +73,21 @@ public class Home_Screen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_homescreen, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_homescreen, container, false);
+
+        button = (Button) RootView.findViewById(R.id.home_Screen);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+       // startActivity(new Intent(getActivity(),   HomeActivity.class));
+
+        return RootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-       // FirebaseRecyclerOptions<>
-    }
 }

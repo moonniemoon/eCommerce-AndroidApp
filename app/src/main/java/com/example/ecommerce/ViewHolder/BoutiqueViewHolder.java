@@ -17,8 +17,8 @@ public class BoutiqueViewHolder extends RecyclerView.ViewHolder implements View.
     public BoutiqueViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        boutique_image = (ImageView) itemView.findViewById(R.id.boutique_image);
-        boutique_logo = (ImageView) itemView.findViewById(R.id.boutique_logo);
+        this.boutique_image = (ImageView) itemView.findViewById(R.id.boutique_image);
+        this.boutique_logo = (ImageView) itemView.findViewById(R.id.boutique_logo);
 
     }
 

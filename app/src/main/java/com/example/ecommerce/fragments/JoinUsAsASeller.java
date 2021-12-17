@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,10 +119,11 @@ public class JoinUsAsASeller extends Fragment {
             @Override
             public void onClick(View v) {
                 ValidateCompanyData();
+
             }
         });
-
         return RootView;
+
     }
 
     private void OpenGallery() {
@@ -165,7 +167,7 @@ public class JoinUsAsASeller extends Fragment {
 
     private void StoreCompanyInformation() {
         companyName2 = companyName.replace(" ", "");
-        companyRandomKey = companyName2;
+        companyRandomKey = companyName2.toLowerCase();
 
         final StorageReference filePath1 = companyLogo.child(ImageUri.getLastPathSegment() + companyRandomKey + ".png");
 

@@ -6,11 +6,11 @@
     app:startDestination="@id/home_Screen">
 
 
-    <fragment
+    <activity
         android:id="@+id/home_Screen"
-        android:name="com.example.ecommerce.fragments.Home_Screen"
-        android:label="fragment_homescreen"
-        tools:layout="@layout/fragment_homescreen" />
+        android:name="com.example.ecommerce.activities.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
     <fragment
         android:id="@+id/wheel"
         android:name="com.example.ecommerce.fragments.Wheel"

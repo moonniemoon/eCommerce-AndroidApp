@@ -32,6 +32,7 @@ android {
 dependencies {
 
 
+
     def nav_version = "2.3.0"
 
     implementation "androidx.navigation:navigation-fragment:$nav_version"
@@ -52,5 +53,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'com.google.firebase:firebase-storage:19.2.2'
+
+    // For home
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.cardview:cardview:1.0.0'
     
 }
