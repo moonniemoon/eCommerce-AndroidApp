@@ -2,7 +2,6 @@ package com.example.ecommerce.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -35,8 +32,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
-
-import javax.xml.transform.Result;
 
 public class JoinUsAsASeller extends Fragment {
 
@@ -74,8 +69,8 @@ public class JoinUsAsASeller extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account newInstance(String param1, String param2) {
-        Account fragment = new Account();
+    public static FragmentAccount newInstance(String param1, String param2) {
+        FragmentAccount fragment = new FragmentAccount();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

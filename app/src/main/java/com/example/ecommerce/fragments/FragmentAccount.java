@@ -1,36 +1,28 @@
 package com.example.ecommerce.fragments;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.activities.MainActivity;
+import com.example.ecommerce.activities.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Account#newInstance} factory method to
+ * Use the {@link FragmentAccount#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Account extends Fragment {
-    private FirebaseAuth mFirebaseAuth;
+public class FragmentAccount extends Fragment {
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     private TextView accountDetails, myOrders, addressBook, vouchers, aboutUs, contactUs, joinUsAsASeller;
 
@@ -44,7 +36,7 @@ public class Account extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Account() {
+    public FragmentAccount() {
         // Required empty public constructor
     }
 
@@ -57,8 +49,8 @@ public class Account extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account newInstance(String param1, String param2) {
-        Account fragment = new Account();
+    public static FragmentAccount newInstance(String param1, String param2) {
+        FragmentAccount fragment = new FragmentAccount();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,6 +61,7 @@ public class Account extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firebaseAuth = FirebaseAuth.getInstance();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -78,10 +71,9 @@ public class Account extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*FirebaseUser firebaseUser =  mFirebaseAuth.getCurrentUser();
-        if(firebaseUser!=null){*/
-            View RootView = inflater.inflate(R.layout.fragment_account, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_account, container, false);
 
+        if(firebaseAuth.getCurrentUser()!=null){
             FrameLayout accountDetailsLayout= (FrameLayout) RootView.findViewById(R.id.accountDetailsFrameLayout);
             accountDetailsLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,12 +102,11 @@ public class Account extends Fragment {
                     changeFragment(new JoinUsAsASeller());
                 }
             });
-            return RootView;
-       /* }
+       }
         else {
-            View RootView = inflater.inflate(R.layout.fragment_login, container, false);
-            return RootView;
-        }*/
+            startActivity(new Intent(getActivity(),   LogIn.class));
+        }
+        return RootView;
     }
 
     private void changeFragment(Fragment fragment){

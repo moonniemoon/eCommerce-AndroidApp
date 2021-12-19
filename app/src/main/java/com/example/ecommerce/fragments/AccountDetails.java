@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class AccountDetails extends Fragment {
     private FirebaseAuth mFirebaseAuth;
@@ -40,8 +39,8 @@ public class AccountDetails extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account newInstance(String param1, String param2) {
-        Account fragment = new Account();
+    public static FragmentAccount newInstance(String param1, String param2) {
+        FragmentAccount fragment = new FragmentAccount();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,7 +67,7 @@ public class AccountDetails extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Account());
+                changeFragment(new FragmentAccount());
             }
         });
         FrameLayout changePasswordLayout= (FrameLayout) RootView.findViewById(R.id.changePasswordFrameLayout);

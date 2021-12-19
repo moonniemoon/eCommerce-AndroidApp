@@ -2,29 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".fragments.Account">
-
+    tools:context=".fragments.FragmentAccount">
 
     <Button
         android:id="@+id/becomeAMemberButton"
         android:layout_width="306dp"
         android:layout_height="50dp"
         android:layout_marginTop="520dp"
-        android:background="@color/white"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        android:background="@color/black"
         android:backgroundTint="@color/design_default_color_on_primary"
         android:text="BECOME A MEMBER"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:iconTint="@color/white"
+        app:iconTint="@color/black"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/loginEditTextEmailAddress"
         android:layout_width="306dp"
         android:layout_height="43dp"
         android:layout_marginTop="228dp"
@@ -36,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/loginEditTextPassword"
         android:layout_width="306dp"
         android:layout_height="43dp"
         android:layout_marginTop="344dp"
@@ -108,5 +110,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/xButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@android:drawable/ic_delete"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
