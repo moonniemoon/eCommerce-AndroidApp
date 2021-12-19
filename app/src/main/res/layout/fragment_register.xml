@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".fragments.Register">
+    tools:context=".fragments.user.Register">
 
 
     <TextView
@@ -35,20 +35,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="307dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="528dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/design_default_color_on_primary"
-        android:text="REGISTER"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:iconTint="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/lastNametext"
         android:layout_width="wrap_content"
@@ -58,19 +44,6 @@
         android:text="Last name"
         android:textColor="@color/black"
         app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/passwordRequirementsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="472dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Minimum of 8 characters, 1 number, 1 uppercase, 1 lowercase"
-        android:textSize="12sp"
-        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +64,7 @@
     <EditText
         android:id="@+id/emailAddressEditText"
         android:layout_width="350dp"
-        android:layout_height="26dp"
+        android:layout_height="35dp"
         android:layout_marginTop="368dp"
         android:ems="10"
         android:inputType="textEmailAddress"
@@ -103,11 +76,52 @@
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="350dp"
-        android:layout_height="26dp"
+        android:layout_height="35dp"
         android:layout_marginTop="440dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="307dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="532dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/design_default_color_on_primary"
+        android:text="REGISTER"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:iconTint="@color/white"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/passwordRequirementsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="476dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Minimum of 8 characters, 1 number, 1 uppercase, 1 lowercase"
+        android:textSize="12sp"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/createAPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Create a password"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -128,7 +142,7 @@
     <EditText
         android:id="@+id/lastNameEditText"
         android:layout_width="350dp"
-        android:layout_height="26dp"
+        android:layout_height="35dp"
         android:layout_marginTop="300dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -140,24 +154,11 @@
     <EditText
         android:id="@+id/firstNameEditText"
         android:layout_width="350dp"
-        android:layout_height="26dp"
+        android:layout_height="35dp"
         android:layout_marginTop="232dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/createAPasswordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Create a password"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

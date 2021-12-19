@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
-    app:cardElevation="15dp">
+    app:cardElevation="0dp"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,23 +17,23 @@
             android:id="@+id/boutique_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="2dp">
-        </ImageView>
+            android:layout_marginTop="2dp"
+            android:scaleType="centerCrop"></ImageView>
 
         <ImageView
             android:id="@+id/boutique_logo_background"
             android:layout_width="250dp"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:layout_gravity="start"
             android:background="@color/white"
             android:layout_centerVertical="true" >
         </ImageView>
-        
+
         <ImageView
             android:id="@+id/boutique_logo"
             android:layout_width="180dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
             android:layout_centerVertical="true"
             android:layout_alignEnd="@+id/boutique_logo_background">
         </ImageView>

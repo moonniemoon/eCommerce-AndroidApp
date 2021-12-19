@@ -1,4 +1,4 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.activities.LogIn;
+import com.example.ecommerce.activities.user.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**

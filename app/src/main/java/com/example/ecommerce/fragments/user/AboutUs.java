@@ -1,4 +1,4 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import androidx.fragment.app.Fragment;
 

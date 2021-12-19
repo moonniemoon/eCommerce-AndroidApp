@@ -1,21 +1,34 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.ecommerce.activities.HomeActivity;
 import com.example.ecommerce.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Wishlist#newInstance} factory method to
+ * Use the {@link Home_Screen#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Wishlist extends Fragment {
+public class Home_Screen extends Fragment {
+
+    private DatabaseReference BoutiqueRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    FirebaseRecyclerAdapter adapter;
+
+    private Button button;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +39,7 @@ public class Wishlist extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Wishlist() {
+    public Home_Screen() {
         // Required empty public constructor
     }
 
@@ -36,11 +49,11 @@ public class Wishlist extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Wishlist.
+     * @return A new instance of fragment Home_Screen.
      */
     // TODO: Rename and change types and number of parameters
-    public static Wishlist newInstance(String param1, String param2) {
-        Wishlist fragment = new Wishlist();
+    public static Home_Screen newInstance(String param1, String param2) {
+        Home_Screen fragment = new Home_Screen();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,7 +73,21 @@ public class Wishlist extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wishlist, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_homescreen, container, false);
+
+        button = (Button) RootView.findViewById(R.id.home_Screen);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+       // startActivity(new Intent(getActivity(),   HomeActivity.class));
+
+        return RootView;
     }
+
 }

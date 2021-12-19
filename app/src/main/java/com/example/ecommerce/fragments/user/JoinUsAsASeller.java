@@ -1,4 +1,4 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,7 +39,7 @@ public class JoinUsAsASeller extends Fragment {
     // https://www.youtube.com/watch?v=emDhMx_2-1E&list=PLxefhmF0pcPlqmH_VfWneUjfuqhreUz-O&index=13
 
     private Boolean flag = false;
-    private String companyName, companyName2, eMail, phone, passWord;
+    private String companyName, companyName2, email, phone, password;
     private EditText inputCompanyName, inputEmail, inputPhone, inputPassword;
     private Button attachLogo, submitForm;
     private static final int GalleryPick = 1;
@@ -46,6 +47,8 @@ public class JoinUsAsASeller extends Fragment {
     private String companyRandomKey, downloadImageUrl;
     private StorageReference companyLogo;
     private DatabaseReference CompanyRef;
+    FirebaseAuth firebaseAuth;
+    private String parentDatabaseName = "Companies";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,7 +101,7 @@ public class JoinUsAsASeller extends Fragment {
         attachLogo = (Button) RootView.findViewById(R.id.attachLogo_Button);
         submitForm = (Button) RootView.findViewById(R.id.submitFormButton);
         inputCompanyName = (EditText) RootView.findViewById(R.id.companyNameEditText);
-        inputEmail = (EditText) RootView.findViewById(R.id.emailEditText);
+        inputEmail = (EditText) RootView.findViewById(R.id.companyEmailEditText);
         inputPhone = (EditText) RootView.findViewById(R.id.phoneNumberEditText);
         inputPassword = (EditText) RootView.findViewById(R.id.passwordEditText);
 
@@ -113,10 +116,11 @@ public class JoinUsAsASeller extends Fragment {
             @Override
             public void onClick(View v) {
                 ValidateCompanyData();
+
             }
         });
-
         return RootView;
+
     }
 
     private void OpenGallery() {
@@ -138,19 +142,19 @@ public class JoinUsAsASeller extends Fragment {
 
     private void ValidateCompanyData() {
         companyName = inputCompanyName.getText().toString();
-        eMail = inputEmail.getText().toString();
+        email = inputEmail.getText().toString();
         phone = inputPhone.getText().toString();
-        passWord = inputPassword.getText().toString();
+        password = inputPassword.getText().toString();
 
         if (ImageUri == null) {
             Toast.makeText(getActivity(), "Please attach a logo and background image... " , Toast.LENGTH_LONG).show();
         } else if (TextUtils.isEmpty(companyName)) {
             Toast.makeText(getActivity(), "Please enter a company name..." , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(eMail)) {
+        } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Please enter an email..." , Toast.LENGTH_LONG).show();
         } else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(getActivity(), "Please enter a phone number..." , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(passWord)) {
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(getActivity(), "Please enter a password..." , Toast.LENGTH_LONG).show();
         } else {
             StoreCompanyInformation();
@@ -160,7 +164,7 @@ public class JoinUsAsASeller extends Fragment {
 
     private void StoreCompanyInformation() {
         companyName2 = companyName.replace(" ", "");
-        companyRandomKey = companyName2;
+        companyRandomKey = companyName2.toLowerCase();
 
         final StorageReference filePath1 = companyLogo.child(ImageUri.getLastPathSegment() + companyRandomKey + ".png");
 
@@ -193,8 +197,7 @@ public class JoinUsAsASeller extends Fragment {
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()){
                             downloadImageUrl = task.getResult().toString();
-                            //Toast.makeText(getActivity(), "saved url to database successfully!" , Toast.LENGTH_LONG).show();
-                            SaveCompanyInfoToDatavase();
+                            //createCompany();
                         }
                     }
                 });
@@ -202,13 +205,14 @@ public class JoinUsAsASeller extends Fragment {
         });
     }
 
-    private void SaveCompanyInfoToDatavase() {
+
+    private void addCompanyToDatabase(){
         HashMap<String, Object> companyMap = new HashMap<>();
         companyMap.put("cID", companyRandomKey);
         companyMap.put("name", companyName);
-        companyMap.put("email", eMail);
+        companyMap.put("email", email);
         companyMap.put("phone", phone);
-        companyMap.put("password", passWord);
+        companyMap.put("password", password);
         companyMap.put("logo", downloadImageUrl);
 
         CompanyRef.child(companyRandomKey).updateChildren(companyMap)

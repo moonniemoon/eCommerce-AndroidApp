@@ -20,10 +20,15 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_pinkarrow.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_wheel.xml" value="0.3463541666666667" />
+        <entry key="app/src/main/res/layout/activity_addproduct.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/activity_companyaccount.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.43931159420289856" />
+        <entry key="app/src/main/res/layout/activity_managestock.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_accountdetails.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_changepassword.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_companydetails.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_homescreen.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_joinusasaseller.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5260416666666666" />

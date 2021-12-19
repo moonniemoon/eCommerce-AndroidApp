@@ -1,4 +1,4 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,19 +16,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 
-public class Register extends Fragment {
+public class LogIn extends Fragment {
 
-    private String firstName, lastName, email, password;
-    private EditText firstNameInput, lastNameInput, emailInput, passwordInput;
-    FirebaseAuth firebaseAuth;
-    private DatabaseReference customerRef;
-    private Button registerButton;
+    private String email, password;
+    private EditText emailInput, passwordInput;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,7 +37,7 @@ public class Register extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Register() {
+    public LogIn() {
         // Required empty public constructor
     }
 
@@ -73,74 +72,68 @@ public class Register extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_register, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_login, container, false);
 
-        firstNameInput = (EditText)  RootView.findViewById(R.id.firstNameEditText);
-        lastNameInput = (EditText)  RootView.findViewById(R.id.lastNameEditText);
-        emailInput = (EditText)  RootView.findViewById(R.id.emailEditText);
-        passwordInput = (EditText)  RootView.findViewById(R.id.passwordEditText);
-       Button registerButton = (Button) RootView.findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        emailInput = (EditText) RootView.findViewById(R.id.loginEditTextEmailAddress);
+        passwordInput = (EditText) RootView.findViewById(R.id.loginEditTextPassword);
+
+        ImageView xButton = (ImageView) RootView.findViewById(R.id.xButton);
+        xButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               validateData();
+                changeFragment(new AccountDetails());
             }
         });
-        ImageView backButton = (ImageView) RootView.findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        Button logInButton = (Button) RootView.findViewById(R.id.logInButton);
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Home_Screen());
+                    logIn();
+            }
+        });
+        Button becomeAMemberButton = (Button) RootView.findViewById(R.id.becomeAMemberButton);
+        becomeAMemberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new Register());
             }
         });
         return RootView;
     }
 
-    private void validateData(){
-        firstName = firstNameInput.getText().toString();
-        lastName = lastNameInput.getText().toString();
+    private void logIn(){
+        // Get credentials
         email = emailInput.getText().toString();
         password = passwordInput.getText().toString();
 
-        if(TextUtils.isEmpty(firstName)){
-            Toast.makeText(getActivity(), "Please enter a first name" , Toast.LENGTH_LONG).show();
-        }
-        else if(TextUtils.isEmpty(lastName)){
-            Toast.makeText(getActivity(), "Please enter a last name" , Toast.LENGTH_LONG).show();
-        }
-        else if(TextUtils.isEmpty(email)){
-            Toast.makeText(getActivity(), "Please enter a valid email" , Toast.LENGTH_LONG).show();
+        //Validate data
+        if(TextUtils.isEmpty(email)){
+            emailInput.setError("Please enter your email");
+            emailInput.requestFocus();
         }
         else if(TextUtils.isEmpty(password)){
-            Toast.makeText(getActivity(), "Please enter a password" , Toast.LENGTH_LONG).show();
-        }
-        else if(password.length()<8){
-            Toast.makeText(getActivity(), "Password must be at least 8 characters" , Toast.LENGTH_LONG).show();
+            passwordInput.setError("Please enter your password");
+            passwordInput.requestFocus();
         }
         else{
-            createUser();
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    Toast.makeText(getActivity(), "Welcome back!" , Toast.LENGTH_LONG).show();
+                    changeFragment(new AccountDetails());
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), e.getMessage() , Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
-
-    private void createUser(){
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(getActivity(), "Welcome to the app!" , Toast.LENGTH_LONG).show();
-                changeFragment(new Home_Screen());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), e.getMessage() , Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
     private void changeFragment(Fragment fragment){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_register, fragment);
+        fragmentTransaction.replace(R.id.fragment_login, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.hide(this);
         fragmentTransaction.commit();

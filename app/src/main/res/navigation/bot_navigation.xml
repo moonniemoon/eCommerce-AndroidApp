@@ -6,29 +6,29 @@
     app:startDestination="@id/home_Screen">
 
 
-    <fragment
+    <activity
         android:id="@+id/home_Screen"
-        android:name="com.example.ecommerce.fragments.Home_Screen"
-        android:label="fragment_homescreen"
-        tools:layout="@layout/fragment_homescreen" />
+        android:name="com.example.ecommerce.activities.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
     <fragment
         android:id="@+id/wheel"
-        android:name="com.example.ecommerce.fragments.Wheel"
+        android:name="com.example.ecommerce.fragments.user.Wheel"
         android:label="fragment_wheel"
         tools:layout="@layout/fragment_wheel" />
     <fragment
         android:id="@+id/wishlist"
-        android:name="com.example.ecommerce.fragments.Wishlist"
+        android:name="com.example.ecommerce.fragments.user.Wishlist"
         android:label="fragment_wishlist"
         tools:layout="@layout/fragment_wishlist" />
     <fragment
         android:id="@+id/shopping_Bag"
-        android:name="com.example.ecommerce.fragments.Shopping_Bag"
+        android:name="com.example.ecommerce.fragments.user.Shopping_Bag"
         android:label="fragment_shoppingbag"
         tools:layout="@layout/fragment_shoppingbag" />
     <fragment
         android:id="@+id/account"
-        android:name="com.example.ecommerce.fragments.FragmentAccount"
+        android:name="com.example.ecommerce.fragments.user.FragmentAccount"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
 

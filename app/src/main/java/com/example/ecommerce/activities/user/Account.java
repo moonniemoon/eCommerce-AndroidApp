@@ -1,0 +1,103 @@
+package com.example.ecommerce.activities.user;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.ecommerce.R;
+import com.example.ecommerce.fragments.user.AccountDetails;
+import com.example.ecommerce.accounts.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class Account extends AppCompatActivity {
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_account);
+        getSupportActionBar().hide();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        if(user!=null) {
+            reference = FirebaseDatabase.getInstance().getReference("Users");
+            userID = user.getUid();
+
+            TextView firstName = (TextView) findViewById(R.id.userFirstNameText);
+            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User userDetails = snapshot.getValue(User.class);
+
+                    if (userDetails != null) {
+                        firstName.setText(userDetails.getFirstName());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(Account.this, "Server error, please try again.", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            FrameLayout accountDetailsLayout= (FrameLayout) findViewById(R.id.accountDetailsFrameLayout);
+            accountDetailsLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new AccountDetails());
+                }
+            });
+            FrameLayout myOrdersLayout = (FrameLayout) findViewById(R.id.myOrdersFrameLayout);
+            myOrdersLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            FrameLayout addressBookLayout = (FrameLayout) findViewById(R.id.addressBookFrameLayout);
+            addressBookLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            FrameLayout joinUsAsASellerLayout = (FrameLayout) findViewById(R.id.joinUsAsASellerFrameLayout);
+            joinUsAsASellerLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Account.this, JoinUsAsASeller.class));
+                }
+            });
+        }
+        else {
+            startActivity(new Intent(Account.this, LogIn.class));
+        }
+    }
+
+    private void changeFragment(Fragment fragment){
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_account, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+}
