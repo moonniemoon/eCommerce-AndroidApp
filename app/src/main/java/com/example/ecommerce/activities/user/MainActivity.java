@@ -1,4 +1,4 @@
-package com.example.ecommerce.activities;
+package com.example.ecommerce.activities.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

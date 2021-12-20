@@ -1,10 +1,9 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -12,11 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class AccountDetails extends Fragment {
-    private FirebaseAuth mFirebaseAuth;
+public class ChangePassword extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +23,7 @@ public class AccountDetails extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AccountDetails() {
+    public ChangePassword() {
         // Required empty public constructor
     }
 
@@ -40,8 +36,8 @@ public class AccountDetails extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account newInstance(String param1, String param2) {
-        Account fragment = new Account();
+    public static FragmentAccount newInstance(String param1, String param2) {
+        FragmentAccount fragment = new FragmentAccount();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,20 +58,13 @@ public class AccountDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_accountdetails, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_changepassword, container, false);
 
         ImageView backButton= (ImageView) RootView.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Account());
-            }
-        });
-        FrameLayout changePasswordLayout= (FrameLayout) RootView.findViewById(R.id.changePasswordFrameLayout);
-        changePasswordLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeFragment(new ChangePassword());
+                changeFragment(new AccountDetails());
             }
         });
         return RootView;
@@ -84,8 +73,9 @@ public class AccountDetails extends Fragment {
     private void changeFragment(Fragment fragment){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_accountdetails, fragment);
+        fragmentTransaction.replace(R.id.fragment_changepassword, fragment);
         fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.hide(this);
         fragmentTransaction.commit();
     }
 }

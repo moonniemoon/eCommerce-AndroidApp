@@ -2,12 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_account"
+    android:id="@+id/activity_companyaccount"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:foregroundTint="#F86BAD"
-    tools:context=".fragments.user.FragmentAccount">
+    tools:context=".activities.company.CompanyAccount">
+
+    <FrameLayout
+        android:id="@+id/manageStockFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="316dp"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -21,7 +31,7 @@
         app:menu="@menu/bottom_menu" />
 
     <ImageView
-        android:id="@+id/imageView48"
+        android:id="@+id/companyBackground"
         android:layout_width="428dp"
         android:layout_height="160dp"
         android:scaleType="fitXY"
@@ -41,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/accountDetailsFrameLayout"
+        android:id="@+id/companyDetailsFrameLayout"
         android:layout_width="544dp"
         android:layout_height="48dp"
         android:layout_marginTop="268dp"
@@ -53,24 +63,24 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/accountDetailsIcon"
+        android:id="@+id/companyDetailsIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="276dp"
-        android:src="@drawable/account_accountdetails_selector"
+        android:src="@drawable/companyaccount_company_selector"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/addressBookText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/virtualCashRegisterText"
+        android:layout_width="132dp"
+        android:layout_height="26dp"
         android:layout_marginTop="384dp"
-        android:text="Address book"
+        android:text="Virtual Cash Register"
         android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -87,71 +97,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/myOrdersIcon"
+        android:id="@+id/manageStockIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="328dp"
-        android:src="@drawable/account_myorders_selector"
+        android:src="@drawable/companyaccount_products_selector"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/vouchersText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="432dp"
-        android:text="Vouchers"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/accountDetailsText"
+        android:id="@+id/companyDetailsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="284dp"
         android:clickable="true"
-        android:text="Account Details"
+        android:text="Company Details"
         android:textColor="@color/black"
         app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider32"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="468dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/contactUsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="536dp"
-        android:text="Contact us"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/contactUsIcon"
-        android:layout_width="27dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="532dp"
-        android:src="@drawable/account_contactus"
-        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -167,34 +131,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/joinUsAsASellerFrameLayout"
-        android:layout_width="544dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="572dp"
-        app:layout_constraintHorizontal_bias="0.917"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
-
-    <TextView
-        android:id="@+id/joinUsAsASellerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="592dp"
-        android:text="Join us as a seller!"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
-        android:id="@+id/addressBookIcon"
+        android:id="@+id/cashRegisterIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="376dp"
-        android:src="@drawable/account_addressbook_selector"
+        android:src="@drawable/companyaccount_cashregister_selector"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -212,22 +154,111 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/aboutUsFrameLayout"
+        android:id="@+id/contactUsFrameLayout"
         android:layout_width="544dp"
         android:layout_height="48dp"
         android:layout_marginTop="472dp"
-        app:layout_constraintHorizontal_bias="0.751"
+        app:layout_constraintHorizontal_bias="0.902"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imageView7"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="584dp"
+        android:layout_marginTop="480dp"
         android:src="@drawable/ic_pinkarrow"
-        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider31"
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="468dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider33"
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="520dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contactUsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="484dp"
+        android:text="Contact us"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="428dp"
+        android:src="@drawable/ic_pinkarrow"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/aboutUsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="432dp"
+        android:text="About us"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/contactUsIcon"
+        android:layout_width="27dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="480dp"
+        android:src="@drawable/account_contactus"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/aboutUsFrameLayout"
+        android:layout_width="544dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="424dp"
+        app:layout_constraintHorizontal_bias="0.616"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
+    <ImageView
+        android:id="@+id/aboutUsIcon"
+        android:layout_width="27dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="428dp"
+        android:src="@drawable/account_aboutus_selector"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -245,50 +276,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="532dp"
-        android:src="@drawable/ic_pinkarrow"
-        app:layout_constraintHorizontal_bias="0.981"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/vouchersIcon"
-        android:layout_width="27dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="428dp"
-        android:src="@drawable/account_vouchers_selector"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider31"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="520dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="480dp"
-        android:src="@drawable/ic_pinkarrow"
-        app:layout_constraintHorizontal_bias="0.981"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
         android:id="@+id/imageView"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -299,69 +286,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/divider33"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="572dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
-        android:id="@+id/vouchersFrameLayout"
-        android:layout_width="544dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="420dp"
-        app:layout_constraintHorizontal_bias="0.879"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
-
-    <ImageView
-        android:id="@+id/joinUsAsASellerIcon"
-        android:layout_width="27dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="584dp"
-        android:src="@drawable/account_joinasseller_selector"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/addressBookFrameLayout"
+        android:id="@+id/virtualCashRegisterFrameLayout"
         android:layout_width="544dp"
         android:layout_height="48dp"
         android:layout_marginTop="368dp"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
-
-    <ImageView
-        android:id="@+id/aboutUsIcon"
-        android:layout_width="27dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="480dp"
-        android:src="@drawable/account_aboutus_selector"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="428dp"
-        android:src="@drawable/ic_pinkarrow"
-        app:layout_constraintHorizontal_bias="0.981"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -370,28 +303,6 @@
         android:layout_marginTop="376dp"
         android:src="@drawable/ic_pinkarrow"
         app:layout_constraintHorizontal_bias="0.981"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/contactUsFrameLayout"
-        android:layout_width="544dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="524dp"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
-
-    <TextView
-        android:id="@+id/aboutUsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="484dp"
-        android:text="About us"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.152"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -407,23 +318,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/divider34"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="620dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/myOrdersText"
+        android:id="@+id/manageStockText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="336dp"
-        android:text="My Orders"
+        android:text="Manage Stock"
         android:textColor="@color/black"
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -452,7 +352,7 @@
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
     <TextView
-        android:id="@+id/greetingTextView"
+        android:id="@+id/greetingCompanyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
@@ -466,7 +366,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userFirstNameText"
+        android:id="@+id/greetingsCompanyNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="216dp"

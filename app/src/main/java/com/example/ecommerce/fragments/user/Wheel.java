@@ -1,4 +1,4 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.ecommerce.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Shopping_Bag#newInstance} factory method to
+ * Use the {@link Wheel#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Shopping_Bag extends Fragment {
+public class Wheel extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Shopping_Bag extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Shopping_Bag() {
+    public Wheel() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class Shopping_Bag extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Shopping_Bag.
+     * @return A new instance of fragment Wheel.
      */
     // TODO: Rename and change types and number of parameters
-    public static Shopping_Bag newInstance(String param1, String param2) {
-        Shopping_Bag fragment = new Shopping_Bag();
+    public static Wheel newInstance(String param1, String param2) {
+        Wheel fragment = new Wheel();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Shopping_Bag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shoppingbag, container, false);
+        return inflater.inflate(R.layout.fragment_wheel, container, false);
     }
 }

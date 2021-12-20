@@ -1,27 +1,20 @@
-package com.example.ecommerce.fragments;
+package com.example.ecommerce.fragments.user;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
-import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.google.android.gms.tasks.Continuation;
@@ -29,28 +22,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.HashMap;
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link Wishlist#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class Wishlist extends Fragment {
 
-import javax.xml.transform.Result;
-
-public class JoinUsAsASeller extends Fragment {
-
-    // https://www.youtube.com/watch?v=emDhMx_2-1E&list=PLxefhmF0pcPlqmH_VfWneUjfuqhreUz-O&index=13
-
-    private Boolean flag = false;
-    private String companyName, companyName2, eMail, phone, passWord;
-    private EditText inputCompanyName, inputEmail, inputPhone, inputPassword;
-    private Button attachLogo, submitForm;
+    private EditText inputCompanyID;
+    private Button attachBackground, submit;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
-    private String companyRandomKey, downloadImageUrl;
-    private StorageReference companyLogo;
+    private String downloadImageUrl;
+    public String companyID;
+    private StorageReference companyBackground;
     private DatabaseReference CompanyRef;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -62,7 +56,7 @@ public class JoinUsAsASeller extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public JoinUsAsASeller() {
+    public Wishlist() {
         // Required empty public constructor
     }
 
@@ -72,11 +66,11 @@ public class JoinUsAsASeller extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Account.
+     * @return A new instance of fragment Wishlist.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account newInstance(String param1, String param2) {
-        Account fragment = new Account();
+    public static Wishlist newInstance(String param1, String param2) {
+        Wishlist fragment = new Wishlist();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -91,39 +85,40 @@ public class JoinUsAsASeller extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View RootView = inflater.inflate(R.layout.fragment_joinusasaseller, container, false);
+        View RootView = inflater.inflate(R.layout.fragment_wishlist, container, false);
 
-        companyLogo = FirebaseStorage.getInstance().getReference().child("Company Logo");
-        CompanyRef = FirebaseDatabase.getInstance().getReference().child("Companies");
 
-        attachLogo = (Button) RootView.findViewById(R.id.attachLogo_Button);
-        submitForm = (Button) RootView.findViewById(R.id.submitFormButton);
-        inputCompanyName = (EditText) RootView.findViewById(R.id.companyNameEditText);
-        inputEmail = (EditText) RootView.findViewById(R.id.emailEditText);
-        inputPhone = (EditText) RootView.findViewById(R.id.phoneNumberEditText);
-        inputPassword = (EditText) RootView.findViewById(R.id.passwordEditText);
+        attachBackground = (Button) RootView.findViewById(R.id.wish_attachBackground_Button);
+        submit = (Button) RootView.findViewById(R.id.wish_submitButton);
+        // companyID = ((EditText) RootView.findViewById(R.id.wish_companyIDEditText)).getText().toString();
 
-        attachLogo.setOnClickListener(new View.OnClickListener() {
+
+        CompanyRef = FirebaseDatabase.getInstance().getReference();
+        companyBackground = FirebaseStorage.getInstance().getReference().child("Company Background");
+
+
+
+        attachBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenGallery();
             }
         });
 
-        submitForm.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ValidateCompanyData();
-
             }
         });
-        return RootView;
 
+        return RootView;
     }
 
     private void OpenGallery() {
@@ -142,34 +137,19 @@ public class JoinUsAsASeller extends Fragment {
         }
     }
 
-
     private void ValidateCompanyData() {
-        companyName = inputCompanyName.getText().toString();
-        eMail = inputEmail.getText().toString();
-        phone = inputPhone.getText().toString();
-        passWord = inputPassword.getText().toString();
 
         if (ImageUri == null) {
             Toast.makeText(getActivity(), "Please attach a logo and background image... " , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(companyName)) {
-            Toast.makeText(getActivity(), "Please enter a company name..." , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(eMail)) {
-            Toast.makeText(getActivity(), "Please enter an email..." , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(getActivity(), "Please enter a phone number..." , Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(passWord)) {
-            Toast.makeText(getActivity(), "Please enter a password..." , Toast.LENGTH_LONG).show();
         } else {
             StoreCompanyInformation();
         }
     }
 
-
     private void StoreCompanyInformation() {
-        companyName2 = companyName.replace(" ", "");
-        companyRandomKey = companyName2.toLowerCase();
 
-        final StorageReference filePath1 = companyLogo.child(ImageUri.getLastPathSegment() + companyRandomKey + ".png");
+
+        final StorageReference filePath1 = companyBackground.child(ImageUri.getLastPathSegment() + ".png");
 
         final UploadTask uploadTask1 = filePath1.putFile(ImageUri);
 
@@ -200,46 +180,28 @@ public class JoinUsAsASeller extends Fragment {
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()){
                             downloadImageUrl = task.getResult().toString();
-                            //Toast.makeText(getActivity(), "saved url to database successfully!" , Toast.LENGTH_LONG).show();
-                            SaveCompanyInfoToDatavase();
+                            Toast.makeText(getActivity(), "saved url to database successfully!" , Toast.LENGTH_LONG).show();
+
+
+                            DatabaseReference newRef = CompanyRef.child("Companies").child("bershka");  // added every companies background by manually typing their name
+                                                                                                            // after login-register(user panel) is created,
+                                                                                                            // change "bershka" to companysName or ID, has to be string tho
+                            ValueEventListener valueEventListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    snapshot.child("background").getRef().setValue(downloadImageUrl);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    // add error
+                                }
+                            };
+                            newRef.addListenerForSingleValueEvent(valueEventListener);
                         }
                     }
                 });
             }
         });
     }
-
-    private void SaveCompanyInfoToDatavase() {
-        HashMap<String, Object> companyMap = new HashMap<>();
-        companyMap.put("cID", companyRandomKey);
-        companyMap.put("name", companyName);
-        companyMap.put("email", eMail);
-        companyMap.put("phone", phone);
-        companyMap.put("password", passWord);
-        companyMap.put("logo", downloadImageUrl);
-
-        CompanyRef.child(companyRandomKey).updateChildren(companyMap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(), "SUCCESS!" , Toast.LENGTH_LONG).show();
-
-                        }
-                        else {
-                            Toast.makeText(getActivity(), "UNSUCCESSFUL!" , Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-    }
-
-    private void changeFragment(Fragment fragment){
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_joinUsAsASeller, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
 }
