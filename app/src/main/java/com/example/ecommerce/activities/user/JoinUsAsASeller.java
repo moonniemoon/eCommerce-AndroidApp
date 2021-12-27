@@ -42,8 +42,8 @@ public class JoinUsAsASeller extends AppCompatActivity {
     private String companyName, companyID, email, phone, password;
     private EditText inputCompanyName, emailInput, phoneInput, passwordInput;
     private Button attachLogo, attachBackground, submitForm;
-    private static final int GalleryPick = 1;
-    private Uri ImageUri;
+    private static final int GalleryPickLogo = 1, GalleryPickBG = 0;
+    private Uri ImageUriLogo, ImageUriBG;
     private String downloadLogoUrl, downloadBackgroundUrl;
     private StorageReference companyLogo;
     private StorageReference companyBackground;
@@ -72,7 +72,14 @@ public class JoinUsAsASeller extends AppCompatActivity {
         attachLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenGallery();
+                OpenGalleryLogo();
+            }
+        });
+
+        attachBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGalleryBG();
             }
         });
 
@@ -84,18 +91,27 @@ public class JoinUsAsASeller extends AppCompatActivity {
         });
     }
 
-    private void OpenGallery() {
+    private void OpenGalleryLogo() {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, GalleryPick);
+        startActivityForResult(galleryIntent, GalleryPickLogo);
+    }
+
+    private void OpenGalleryBG() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, GalleryPickBG);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GalleryPick && resultCode == Activity.RESULT_OK && data!=null) {
-            ImageUri = data.getData();
+        if (requestCode == GalleryPickLogo && resultCode == Activity.RESULT_OK && data!=null) {
+            ImageUriLogo = data.getData();
+        } else if (requestCode == GalleryPickBG && resultCode == Activity.RESULT_OK && data!=null) {
+            ImageUriBG = data.getData();
         }
     }
 
@@ -106,7 +122,7 @@ public class JoinUsAsASeller extends AppCompatActivity {
         phone = phoneInput.getText().toString();
         password = passwordInput.getText().toString();
 
-        if (ImageUri == null) {
+        if (ImageUriLogo == null && ImageUriBG == null) {
             Toast.makeText(JoinUsAsASeller.this, "Please attach a logo and background image... " , Toast.LENGTH_LONG).show();
         } else if (TextUtils.isEmpty(companyName)) {
           inputCompanyName.setError("Please enter company name.");
@@ -121,14 +137,90 @@ public class JoinUsAsASeller extends AppCompatActivity {
             passwordInput.setError("Please enter a password.");
             passwordInput.requestFocus();
         } else {
-           createCompany();
+           uploadLogo();
         }
     }
 
-    private void createCompany() {
-        uploadLogo();
-        uploadBackground();
+    private void uploadLogo(){
+        final StorageReference filePath = companyLogo.child(ImageUriLogo.getLastPathSegment() + companyName + ".png");
 
+        final UploadTask uploadTask = filePath.putFile(ImageUriLogo);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                String message = e.getMessage();
+                Toast.makeText(JoinUsAsASeller.this, "Error: "+message, Toast.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(JoinUsAsASeller.this, "File uploaded successfully.", Toast.LENGTH_LONG).show();
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if(!(task.isSuccessful())){
+                            throw task.getException();
+                        }
+                        downloadLogoUrl = filePath.getDownloadUrl().toString();
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if(task.isSuccessful()){
+                            downloadLogoUrl = task.getResult().toString();
+                            Toast.makeText(JoinUsAsASeller.this, "Logo uploaded successfully.", Toast.LENGTH_LONG).show();
+                            uploadBackground();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void uploadBackground() {
+        final StorageReference filePath = companyBackground.child(ImageUriBG.getLastPathSegment() + companyName + ".png");
+
+        final UploadTask uploadTask = filePath.putFile(ImageUriBG);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                String message = e.getMessage();
+                Toast.makeText(JoinUsAsASeller.this, "Error: "+message, Toast.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(JoinUsAsASeller.this, "File uploaded successfully.", Toast.LENGTH_LONG).show();
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if(!(task.isSuccessful())){
+                            throw task.getException();
+                        }
+                        downloadBackgroundUrl = filePath.getDownloadUrl().toString();
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if(task.isSuccessful()){
+                            downloadBackgroundUrl = task.getResult().toString();
+                            Toast.makeText(JoinUsAsASeller.this, "Background uploaded successfully.", Toast.LENGTH_LONG).show();
+                            createCompany();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void createCompany() {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -171,81 +263,8 @@ public class JoinUsAsASeller extends AppCompatActivity {
                 }
             }
         });
+
     }
 
-    private void uploadLogo(){
-        final StorageReference filePath = companyLogo.child(ImageUri.getLastPathSegment() + companyName + ".png");
 
-        final UploadTask uploadTask = filePath.putFile(ImageUri);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                String message = e.getMessage();
-                Toast.makeText(JoinUsAsASeller.this, "Error: "+message, Toast.LENGTH_LONG).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(JoinUsAsASeller.this, "File uploaded successfully.", Toast.LENGTH_LONG).show();
-
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                       if(!(task.isSuccessful())){
-                           throw task.getException();
-                       }
-                       downloadLogoUrl = filePath.getDownloadUrl().toString();
-                       return filePath.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            downloadLogoUrl = task.getResult().toString();
-                            Toast.makeText(JoinUsAsASeller.this, "Logo uploaded successfully.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    private void uploadBackground() {
-       final StorageReference filePath = companyBackground.child(ImageUri.getLastPathSegment() + companyName + ".png");
-
-        final UploadTask uploadTask = filePath.putFile(ImageUri);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                String message = e.getMessage();
-                Toast.makeText(JoinUsAsASeller.this, "Error: "+message, Toast.LENGTH_LONG).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(JoinUsAsASeller.this, "File uploaded successfully.", Toast.LENGTH_LONG).show();
-
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if(!(task.isSuccessful())){
-                            throw task.getException();
-                        }
-                        downloadBackgroundUrl = filePath.getDownloadUrl().toString();
-                        return filePath.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            downloadBackgroundUrl = task.getResult().toString();
-                            Toast.makeText(JoinUsAsASeller.this, "Background uploaded successfully.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            }
-        });
-    }
 }

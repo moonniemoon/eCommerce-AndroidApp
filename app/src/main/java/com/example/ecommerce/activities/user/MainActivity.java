@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // https://www.geeksforgeeks.org/bottomnavigationview-inandroid/
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setItemIconTintList(null);  // so that we can see, icons changing color
+        /*bottomNavigationView.setItemIconTintList(null);  // so that we can see, icons changing color
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);*/
 
 
     }
