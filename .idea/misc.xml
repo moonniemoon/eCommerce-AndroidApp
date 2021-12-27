@@ -20,13 +20,16 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_pinkarrow.xml" value="0.5421875" />
         <entry key="app/src/main/res/drawable/ic_wheel.xml" value="0.3463541666666667" />
+        <entry key="app/src/main/res/drawable/layout_border.xml" value="0.5421875" />
         <entry key="app/src/main/res/layout/activity_addproduct.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/activity_companyaccount.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.43931159420289856" />
         <entry key="app/src/main/res/layout/activity_managestock.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/activity_newproductcategoryselection.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_accountdetails.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_addshoeitem.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_changepassword.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_companydetails.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_homescreen.xml" value="0.5260416666666666" />
@@ -36,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_shoppingbag.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_wishlist.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/home_boutiques_layout.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/product_items_layout.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.5260416666666666" />
       </map>
     </option>
