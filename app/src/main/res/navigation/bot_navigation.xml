@@ -8,28 +8,28 @@
 
     <activity
         android:id="@+id/home_Screen"
-        android:name="com.example.ecommerce.activities.HomeActivity"
+        android:name="com.example.ecommerce.activities.user.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
-    <fragment
-        android:id="@+id/wheel"
-        android:name="com.example.ecommerce.fragments.user.Wheel"
-        android:label="fragment_wheel"
-        tools:layout="@layout/fragment_wheel" />
-    <fragment
+    <activity
+        android:id="@+id/search"
+        android:name="com.example.ecommerce.activities.user.Search"
+        android:label="activity_search"
+        tools:layout="@layout/activity_search" />
+    <activity
         android:id="@+id/wishlist"
-        android:name="com.example.ecommerce.fragments.user.Wishlist"
-        android:label="fragment_wishlist"
-        tools:layout="@layout/fragment_wishlist" />
-    <fragment
+        android:name="com.example.ecommerce.activities.user.Wishlist"
+        android:label="activity_wishlist"
+        tools:layout="@layout/activity_wishlist" />
+    <activity
         android:id="@+id/shopping_Bag"
-        android:name="com.example.ecommerce.fragments.user.Shopping_Bag"
-        android:label="fragment_shoppingbag"
-        tools:layout="@layout/fragment_shoppingbag" />
-    <fragment
+        android:name="com.example.ecommerce.activities.user.ShoppingBag"
+        android:label="activity_shoppingbag"
+        tools:layout="@layout/activity_shopping_bag" />
+    <activity
         android:id="@+id/account"
-        android:name="com.example.ecommerce.fragments.user.FragmentAccount"
-        android:label="fragment_account"
+        android:name="com.example.ecommerce.activities.user.Account"
+        android:label="activity_account"
         tools:layout="@layout/fragment_account" />
 
 </navigation>

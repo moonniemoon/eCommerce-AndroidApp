@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.fragments.user.Home_Screen;
 import com.example.ecommerce.accounts.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +62,9 @@ public class Register extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Home_Screen());
+
+                Intent intent = new Intent(Register.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

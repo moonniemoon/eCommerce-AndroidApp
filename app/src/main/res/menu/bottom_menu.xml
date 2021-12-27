@@ -8,8 +8,8 @@
 
 
     <item
-        android:title="@string/nav_fortune_wheel"
-        android:id="@+id/wheel"
+        android:title="@string/nav_search"
+        android:id="@+id/search"
         android:icon="@drawable/wheel_selector" />
 
 

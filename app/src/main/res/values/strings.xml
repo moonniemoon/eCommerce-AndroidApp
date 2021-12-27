@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="nav_home">Home</string>
-    <string name="nav_fortune_wheel">Fortune Wheel</string>
+    <string name="nav_search">Search</string>
     <string name="nav_wishlist">Wishlist</string>
     <string name="nav_shopping_bag">Shopping Bag</string>
     <string name="nav_account">Account</string>

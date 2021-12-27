@@ -1,8 +1,10 @@
-package com.example.ecommerce.activities;
+package com.example.ecommerce.activities.user;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.BoutiqueViewHolder;
+import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.models.Boutiques;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -29,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter adapter;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +44,40 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_home);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home_Screen);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.home_Screen:
+                        return true;
+                    case R.id.search:
+                        startActivity(new Intent(getApplicationContext(), Search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.wishlist:
+                        startActivity(new Intent(getApplicationContext(), Wishlist.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.shopping_Bag:
+                        startActivity(new Intent(getApplicationContext(), ShoppingBag.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.account:
+                        startActivity(new Intent(getApplicationContext(), Account.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+
 
         BoutiqueRef = FirebaseDatabase.getInstance().getReference().child("Companies");
 
@@ -54,19 +93,19 @@ public class HomeActivity extends AppCompatActivity {
     {
         super.onStart();
 
-        FirebaseRecyclerOptions<Boutiques> options =
-                new FirebaseRecyclerOptions.Builder<Boutiques>()
-                        .setQuery(BoutiqueRef, Boutiques.class)
+        FirebaseRecyclerOptions<Company> options =
+                new FirebaseRecyclerOptions.Builder<Company>()
+                        .setQuery(BoutiqueRef, Company.class)
                         .build();
 
 
-        FirebaseRecyclerAdapter<Boutiques, BoutiqueViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Boutiques, BoutiqueViewHolder>(options) {
+        FirebaseRecyclerAdapter<Company, BoutiqueViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Company, BoutiqueViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull BoutiqueViewHolder holder, int position, @NonNull Boutiques model)
+                    protected void onBindViewHolder(@NonNull BoutiqueViewHolder holder, int position, @NonNull Company model)
                     {
-                        Picasso.get().load(model.getBackground()).into(holder.boutique_image);
-                        Picasso.get().load(model.getLogo()).into(holder.boutique_logo);
+                        Picasso.get().load(model.getBackgroundURL()).into(holder.boutique_image);
+                        Picasso.get().load(model.getCompanyLogoURL()).into(holder.boutique_logo);
                     }
 
                     @NonNull

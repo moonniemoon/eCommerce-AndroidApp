@@ -2,6 +2,7 @@ package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -12,10 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.fragments.user.AccountDetails;
 import com.example.ecommerce.accounts.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +36,7 @@ public class Account extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
+    BottomNavigationView bottomNavigationView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +46,41 @@ public class Account extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         if(user!=null) {
+
+            bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.wishlist);
+
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()) {
+                        case R.id.home_Screen:
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                        case R.id.search:
+                            startActivity(new Intent(getApplicationContext(), Search.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                        case R.id.wishlist:
+                            return true;
+                        case R.id.shopping_Bag:
+                            startActivity(new Intent(getApplicationContext(), ShoppingBag.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                        case R.id.account:
+                            startActivity(new Intent(getApplicationContext(), Account.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                    }
+
+                    return false;
+                }
+            });
+
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();
-
             TextView firstName = (TextView) findViewById(R.id.userFirstNameText);
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

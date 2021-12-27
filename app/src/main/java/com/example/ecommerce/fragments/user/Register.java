@@ -1,5 +1,6 @@
 package com.example.ecommerce.fragments.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
+import com.example.ecommerce.activities.user.HomeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -90,7 +92,9 @@ public class Register extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new Home_Screen());
+
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
         return RootView;
@@ -127,7 +131,9 @@ public class Register extends Fragment {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(getActivity(), "Welcome to the app!" , Toast.LENGTH_LONG).show();
-                changeFragment(new Home_Screen());
+
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

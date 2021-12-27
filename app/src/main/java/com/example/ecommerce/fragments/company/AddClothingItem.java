@@ -1,20 +1,15 @@
 package com.example.ecommerce.fragments.company;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.fragments.user.Wishlist;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 
 public class AddClothingItem extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -36,11 +31,11 @@ public class AddClothingItem extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Wishlist.
+     * @return A new instance of fragment
      */
     // TODO: Rename and change types and number of parameters
-    public static Wishlist newInstance(String param1, String param2) {
-        Wishlist fragment = new Wishlist();
+    public static AddClothingItem newInstance(String param1, String param2) {
+        AddClothingItem fragment = new AddClothingItem();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
