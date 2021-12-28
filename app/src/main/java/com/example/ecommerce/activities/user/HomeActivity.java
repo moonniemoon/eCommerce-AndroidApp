@@ -171,6 +171,13 @@ public class HomeActivity extends AppCompatActivity {
                     {
                         Picasso.get().load(model.getBackgroundURL()).into(holder.boutique_image);
                         Picasso.get().load(model.getCompanyLogoURL()).into(holder.boutique_logo);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(HomeActivity.this, InsideBoutique.class));
+                            }
+                        });
                     }
 
                     @NonNull

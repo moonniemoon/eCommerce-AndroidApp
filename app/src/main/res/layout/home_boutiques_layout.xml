@@ -26,7 +26,8 @@
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:layout_gravity="start"
-            android:background="@color/white"></ImageView>
+            android:background="@color/white">
+        </ImageView>
 
         <ImageView
             android:id="@+id/boutique_logo"
