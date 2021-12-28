@@ -2,7 +2,6 @@ package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -13,10 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.fragments.user.AccountDetails;
@@ -42,9 +37,10 @@ public class Account extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_account);
         getSupportActionBar().hide();
+
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        if(user!=null) {
+        if(user!=null ) {
 
            /* bottomNavigationView = findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.account);
@@ -127,7 +123,7 @@ public class Account extends AppCompatActivity {
             });
         }
         else {
-            startActivity(new Intent(Account.this, LogIn.class));
+            startActivity(new Intent(Account.this, UserLogIn.class));
         }
     }
 

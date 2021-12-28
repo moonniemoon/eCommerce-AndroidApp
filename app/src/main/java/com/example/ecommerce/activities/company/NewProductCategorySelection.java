@@ -72,7 +72,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
         footwear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
+                Intent intent = new Intent(NewProductCategorySelection.this, AddShoeItem.class);
                 intent.putExtra("Category", "Footwear");
                 startActivity(intent);
             }
@@ -80,7 +80,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
         accessories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
+                Intent intent = new Intent(NewProductCategorySelection.this, AddOtherItem.class);
                 intent.putExtra("Category", "Accessories");
                 startActivity(intent);
             }
@@ -88,7 +88,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
         beauty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
+                Intent intent = new Intent(NewProductCategorySelection.this, AddOtherItem.class);
                 intent.putExtra("Category", "Beauty");
                 startActivity(intent);
             }

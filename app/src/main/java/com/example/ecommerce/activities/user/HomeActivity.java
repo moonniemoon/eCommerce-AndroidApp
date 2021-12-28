@@ -1,6 +1,5 @@
 package com.example.ecommerce.activities.user;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,12 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.BoutiqueViewHolder;
 import com.example.ecommerce.accounts.Company;
-import com.example.ecommerce.models.Boutiques;
+import com.example.ecommerce.activities.company.CompanyAccount;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
@@ -35,6 +39,10 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter adapter;
     BottomNavigationView bottomNavigationView;
 
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference reference;
+    private FirebaseUser user;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_home);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_Screen);
@@ -68,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.account:
-                        startActivity(new Intent(HomeActivity.this, Account.class));
+                        checkUserType();
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -119,5 +128,29 @@ public class HomeActivity extends AppCompatActivity {
                 };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    private void checkUserType() {
+        reference = FirebaseDatabase.getInstance().getReference();
+        user = firebaseAuth.getCurrentUser();
+        reference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String userType = dataSnapshot.getKey();
+
+                if (userType == "user") {
+                    startActivity(new Intent(HomeActivity.this, Account.class));
+                } else if (userType == "company") {
+                    startActivity(new Intent(HomeActivity.this, CompanyAccount.class));
+                } else {
+                    startActivity(new Intent(HomeActivity.this, UserLogIn.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

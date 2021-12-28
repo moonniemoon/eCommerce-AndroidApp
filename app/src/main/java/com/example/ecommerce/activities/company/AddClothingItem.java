@@ -195,10 +195,6 @@ public class AddClothingItem extends AppCompatActivity {
             itemQuantityInput.setError("Please enter item quantity");
             itemQuantityInput.requestFocus();
         }
-        else if(itemQuantity%2 == 1){
-            itemQuantityInput.setError("Please enter integer");
-            itemQuantityInput.requestFocus();
-        }
         else if(TextUtils.isEmpty(itemSize)){
             sizeSpinner.setPrompt("Please select item size");
             sizeSpinner.requestFocus();
@@ -263,10 +259,11 @@ public class AddClothingItem extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(AddClothingItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(AddClothingItem.this, NewProductCategorySelection.class));
                 }
                 else{
                     String message = task.getException().toString();
-                    Toast.makeText(AddClothingItem.this, "Fail", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddClothingItem.this, message, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -285,10 +282,5 @@ public class AddClothingItem extends AppCompatActivity {
         if (requestCode == GalleryPick && resultCode == Activity.RESULT_OK && data != null) {
             ImageUri = data.getData();
         }
-    }
-
-    private String generateID(){
-        String generatedID = UUID.randomUUID().toString() + itemName.toUpperCase();
-        return generatedID;
     }
 }
