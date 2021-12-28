@@ -44,10 +44,9 @@ public class Account extends AppCompatActivity {
         getSupportActionBar().hide();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-
         if(user!=null) {
 
-            bottomNavigationView = findViewById(R.id.bottom_navigation);
+           /* bottomNavigationView = findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.account);
 
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,7 +76,7 @@ public class Account extends AppCompatActivity {
 
                     return false;
                 }
-            });
+            });*/
 
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();

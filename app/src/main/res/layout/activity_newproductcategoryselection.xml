@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_companydetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:tag="accountDetails"
+    tools:context=".fragments.user.FragmentAccount">
+
+    <FrameLayout
+        android:id="@+id/beautyFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/beautyIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_beauty_selector" />
+
+    <TextView
+        android:id="@+id/beautyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Beauty"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/accessoriesFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="268dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/accessoriesIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="276dp"
+        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_accessories_selector" />
+
+    <TextView
+        android:id="@+id/accessoriesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Accessories"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/footwearFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="268dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/layout_border">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/shirtsFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/skirtsFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="268dp"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/layout_border">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/trousersFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/trousersIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_trousers_selector" />
+
+    <TextView
+        android:id="@+id/trousersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Trousers"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/footwearIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="280dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_footwear_selector" />
+
+    <TextView
+        android:id="@+id/footwearTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Footwear"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/skirtsIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="280dp"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_skirt_selector" />
+
+    <TextView
+        android:id="@+id/skirtsTextView"
+        android:layout_width="79dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="352dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Skirts"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/shirtsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Shirts"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addItemButton"
+        android:layout_width="192dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="588dp"
+        android:background="@color/black"
+        android:backgroundTint="@color/design_default_color_on_primary"
+        android:text="ADD ITEM"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:iconTint="@color/black"
+        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="56dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:rotationX="0"
+        android:rotationY="-180"
+        android:src="@drawable/back_icon"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/teesIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_tee_selector" />
+
+    <ImageView
+        android:id="@+id/shirtsIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_shirt_selector" />
+
+    <TextView
+        android:id="@+id/teesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Tees"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/teesFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
