@@ -29,6 +29,8 @@
         <entry key="app/src/main/res/layout/activity_newproductcategoryselection.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_accountdetails.xml" value="0.5260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_addclothingitem.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_addotheritem.xml" value="0.4510416666666667" />
         <entry key="app/src/main/res/layout/fragment_addshoeitem.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_changepassword.xml" value="0.5260416666666666" />
         <entry key="app/src/main/res/layout/fragment_companydetails.xml" value="0.5260416666666666" />

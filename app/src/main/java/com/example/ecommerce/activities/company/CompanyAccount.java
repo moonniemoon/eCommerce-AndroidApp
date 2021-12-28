@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
+import com.example.ecommerce.activities.user.JoinUsAsASeller;
 import com.example.ecommerce.fragments.company.AddClothingItem;
 import com.example.ecommerce.fragments.company.CompanyDetails;
 import com.google.firebase.auth.FirebaseAuth;
@@ -81,7 +82,7 @@ public class CompanyAccount extends AppCompatActivity {
         manageStockLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeFragment(new AddClothingItem());
+                    startActivity(new Intent(CompanyAccount.this, ManageStock.class));
                 }
             });
             FrameLayout cashRegisterLayout = (FrameLayout) findViewById(R.id.virtualCashRegisterFrameLayout);

@@ -56,19 +56,19 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home_Screen:
                         return true;
                     case R.id.search:
-                        startActivity(new Intent(getApplicationContext(), Search.class));
+                        startActivity(new Intent(HomeActivity.this, Search.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.wishlist:
-                        startActivity(new Intent(getApplicationContext(), Wishlist.class));
+                        startActivity(new Intent(HomeActivity.this, Wishlist.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.shopping_Bag:
-                        startActivity(new Intent(getApplicationContext(), ShoppingBag.class));
+                        startActivity(new Intent(HomeActivity.this, ShoppingBag.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.account:
-                        startActivity(new Intent(getApplicationContext(), Account.class));
+                        startActivity(new Intent(HomeActivity.this, Account.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

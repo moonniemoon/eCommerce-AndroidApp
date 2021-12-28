@@ -44,11 +44,10 @@ public class Account extends AppCompatActivity {
         getSupportActionBar().hide();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-
         if(user!=null) {
 
-            bottomNavigationView = findViewById(R.id.bottom_navigation);
-            bottomNavigationView.setSelectedItemId(R.id.wishlist);
+           /* bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.account);
 
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -64,20 +63,20 @@ public class Account extends AppCompatActivity {
                             overridePendingTransition(0,0);
                             return true;
                         case R.id.wishlist:
+                            startActivity(new Intent(getApplicationContext(), Wishlist.class));
+                            overridePendingTransition(0,0);
                             return true;
                         case R.id.shopping_Bag:
                             startActivity(new Intent(getApplicationContext(), ShoppingBag.class));
                             overridePendingTransition(0,0);
                             return true;
                         case R.id.account:
-                            startActivity(new Intent(getApplicationContext(), Account.class));
-                            overridePendingTransition(0,0);
                             return true;
                     }
 
                     return false;
                 }
-            });
+            });*/
 
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();
