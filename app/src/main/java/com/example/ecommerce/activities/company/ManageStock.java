@@ -18,13 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.ProductViewHolder;
+import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class ManageStock extends AppCompatActivity {
@@ -32,17 +39,24 @@ public class ManageStock extends AppCompatActivity {
     private Button addNewItemButton;
     private ImageView backButton;
 
-    private DatabaseReference ItemReference;
+    private DatabaseReference ItemReference, CompanyReference;
+    private Query query;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
     RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
+    private String companyName;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_managestock);
         getSupportActionBar().hide();
 
-        ItemReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        CompanyReference = FirebaseDatabase.getInstance().getReference("Companies");
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
+        ItemReference = FirebaseDatabase.getInstance().getReference().child("Products");
         addNewItemButton = (Button) findViewById(R.id.addItemButton);
         addNewItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,39 +82,52 @@ public class ManageStock extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Item> items = new FirebaseRecyclerOptions.Builder<Item>()
-                .setQuery(ItemReference, Item.class)
-                .build();
-
-        FirebaseRecyclerAdapter<Item, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Item, ProductViewHolder>(items) {
+        CompanyReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Item item) {
-                productViewHolder.productId.setText("Item ID: "+item.getID());
-                productViewHolder.productName.setText("Item Name: "+item.getName());
-                productViewHolder.productDescription.setText("Item Description: "+item.getDescription());
-                productViewHolder.productSize.setText("Item Size: "+item.getSize());
-                productViewHolder.productQuantity.setText("Item Quantity: "+item.getQuantity().toString());
-                productViewHolder.productPrice.setText("$" + item.getPrice().toString());
-                Picasso.get().load(item.getImageUrl()).into(productViewHolder.productImage);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Company companyDetails = snapshot.getValue(Company.class);
+                companyName = companyDetails.getCompanyName();
+                query = ItemReference.orderByChild("seller").equalTo(companyName);
 
-                productViewHolder.removeProductButton.setOnClickListener(new View.OnClickListener() {
+                FirebaseRecyclerOptions<Item> items = new FirebaseRecyclerOptions.Builder<Item>()
+                        .setQuery(query, Item.class)
+                        .build();
+
+                FirebaseRecyclerAdapter<Item, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Item, ProductViewHolder>(items) {
                     @Override
-                    public void onClick(View view) {
-                       removeItem(item);
+                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Item item) {
+                        productViewHolder.productId.setText("Item ID: " + item.getID());
+                        productViewHolder.productName.setText("Item Name: " + item.getName());
+                        productViewHolder.productDescription.setText("Item Description: " + item.getDescription());
+                        productViewHolder.productSize.setText("Item Size: " + item.getSize());
+                        productViewHolder.productQuantity.setText("Item Quantity: " + item.getQuantity().toString());
+                        productViewHolder.productPrice.setText("$" + item.getPrice().toString());
+                        Picasso.get().load(item.getImageUrl()).into(productViewHolder.productImage);
+
+                        productViewHolder.removeProductButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                removeItem(item);
+                            }
+                        });
                     }
-                });
+
+                    @NonNull
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                        ProductViewHolder holder = new ProductViewHolder(view);
+                        return holder;
+                    }
+                };
+                recyclerView.setAdapter(adapter);
+                adapter.startListening();
             }
 
-            @NonNull
             @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-               View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
-               ProductViewHolder holder = new ProductViewHolder(view);
-               return holder;
+            public void onCancelled(@NonNull DatabaseError error) {
             }
-        };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
+        });
     }
 
     private void removeItem(Item item){

@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.activities.user.LogIn;
+import com.example.ecommerce.activities.user.UserLogIn;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -104,7 +104,7 @@ public class FragmentAccount extends Fragment {
             });
        }
         else {
-            startActivity(new Intent(getActivity(),   LogIn.class));
+            startActivity(new Intent(getActivity(),   UserLogIn.class));
         }
         return RootView;
     }

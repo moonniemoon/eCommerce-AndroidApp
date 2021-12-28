@@ -1,9 +1,8 @@
-package com.example.ecommerce.activities.user;
+package com.example.ecommerce.activities.company;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,34 +12,34 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ecommerce.R;
+import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.accounts.User;
-import com.example.ecommerce.activities.company.CompanyAccount;
+import com.example.ecommerce.activities.user.Account;
+import com.example.ecommerce.activities.user.Register;
+import com.example.ecommerce.activities.user.UserLogIn;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class LogIn extends AppCompatActivity {
-
+public class CompanyLogIn extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
     private FirebaseUser user;
     private Button logInButton, becomeAMemberButton;
     private String email, password;
     private EditText emailInput, passwordInput;
+    private String userType, expectedUserType = "company";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_login);
+        setContentView(R.layout.activity_companylogin);
         getSupportActionBar().hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -56,7 +55,7 @@ public class LogIn extends AppCompatActivity {
         becomeAMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogIn.this, Register.class));
+                startActivity(new Intent(CompanyLogIn.this, Register.class));
             }
         });
         emailInput = (EditText) findViewById(R.id.loginEditTextEmailAddress);
@@ -81,20 +80,20 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void checkUserType() {
-        reference = FirebaseDatabase.getInstance().getReference();
+        reference = FirebaseDatabase.getInstance().getReference("Companies");
         user = firebaseAuth.getCurrentUser();
         reference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String userType = dataSnapshot.getKey();
+                Company companyDetails = dataSnapshot.getValue(Company.class);
 
-                if(userType == "user"){
-                    startActivity(new Intent(LogIn.this, Account.class));
-                }
-                else{
-                    startActivity(new Intent(LogIn.this, CompanyAccount.class));
+                if (companyDetails.getUserType().equals(expectedUserType)) {
+                    startActivity(new Intent(CompanyLogIn.this, CompanyAccount.class));
+                } else{
+                    Toast.makeText(CompanyLogIn.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -107,7 +106,6 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> loginTask) {
                 if (loginTask.isSuccessful()) {
-                    Toast.makeText(LogIn.this, "Welcome back!", Toast.LENGTH_LONG).show();
                     checkUserType();
                 } else {
                     emailInput.setError("The email address does not exist.");
