@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.user.ProductDetails">
+
+    <TextView
+        android:id="@+id/productDetails_dolar"
+        android:layout_width="14dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/constan"
+        android:text="$"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/productDetails_Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/constan"
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/productdetails_button"
+        android:text="Add to Cart"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
+        app:iconTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="80dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/image_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    app:iss_auto_cycle="true"
+                    app:iss_delay="0"
+                    app:iss_period="2000"
+                    >
+                </com.denzcoskun.imageslider.ImageSlider>
+
+
+                <!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+                <!--                    android:id="@+id/productDetails_wishlistButton"-->
+                <!--                    android:layout_width="55dp"-->
+                <!--                    android:layout_height="55dp"-->
+                <!--                    android:layout_marginTop="485dp"-->
+                <!--                    android:layout_marginStart="360dp"-->
+                <!--                    android:rotationX="0"-->
+                <!--                    android:rotationY="-180"-->
+                <!--                   app:backgroundTint="@color/white"-->
+                <!--                    android:src="@drawable/productdetails_icon_heart"-->
+                <!--                    />-->
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="560dp"
+                    android:background="@drawable/productdetails_layout_bg"
+                    android:elevation="5dp">
+
+                    <View
+                        android:id="@+id/productView_divider"
+                        android:layout_width="100dp"
+                        android:layout_height="4dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/productCompany_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Company name"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/productDetails_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Product name"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/productDetails_chooseSizeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginRight="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Size:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/productdetails_size_spinner"
+                        android:layout_width="500dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="175dp"
+                        android:layout_marginEnd="30dp"
+                        android:autofillHints="Choose a size"
+                         />
+
+                    <TextView
+                        android:id="@+id/productDetails_chooseQuantityText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="250dp"
+                        android:layout_marginRight="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Quantity:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:id="@+id/productdetails_elegantButton"
+                        android:layout_width="200dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="285dp"
+                        android:elevation="0dp"
+                        app:backGroundColor="@color/gray"
+                        app:finalNumber="10"
+                        app:initialNumber="1"
+                        app:textColor="#000000"
+                        app:textSize="4sp">
+
+                    </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+
+                    <TextView
+                        android:id="@+id/productDetails_DescriptionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="370dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Product Description:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/productDetails_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="405dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Description"
+                        android:textSize="18sp" />
+
+
+                    <View
+                        android:id="@+id/divider5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="480dp"
+                        android:background="?android:attr/listDivider" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+
+        <ImageView
+            android:id="@+id/backkkkButton"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:rotationX="0"
+            android:rotationY="-180"
+            android:src="@drawable/back_icon" />
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

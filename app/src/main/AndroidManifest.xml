@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ecommerce">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -8,9 +12,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ECommerce">
-        <activity android:name=".activities.user.InsideBoutique"/>
-        <activity android:name=".activities.user.ShoppingBag"/>
+        android:theme="@style/Theme.ECommerce"
+        tools:replace="android:theme"
+        >
+        <activity android:name=".activities.user.ProductDetails">
+
+        </activity>
+        <activity android:name=".activities.user.InsideBoutique" />
+        <activity android:name=".activities.user.ShoppingBag" />
         <activity android:name=".activities.user.Wishlist" />
         <activity android:name=".activities.user.Search" />
         <activity android:name=".activities.user.MainActivity">
@@ -104,6 +113,7 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

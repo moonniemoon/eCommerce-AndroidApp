@@ -58,6 +58,7 @@ public class InsideBoutique extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private ImageView backButton;
+    private Query query;
 
     private String companyName = "", productID, productSize;
     private List<String> idList = new ArrayList<String>();
@@ -105,13 +106,13 @@ public class InsideBoutique extends AppCompatActivity {
             }
         });
 
-      /*  backButton = (ImageView) findViewById(R.id.backkkButton);
+        backButton = (ImageView) findViewById(R.id.backkkButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(InsideBoutique.this, HomeActivity.class));
             }
-        });*/
+        });
 
 
         companyName = getIntent().getStringExtra("companyName");
@@ -124,38 +125,17 @@ public class InsideBoutique extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
     }
 
-/*
-    private void getProductDetails(String companyName) {
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
-        productsRef.child(companyName).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Item items = snapshot.getValue(Item.class);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        })
-
-    }
-*/
-
-
     @Override
     protected void onStart() {
         super.onStart();
 
         final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(companyName);
 
+        query = productsRef.orderByChild("duplicateItems").equalTo(false);
+
         FirebaseRecyclerOptions<Item> items =
                 new FirebaseRecyclerOptions.Builder<Item>()
-                .setQuery(productsRef, Item.class).build();
+                        .setQuery(query, Item.class).build();
 
 
         FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder> adapter = new FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder>(items) {
@@ -163,45 +143,23 @@ public class InsideBoutique extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull InsideBoutiqueViewHolder insideBoutiqueViewHolder, int i, @NonNull Item item) {
 
-                String p_id = item.getID();
-                if (p_id.contains("-xxsmall")) {
-                    p_id = p_id.replace("-xxsmall", "");
-                }
-                else if (p_id.contains("-xsmall")) {
-                    p_id = p_id.replace("-xsmall", "");
-                }
-                else if (p_id.contains("-small")) {
-                    p_id = p_id.replace("-small", "");
-                }
-                else if (p_id.contains("-medium")) {
-                    p_id = p_id.replace("-medium", "");
-                }
-                else if (p_id.contains("-large")) {
-                    p_id = p_id.replace("-large", "");
-                }
-                else if (p_id.contains("-xlarge")) {
-                    p_id = p_id.replace("-xlarge", "");
-                }
-                else if (p_id.contains("-xxlarge")) {
-                    p_id = p_id.replace("-xxlarge", "");
-                }
+                insideBoutiqueViewHolder.productName.setText(item.getSeller() + " " + item.getName());
+                insideBoutiqueViewHolder.productPrice.setText(item.getPrice().toString());
+                Picasso.get().load(item.getImageUrl()).into(insideBoutiqueViewHolder.productImage);
 
-               /* if (!idList.contains(p_id)) {*/
-                    idList.add(p_id);
-                    insideBoutiqueViewHolder.productName.setText(item.getSeller() + " " + item.getName());
-                    insideBoutiqueViewHolder.productPrice.setText(item.getPrice().toString());
-                    Picasso.get().load(item.getImageUrl()).into(insideBoutiqueViewHolder.productImage);
-                    insideBoutiqueViewHolder.itemView.setVisibility(View.VISIBLE);
-              /*  }
-                else {
-                    insideBoutiqueViewHolder.itemView.setVisibility(View.GONE);
-                    insideBoutiqueViewHolder.productImage.setVisibility(View.GONE);
-                    insideBoutiqueViewHolder.productPrice.setVisibility(View.GONE);
-                    insideBoutiqueViewHolder.productName.setVisibility(View.GONE);
-                    insideBoutiqueViewHolder.itemView.setLayoutParams(new ViewGroup.LayoutParams(0, 0));
-                    //insideBoutiqueViewHolder.itemView.hide
-
-                }*/
+                insideBoutiqueViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(InsideBoutique.this, ProductDetails.class);
+                        intent.putExtra("companyName", companyName);
+                        intent.putExtra("ID", item.getID());
+                        intent.putExtra("gender", item.getGender());
+                        intent.putExtra("price", item.getPrice().toString());
+                        intent.putExtra("name", item.getName());
+                        intent.putExtra("description", item.getDescription());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
@@ -215,8 +173,5 @@ public class InsideBoutique extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
-
-
-
 }
 
