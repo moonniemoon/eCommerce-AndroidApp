@@ -96,6 +96,7 @@ public class UserLogIn extends AppCompatActivity {
 
                 if (userType.equals("user")) {
                     startActivity(new Intent(UserLogIn.this, Account.class));
+
                 } else{
                     Toast.makeText(UserLogIn.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                 }

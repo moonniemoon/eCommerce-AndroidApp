@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -27,18 +26,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@id/itemImage"
+                android:layout_below="@id/itemName"
                 android:text="ID"
-                android:textColor="@color/dark_gray"/>
+                android:textColor="@color/dark_gray" />
 
 
             <TextView
                 android:id="@+id/itemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/itemId"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
+                android:fontFamily="sans-serif-medium"
                 android:text="Name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/black" />
@@ -47,7 +47,7 @@
                 android:id="@+id/itemDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/itemName"
+                android:layout_below="@id/itemId"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
@@ -55,30 +55,20 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <TextView
-                android:id="@+id/itemSize"
+                android:id="@+id/itemCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemDescription"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
-                android:text="Size" />
-
-            <TextView
-                android:id="@+id/itemQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/itemSize"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/itemImage"
-                android:text="Quantity" />
+                android:text="Category" />
 
             <TextView
                 android:id="@+id/itemPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/itemQuantity"
+                android:layout_below="@id/itemCategory"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
@@ -86,26 +76,24 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/itemQuantitySpinner"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/itemDescription"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/itemImage" />
+
             <Button
                 android:id="@+id/removeItem"
-                android:layout_width="wrap_content"
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/itemQuantity"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="-1dp"
-                android:layout_toRightOf="@id/itemPrice"
+                android:layout_below="@id/itemQuantitySpinner"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@id/itemImage"
                 android:text="REMOVE" />
-
-            <ImageView
-                android:id="@+id/moreOptionsImageView"
-                android:layout_width="40dp"
-                android:layout_height="44dp"
-                android:layout_below="@id/itemQuantity"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:layout_toRightOf="@id/removeItem"
-                app:srcCompat="@drawable/account_next_selector" />
-
 
         </RelativeLayout>
 

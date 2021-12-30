@@ -183,19 +183,19 @@ public class AddClothingItem extends AppCompatActivity {
         itemSize = sizeSpinner.getSelectedItem().toString();
 
         // This adds products size name to the end of it's ID
-        if (itemSize.equals("xxsmall")){
+        if (itemSize.equals("XXS")){
             itemID += "-xxsmall";
-        } else if (itemSize.equals("xsmall")) {
+        } else if (itemSize.equals("XS")) {
             itemID += "-xsmall";
-        } else if (itemSize.equals("small")) {
+        } else if (itemSize.equals("S")) {
             itemID += "-small";
-        } else if (itemSize.equals("medium")) {
+        } else if (itemSize.equals("M")) {
             itemID += "-medium";
-        } else if (itemSize.equals("large")) {
+        } else if (itemSize.equals("L")) {
             itemID += "-large";
-        } else if (itemSize.equals("xlarge")) {
+        } else if (itemSize.equals("XL")) {
             itemID += "-xlarge";
-        } else if (itemSize.equals("xxlarge")) {
+        } else if (itemSize.equals("XXL")) {
             itemID += "-xxlarge";
         }
 

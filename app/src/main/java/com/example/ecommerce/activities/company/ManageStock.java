@@ -3,11 +3,15 @@ package com.example.ecommerce.activities.company;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +25,7 @@ import com.example.ecommerce.ViewHolder.ProductViewHolder;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.user.HomeActivity;
 import com.example.ecommerce.models.Item;
+import com.example.ecommerce.models.RestockInfo;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +39,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ManageStock extends AppCompatActivity {
 
@@ -92,7 +101,7 @@ public class ManageStock extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Company companyDetails = snapshot.getValue(Company.class);
                 companyName = companyDetails.getCompanyName();
-                query = ItemReference.orderByChild("seller").equalTo(companyName);
+                query = ItemReference.child(companyName);
 
                 FirebaseRecyclerOptions<Item> items = new FirebaseRecyclerOptions.Builder<Item>()
                         .setQuery(query, Item.class)
@@ -112,7 +121,31 @@ public class ManageStock extends AppCompatActivity {
                         productViewHolder.removeProductButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                removeItem(item);
+                                removeItem(companyName, item);
+                            }
+                        });
+                        productViewHolder.moreOptions.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                PopupMenu popup = new PopupMenu(productViewHolder.moreOptions.getContext(), view);
+                                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem menuItem) {
+                                        switch (menuItem.getItemId()) {
+                                            case R.id.renameOption:
+                                                renameItem(companyName, item);
+                                                return true;
+                                            case R.id.restockOption:
+                                                restockItem(companyName, item);
+                                                return true;
+                                            default:
+                                                return false;
+                                        }
+                                    }
+                                });
+                                // here you can inflate your menu
+                                popup.inflate(R.menu.managestock_options_menu);
+                                popup.show();
                             }
                         });
                     }
@@ -135,13 +168,13 @@ public class ManageStock extends AppCompatActivity {
         });
     }
 
-    private void removeItem(Item item){
+    private void removeItem(String companyName, Item item){
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        ItemReference.child(item.getID()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        ItemReference.child(companyName).child(item.getID()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -165,5 +198,92 @@ public class ManageStock extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(ManageStock.this);
         builder.setMessage("Are you sure you want to remove this item?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
+    }
+
+    private void renameItem(String companyName, Item item) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Please enter new name of item: ");
+
+        final EditText newNameInput = new EditText(this);
+        newNameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(newNameInput);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ItemReference.child(companyName).child(item.getID()).child("name").setValue(newNameInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ManageStock.this, "Item renamed successfully!", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(ManageStock.this, "Server error, please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void saveRestockInfoToDatabase(String companyName, Item item, int quantity){
+        Date currentTime = Calendar.getInstance().getTime();
+
+        RestockInfo restockInfo = new RestockInfo(item.getID(), item.getName(), currentTime.toString(), quantity);
+
+        FirebaseDatabase.getInstance().getReference("Restock Records").child(companyName).child(currentTime.toString()).setValue(restockInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ManageStock.this, "Record of restock has been made", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ManageStock.this, NewProductCategorySelection.class));
+                } else {
+                    String message = task.getException().toString();
+                    Toast.makeText(ManageStock.this, message, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+    private void restockItem(String companyName, Item item){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Please enter item quantity: ");
+
+        final EditText stockAmountInput = new EditText(this);
+        stockAmountInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(stockAmountInput);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ItemReference.child(companyName).child(item.getID()).child("quantity").setValue(Integer.parseInt(stockAmountInput.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ManageStock.this, "Item restocked successfully!", Toast.LENGTH_LONG).show();
+                            saveRestockInfoToDatabase(companyName, item, Integer.parseInt(stockAmountInput.getText().toString()));
+                        } else {
+                            Toast.makeText(ManageStock.this, "Server error, please try again later.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }
