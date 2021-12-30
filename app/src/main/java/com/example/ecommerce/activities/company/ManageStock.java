@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.ProductViewHolder;
 import com.example.ecommerce.accounts.Company;
+import com.example.ecommerce.activities.user.HomeActivity;
 import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -61,7 +62,11 @@ public class ManageStock extends AppCompatActivity {
         addNewItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ManageStock.this, NewProductCategorySelection.class));
+                Intent intent = new Intent(ManageStock.this, NewProductCategorySelection.class);
+                intent.putExtra("companyN", companyName);   // This sends companyName to NewProductCategorySelection.class
+                                                                  // Has to be accessed in that class too!
+                startActivity(intent);
+                //startActivity(new Intent(ManageStock.this, NewProductCategorySelection.class));
             }
         });
         backButton = (ImageView) findViewById(R.id.backButton);

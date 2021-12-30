@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -23,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.BoutiqueViewHolder;
@@ -36,12 +38,19 @@ import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class InsideBoutique extends AppCompatActivity {
 
@@ -50,7 +59,10 @@ public class InsideBoutique extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private ImageView backButton;
 
-    private DatabaseReference ItemReference;
+    private String companyName = "", productID, productSize;
+    private List<String> idList = new ArrayList<String>();
+
+    private DatabaseReference productsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,15 +105,18 @@ public class InsideBoutique extends AppCompatActivity {
             }
         });
 
-        backButton = (ImageView) findViewById(R.id.backkkButton);
+      /*  backButton = (ImageView) findViewById(R.id.backkkButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(InsideBoutique.this, HomeActivity.class));
             }
-        });
+        });*/
 
-        ItemReference = FirebaseDatabase.getInstance().getReference().child("Products").child("6470168700");
+
+        companyName = getIntent().getStringExtra("companyName");
+
+
 
         recyclerView = findViewById(R.id.grid_menu);
         layoutManager = new GridLayoutManager(this, 2);
@@ -109,23 +124,84 @@ public class InsideBoutique extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
     }
 
+/*
+    private void getProductDetails(String companyName) {
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        productsRef.child(companyName).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Item items = snapshot.getValue(Item.class);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        })
+
+    }
+*/
+
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Item> items = new FirebaseRecyclerOptions.Builder<Item>()
-                .setQuery(ItemReference, Item.class)
-                .build();
+        final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(companyName);
+
+        FirebaseRecyclerOptions<Item> items =
+                new FirebaseRecyclerOptions.Builder<Item>()
+                .setQuery(productsRef, Item.class).build();
+
 
         FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder> adapter = new FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder>(items) {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             protected void onBindViewHolder(@NonNull InsideBoutiqueViewHolder insideBoutiqueViewHolder, int i, @NonNull Item item) {
 
-                insideBoutiqueViewHolder.productName.setText(item.getSeller() + " " + item.getName());
-                insideBoutiqueViewHolder.productPrice.setText(item.getPrice().toString());
-                Picasso.get().load(item.getImageUrl()).into(insideBoutiqueViewHolder.productImage);
+                String p_id = item.getID();
+                if (p_id.contains("-xxsmall")) {
+                    p_id = p_id.replace("-xxsmall", "");
+                }
+                else if (p_id.contains("-xsmall")) {
+                    p_id = p_id.replace("-xsmall", "");
+                }
+                else if (p_id.contains("-small")) {
+                    p_id = p_id.replace("-small", "");
+                }
+                else if (p_id.contains("-medium")) {
+                    p_id = p_id.replace("-medium", "");
+                }
+                else if (p_id.contains("-large")) {
+                    p_id = p_id.replace("-large", "");
+                }
+                else if (p_id.contains("-xlarge")) {
+                    p_id = p_id.replace("-xlarge", "");
+                }
+                else if (p_id.contains("-xxlarge")) {
+                    p_id = p_id.replace("-xxlarge", "");
+                }
+
+               /* if (!idList.contains(p_id)) {*/
+                    idList.add(p_id);
+                    insideBoutiqueViewHolder.productName.setText(item.getSeller() + " " + item.getName());
+                    insideBoutiqueViewHolder.productPrice.setText(item.getPrice().toString());
+                    Picasso.get().load(item.getImageUrl()).into(insideBoutiqueViewHolder.productImage);
+                    insideBoutiqueViewHolder.itemView.setVisibility(View.VISIBLE);
+              /*  }
+                else {
+                    insideBoutiqueViewHolder.itemView.setVisibility(View.GONE);
+                    insideBoutiqueViewHolder.productImage.setVisibility(View.GONE);
+                    insideBoutiqueViewHolder.productPrice.setVisibility(View.GONE);
+                    insideBoutiqueViewHolder.productName.setVisibility(View.GONE);
+                    insideBoutiqueViewHolder.itemView.setLayoutParams(new ViewGroup.LayoutParams(0, 0));
+                    //insideBoutiqueViewHolder.itemView.hide
+
+                }*/
             }
 
             @NonNull
@@ -140,4 +216,7 @@ public class InsideBoutique extends AppCompatActivity {
         adapter.startListening();
     }
 
+
+
 }
+

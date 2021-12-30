@@ -3,9 +3,13 @@ package com.example.ecommerce.activities.company;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +21,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ecommerce.R;
+import com.example.ecommerce.ViewHolder.InsideBoutiqueViewHolder;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.user.JoinUsAsASeller;
 import com.example.ecommerce.models.Item;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,8 +47,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
@@ -62,6 +73,10 @@ public class AddClothingItem extends AppCompatActivity {
     private DatabaseReference ItemReference;
     private String parentDatabaseName = "Companies";
     private String companyID, companyName;
+
+    private Boolean duplicateItems;
+    List<String> idList = new ArrayList<String>();
+    private String companyN = "";
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
@@ -112,6 +127,8 @@ public class AddClothingItem extends AppCompatActivity {
                 Toast.makeText(AddClothingItem.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
             }
         });
+
+        companyName = getIntent().getStringExtra("companyN");
 
         itemIdInput = (EditText) findViewById(R.id.itemIdEditText);
         itemNameInput = (EditText) findViewById(R.id.itemNameEditText);
@@ -164,6 +181,25 @@ public class AddClothingItem extends AppCompatActivity {
             e.printStackTrace();
         }
         itemSize = sizeSpinner.getSelectedItem().toString();
+
+        // This adds products size name to the end of it's ID
+        if (itemSize.equals("xxsmall")){
+            itemID += "-xxsmall";
+        } else if (itemSize.equals("xsmall")) {
+            itemID += "-xsmall";
+        } else if (itemSize.equals("small")) {
+            itemID += "-small";
+        } else if (itemSize.equals("medium")) {
+            itemID += "-medium";
+        } else if (itemSize.equals("large")) {
+            itemID += "-large";
+        } else if (itemSize.equals("xlarge")) {
+            itemID += "-xlarge";
+        } else if (itemSize.equals("xxlarge")) {
+            itemID += "-xxlarge";
+        }
+
+
         itemColor = colourSpinner.getSelectedItem().toString();
         if(womanItemButton.isChecked()){
             itemGender = "Woman";
@@ -251,22 +287,66 @@ public class AddClothingItem extends AppCompatActivity {
 
     private void saveItemToDatabase() {
 
-        Item item = new Item(itemID, itemName,itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice);
-        reference = FirebaseDatabase.getInstance().getReference("Products");
+        // This is to check if a product named itemID, already exists in the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference()
+                .child("Products").child(companyName)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-        FirebaseDatabase.getInstance().getReference("Products").child(itemID).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(AddClothingItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AddClothingItem.this, NewProductCategorySelection.class));
-                }
-                else{
-                    String message = task.getException().toString();
-                    Toast.makeText(AddClothingItem.this, message, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                            // This if-else if statement can be optimized. Seli is just too tired..
+                            String p_id = snapshot.getKey();
+                            String iiii = "";
+                            if (p_id.contains("-xxsmall")) {
+                                iiii = p_id.replace("-xxsmall", "");
+                            } else if (p_id.contains("-xsmall")) {
+                                iiii = p_id.replace("-xsmall", "");
+                            } else if (p_id.contains("-small")) {
+                                iiii = p_id.replace("-small", "");
+                            } else if (p_id.contains("-medium")) {
+                                iiii = p_id.replace("-medium", "");
+                            } else if (p_id.contains("-large")) {
+                                iiii = p_id.replace("-large", "");
+                            } else if (p_id.contains("-xlarge")) {
+                                iiii = p_id.replace("-xlarge", "");
+                            } else if (p_id.contains("xxlarge")) {
+                                iiii = p_id.replace("xxlarge", "");
+                            }
+
+                            if (!idList.contains(iiii)) {
+                                idList.add(iiii);
+                            }
+                        }
+
+                        String iput = itemIdInput.getText().toString();
+
+                        if (idList.contains(iput))
+                            duplicateItems = true;
+                        else duplicateItems = false;
+
+                        Item item = new Item(itemID, itemName, itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice, duplicateItems);
+                        reference = FirebaseDatabase.getInstance().getReference("Products");
+
+                        FirebaseDatabase.getInstance().getReference("Products").child(companyName).child(itemID).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AddClothingItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(AddClothingItem.this, NewProductCategorySelection.class));
+                                } else {
+                                    String message = task.getException().toString();
+                                    Toast.makeText(AddClothingItem.this, message, Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     private void OpenGallery() {
