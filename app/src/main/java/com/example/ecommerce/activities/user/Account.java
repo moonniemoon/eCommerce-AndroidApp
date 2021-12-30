@@ -2,7 +2,10 @@ package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,14 +38,17 @@ public class Account extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_account);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
+        setContentView(R.layout.fragment_account);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         if(user!=null ) {
 
-           /* bottomNavigationView = findViewById(R.id.bottom_navigation);
+           bottomNavigationView = findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.account);
 
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,7 +78,7 @@ public class Account extends AppCompatActivity {
 
                     return false;
                 }
-            });*/
+            });
 
             reference = FirebaseDatabase.getInstance().getReference("Users");
             userID = user.getUid();

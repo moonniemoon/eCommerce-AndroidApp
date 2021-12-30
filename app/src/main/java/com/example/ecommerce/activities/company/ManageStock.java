@@ -87,7 +87,7 @@ public class ManageStock extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Company companyDetails = snapshot.getValue(Company.class);
                 companyName = companyDetails.getCompanyName();
-                query = ItemReference.orderByChild("seller").equalTo(companyName);
+                query = ItemReference.child(companyName);
 
                 FirebaseRecyclerOptions<Item> items = new FirebaseRecyclerOptions.Builder<Item>()
                         .setQuery(query, Item.class)

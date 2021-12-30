@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.user.ShoppingBag">
+    tools:context=".activities.user.MainActivity"
+    >
+
+
+    <TextView
+        android:id="@+id/shoppingBagTextView"
+        android:layout_width="242dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/average_sans"
+        android:text="Shopping Bag"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -19,4 +35,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="120dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.user.HomeActivity"
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="196dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="620dp"
+        android:background="@color/black"
+        android:text="BUY"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:elevation="0dp"
+        app:iconTint="#000000"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalTextView"
+        android:layout_width="83dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="620dp"
+        android:fontFamily="@font/average_sans"
+        android:text="Total:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="83dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="620dp"
+        android:fontFamily="@font/average_sans"
+        android:text="price"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
