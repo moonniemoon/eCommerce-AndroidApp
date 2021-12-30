@@ -4,12 +4,13 @@ public class Item {
     private String ID, name, description, gender, size, colour, category, seller, imageUrl;
     private Integer quantity;
     private Double price;
+    private Boolean duplicateItems;
 
     public Item(){
 
     }
 
-    public Item(String ID, String name, String description, String gender, String size, String colour, Integer quantity, String category, String seller, String imageUrl, Double price) {
+    public Item(String ID, String name, String description, String gender, String size, String colour, Integer quantity, String category, String seller, String imageUrl, Double price, Boolean duplicateItems) {
         this.ID = ID;
         this.name = name;
         this.description = description;
@@ -21,7 +22,9 @@ public class Item {
         this.seller = seller;
         this.imageUrl = imageUrl;
         this.price = price;
+        this.duplicateItems = duplicateItems;
     }
+
 
     public Double getPrice() {
         return price;
@@ -109,5 +112,13 @@ public class Item {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Boolean getDuplicateItems() {
+        return duplicateItems;
+    }
+
+    public void setDuplicateItems(Boolean duplicateItems) {
+        this.duplicateItems = duplicateItems;
     }
 }

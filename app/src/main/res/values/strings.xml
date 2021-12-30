@@ -9,5 +9,7 @@
     <string name="nav_shopping_bag">Shopping Bag</string>
     <string name="nav_account">Account</string>
     <string name="forgot_password"><u>Forgot your password?</u></string>
+    <string name="women_text"><u>WOMEN</u></string>
+    <string name="men_text"><u>MEN</u></string>
 
 </resources>

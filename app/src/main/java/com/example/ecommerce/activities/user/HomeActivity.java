@@ -1,16 +1,31 @@
 package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +41,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -87,7 +104,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
         BoutiqueRef = FirebaseDatabase.getInstance().getReference().child("Companies");
 
 
@@ -95,6 +111,64 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        RadioGroup myRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioButton radioWomen = (RadioButton) findViewById(R.id.radio_women);
+        RadioButton radioMen = (RadioButton) findViewById(R.id.radio_men);
+
+        radioWomen.setChecked(true);
+
+        radioWomen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Make the text underlined
+                    SpannableString content = new SpannableString(getString((R.string.women_text)));
+                    content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+                    buttonView.setText(content);
+                } else {
+                    //Change the color here and make the Text bold
+                    SpannableString content = new SpannableString(getString(R.string.women_text));
+                    content.setSpan(null, 0, content.length(), 0);
+                    buttonView.setText(content);
+                    Typeface font = getResources().getFont(R.font.constan);
+                    buttonView.setTypeface(font);
+                }
+            }
+        });
+
+        radioMen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Make the text underlined
+                    SpannableString content = new SpannableString(getString((R.string.men_text)));
+                    content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+                    buttonView.setText(content);
+                } else {
+                    //Change the color here and make the Text bold
+                    SpannableString content = new SpannableString(getString(R.string.men_text));
+                    content.setSpan(null, 0, content.length(), 0);
+                    buttonView.setText(content);
+                    Typeface font = getResources().getFont(R.font.constan);
+                    buttonView.setTypeface(font);
+                }
+            }
+        });
+
+        myRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radio_men) {
+                    // Send info to the new fragment/activity, that in this class, MEN was checked
+                    // which means, only men's products must be displayed.
+                } else if (checkedId == R.id.radio_women){
+
+                }
+            }
+        });
     }
 
     @Override
@@ -115,6 +189,15 @@ public class HomeActivity extends AppCompatActivity {
                     {
                         Picasso.get().load(model.getBackgroundURL()).into(holder.boutique_image);
                         Picasso.get().load(model.getCompanyLogoURL()).into(holder.boutique_logo);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(HomeActivity.this, InsideBoutique.class);
+                                intent.putExtra("companyName", model.getCompanyName());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull

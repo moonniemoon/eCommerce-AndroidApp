@@ -5,14 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     app:cardElevation="0dp"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ImageView
             android:id="@+id/boutique_image"
             android:layout_width="match_parent"
@@ -27,7 +26,8 @@
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:layout_gravity="start"
-            android:background="@color/white"></ImageView>
+            android:background="@color/white">
+        </ImageView>
 
         <ImageView
             android:id="@+id/boutique_logo"

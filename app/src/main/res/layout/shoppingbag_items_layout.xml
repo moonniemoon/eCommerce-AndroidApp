@@ -38,6 +38,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
+                android:fontFamily="sans-serif-medium"
                 android:text="Name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/black" />
@@ -80,9 +81,19 @@
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemDescription"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/itemCategory" />
+                android:layout_toRightOf="@id/itemImage" />
+
+            <Button
+                android:id="@+id/removeItem"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/itemQuantitySpinner"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@id/itemImage"
+                android:text="REMOVE" />
 
         </RelativeLayout>
 

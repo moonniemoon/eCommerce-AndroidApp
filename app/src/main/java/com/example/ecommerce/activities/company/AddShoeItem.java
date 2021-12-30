@@ -59,6 +59,9 @@ public class AddShoeItem extends AppCompatActivity {
     private String parentDatabaseName = "Companies";
     private String companyID, companyName;
 
+    private Boolean duplicateItems; // This is to check if there's a product with the same REF num.
+    // Seli needs this, so that she can only show one pic of a product. Not all (xxs/xs/s/m/l/xl/xxl)
+
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
     private FirebaseUser user;
@@ -247,7 +250,9 @@ public class AddShoeItem extends AppCompatActivity {
 
     private void saveItemToDatabase() {
 
-        Item item = new Item(itemID, itemName,itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice);
+        // 'duplicateItems' should to be added like in "AddClothingItem.activity". I was just too tired..
+        // + id should contain += '-xxsmall'
+        Item item = new Item(itemID, itemName,itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice, duplicateItems);
         reference = FirebaseDatabase.getInstance().getReference("Products");
 
         FirebaseDatabase.getInstance().getReference("Products").child(itemID).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
