@@ -19,16 +19,18 @@
 
         </activity>
         <activity android:name=".activities.user.InsideBoutique" />
-        <activity android:name=".activities.user.ShoppingBag" />
-        <activity android:name=".activities.user.Wishlist" />
-        <activity android:name=".activities.user.Search" />
-        <activity android:name=".activities.user.MainActivity">
+
+        <activity android:name=".activities.user.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.user.ShoppingBag" />
+        <activity android:name=".activities.user.Wishlist" />
+        <activity android:name=".activities.user.Search" />
         <activity android:name=".activities.user.UserLogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,13 +66,7 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.user.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.company.ManageStock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

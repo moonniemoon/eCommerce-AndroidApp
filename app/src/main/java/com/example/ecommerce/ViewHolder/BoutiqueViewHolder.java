@@ -11,12 +11,13 @@ import com.example.ecommerce.interfaces.ItemClickListener;
 
 public class BoutiqueViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public ImageView boutique_image, boutique_logo;
+    public ImageView boutique_image, boutique_logo, emptyThing;
     public ItemClickListener listener;
 
     public BoutiqueViewHolder(@NonNull View itemView) {
         super(itemView);
 
+        this.emptyThing = (ImageView) itemView.findViewById(R.id.boutique_logo_background);
         this.boutique_image = (ImageView) itemView.findViewById(R.id.boutique_image);
         this.boutique_logo = (ImageView) itemView.findViewById(R.id.boutique_logo);
 

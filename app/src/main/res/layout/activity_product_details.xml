@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/logInButton"
+        android:id="@+id/cart_butButton"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginStart="170dp"
@@ -76,17 +76,17 @@
                 </com.denzcoskun.imageslider.ImageSlider>
 
 
-                <!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-                <!--                    android:id="@+id/productDetails_wishlistButton"-->
-                <!--                    android:layout_width="55dp"-->
-                <!--                    android:layout_height="55dp"-->
-                <!--                    android:layout_marginTop="485dp"-->
-                <!--                    android:layout_marginStart="360dp"-->
-                <!--                    android:rotationX="0"-->
-                <!--                    android:rotationY="-180"-->
-                <!--                   app:backgroundTint="@color/white"-->
-                <!--                    android:src="@drawable/productdetails_icon_heart"-->
-                <!--                    />-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/productDetails_wishlistButton"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="485dp"
+                    android:layout_marginStart="330dp"
+                    android:rotationX="0"
+                    android:rotationY="-180"
+                    app:backgroundTint="@color/white"
+                    android:src="@drawable/productdetails_icon_heart"
+                    />
 
 
                 <RelativeLayout
@@ -146,7 +146,6 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="175dp"
                         android:layout_marginEnd="30dp"
-                        android:autofillHints="Choose a size"
                          />
 
                     <TextView

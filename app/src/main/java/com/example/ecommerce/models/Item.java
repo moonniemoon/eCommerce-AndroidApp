@@ -25,6 +25,20 @@ public class Item {
         this.duplicateItems = duplicateItems;
     }
 
+    public Item(String pID, String pName, String pDescription, String pGender, String pSize, String pColour, Integer pQuantity, String pCategory, String companyName, String pImageURL, Double pPrice) {
+        this.ID = pID;
+        this.name = pName;
+        this.description = pDescription;
+        this.gender = pGender;
+        this.size = pSize;
+        this.colour = pColour;
+        this.quantity = pQuantity;
+        this.category = pCategory;
+        this.seller = companyName;
+        this.imageUrl = pImageURL;
+        this.price = pPrice;
+    }
+
 
     public Double getPrice() {
         return price;

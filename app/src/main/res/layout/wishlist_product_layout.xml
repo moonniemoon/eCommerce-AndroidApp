@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dp"
+    app:cardElevation="0dp"
+    >
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/wishlist_productImage"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="5dp"
+            android:scaleType="centerCrop">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/wishlist_productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Name"
+            android:textColor="@color/dark_gray"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/wishlist_productCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/wishlist_productName"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="-27dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Seller"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/wishlist_productID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/wishlist_productCompanyName"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-24dp"
+            android:fontFamily="sans-serif-light"
+            android:text="ID"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/wishlist_productCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/wishlist_productID"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-24dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Category"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/wishlist_dollar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/constan"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="158dp"
+            android:layout_marginStart="152dp"/>
+
+        <TextView
+            android:id="@+id/wishlist_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textColor="@color/dark_gray"
+            android:layout_toRightOf="@+id/wishlist_dollar"
+            android:fontFamily="@font/constan"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="160dp"
+            android:layout_marginStart="3dp"/>
+
+
+        <Button
+            android:id="@+id/wishlist_cartButton"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="154dp"
+            android:background="@drawable/wishlist_button"
+            android:text="Add to Cart"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:iconTint="@color/pink" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

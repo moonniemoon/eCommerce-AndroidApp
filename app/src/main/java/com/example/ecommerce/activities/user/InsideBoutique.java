@@ -151,12 +151,16 @@ public class InsideBoutique extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(InsideBoutique.this, ProductDetails.class);
+                        intent.putExtra("page", "inside");
                         intent.putExtra("companyName", companyName);
                         intent.putExtra("ID", item.getID());
+                        intent.putExtra("category", item.getCategory());
+                        intent.putExtra("colour", item.getColour());
+                        intent.putExtra("description", item.getDescription());
+                        intent.putExtra("imageURL", item.getImageUrl());
                         intent.putExtra("gender", item.getGender());
                         intent.putExtra("price", item.getPrice().toString());
                         intent.putExtra("name", item.getName());
-                        intent.putExtra("description", item.getDescription());
                         startActivity(intent);
                     }
                 });

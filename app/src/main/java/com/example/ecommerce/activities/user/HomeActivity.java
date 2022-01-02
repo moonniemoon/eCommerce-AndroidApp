@@ -16,12 +16,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,10 +37,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.BoutiqueViewHolder;
+import com.example.ecommerce.ViewHolder.ShoppingBagViewHolder;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.company.CompanyAccount;
+import com.example.ecommerce.models.Boutiques;
+import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +55,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -60,16 +71,30 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private FirebaseUser user;
 
+    private DatabaseReference ShoppingBagReference, ItemReference;
+    private Query query;
+
+    private boolean spinnerInitialized = false;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_home);
+
         firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        ShoppingBagReference = FirebaseDatabase.getInstance().getReference();
+        query = ShoppingBagReference.child("Companies");
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.shopping_Bag);
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_Screen);
@@ -102,10 +127,6 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        BoutiqueRef = FirebaseDatabase.getInstance().getReference().child("Companies");
-
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -176,39 +197,35 @@ public class HomeActivity extends AppCompatActivity {
     {
         super.onStart();
 
-        FirebaseRecyclerOptions<Company> options =
-                new FirebaseRecyclerOptions.Builder<Company>()
-                        .setQuery(BoutiqueRef, Company.class)
-                        .build();
+        FirebaseRecyclerOptions<Boutiques> items = new FirebaseRecyclerOptions.Builder<Boutiques>()
+                .setQuery(query, Boutiques.class)
+                .build();
 
+        FirebaseRecyclerAdapter<Boutiques, BoutiqueViewHolder> adapter = new FirebaseRecyclerAdapter<Boutiques, BoutiqueViewHolder>(items) {
+            @Override
+            protected void onBindViewHolder(@NonNull BoutiqueViewHolder shoppingBagViewHolder, int i, @NonNull Boutiques item) {
+                Picasso.get().load(item.getCompanyLogoURL()).into(shoppingBagViewHolder.boutique_logo);
+                Picasso.get().load(item.getBackgroundURL()).into(shoppingBagViewHolder.boutique_image);
 
-        FirebaseRecyclerAdapter<Company, BoutiqueViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Company, BoutiqueViewHolder>(options) {
+                shoppingBagViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    protected void onBindViewHolder(@NonNull BoutiqueViewHolder holder, int position, @NonNull Company model)
-                    {
-                        Picasso.get().load(model.getBackgroundURL()).into(holder.boutique_image);
-                        Picasso.get().load(model.getCompanyLogoURL()).into(holder.boutique_logo);
-
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(HomeActivity.this, InsideBoutique.class);
-                                intent.putExtra("companyName", model.getCompanyName());
-                                startActivity(intent);
-                            }
-                        });
+                    public void onClick(View view) {
+                        Intent intent = new Intent(HomeActivity.this, InsideBoutique.class);
+                        intent.putExtra("companyName", item.getCompanyName());
+                        startActivity(intent);
                     }
+                });
 
-                    @NonNull
-                    @Override
-                    public BoutiqueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-                    {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_boutiques_layout, parent, false);
-                        BoutiqueViewHolder holder = new BoutiqueViewHolder(view);
-                        return holder;
-                    }
-                };
+            }
+
+            @NonNull
+            @Override
+            public BoutiqueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_boutiques_layout, parent, false);
+                BoutiqueViewHolder holder = new BoutiqueViewHolder(view);
+                return holder;
+            }
+        };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
