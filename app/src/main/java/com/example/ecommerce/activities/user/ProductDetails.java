@@ -338,7 +338,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(ProductDetails.this, "Item added successfully to your wishlist!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProductDetails.this, "Item added successfully to your shopping bag!", Toast.LENGTH_LONG).show();
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(ProductDetails.this, message, Toast.LENGTH_LONG).show();

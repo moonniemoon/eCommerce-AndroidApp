@@ -89,7 +89,7 @@ public class CompanyAccount extends AppCompatActivity {
             cashRegisterLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
                 }
             });
             FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);

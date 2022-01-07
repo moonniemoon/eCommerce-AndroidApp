@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/topNavigationFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/currentRevenueText"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Current Revenue:"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/revenue"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginLeft="182dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="$"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="56dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:rotationX="0"
+            android:rotationY="-180"
+            android:src="@drawable/back_icon"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="102dp"
+            android:background="?android:attr/listDivider" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="105dp"
+            android:orientation="horizontal"
+            >
+        <RadioButton
+            android:id="@+id/radio_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:padding="4dp"
+            android:fontFamily="@font/constan"
+            android:text="@string/sales"
+            android:textSize="23sp"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/radio_restoks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:padding="10dp"
+                android:fontFamily="@font/constan"
+                android:text="@string/restocks"
+                android:textSize="23sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"/>
+    </RadioGroup>
+
+        <View
+            android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="153dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="160dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.company.ManageStock">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

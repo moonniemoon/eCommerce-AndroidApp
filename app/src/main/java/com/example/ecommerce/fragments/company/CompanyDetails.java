@@ -17,11 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
-import com.example.ecommerce.accounts.User;
 import com.example.ecommerce.activities.company.CompanyAccount;
-import com.example.ecommerce.activities.user.Account;
-import com.example.ecommerce.activities.user.JoinUsAsASeller;
-import com.example.ecommerce.fragments.user.ChangePassword;
+import com.example.ecommerce.fragments.user.ChangeUserPassword;
 import com.example.ecommerce.fragments.user.FragmentAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -122,7 +119,7 @@ public class CompanyDetails extends Fragment {
         changePasswordLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new ChangePassword());
+                changeFragment(new ChangeCompanyPassword());
             }
         });
         return RootView;

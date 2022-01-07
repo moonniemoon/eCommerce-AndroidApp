@@ -11,5 +11,7 @@
     <string name="forgot_password"><u>Forgot your password?</u></string>
     <string name="women_text"><u>WOMEN</u></string>
     <string name="men_text"><u>MEN</u></string>
+    <string name="sales"><u>SALES</u></string>
+    <string name="restocks"><u>RESTOCKS</u></string>
 
 </resources>

@@ -236,14 +236,15 @@ public class ManageStock extends AppCompatActivity {
     private void saveRestockInfoToDatabase(String companyName, Item item, int quantity){
         Date currentTime = Calendar.getInstance().getTime();
 
-        RestockInfo restockInfo = new RestockInfo(item.getID(), item.getName(), currentTime.toString(), quantity);
+        double totalCost = item.getPrice() * item.getQuantity();
+
+        RestockInfo restockInfo = new RestockInfo(item.getID(), item.getName(), currentTime.toString(), quantity, totalCost);
 
         FirebaseDatabase.getInstance().getReference("Restock Records").child(companyName).child(currentTime.toString()).setValue(restockInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(ManageStock.this, "Record of restock has been made", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(ManageStock.this, NewProductCategorySelection.class));
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(ManageStock.this, message, Toast.LENGTH_LONG).show();
@@ -270,6 +271,20 @@ public class ManageStock extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(ManageStock.this, "Item restocked successfully!", Toast.LENGTH_LONG).show();
                             saveRestockInfoToDatabase(companyName, item, Integer.parseInt(stockAmountInput.getText().toString()));
+                            CompanyReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    Company companyDetails = snapshot.getValue(Company.class);
+                                    double currentRevenue = companyDetails.getRevenue();
+                                    double totalCost = item.getPrice()* item.getQuantity();
+                                    calculateRevenue(currentRevenue, totalCost);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         } else {
                             Toast.makeText(ManageStock.this, "Server error, please try again later.", Toast.LENGTH_LONG).show();
                         }
@@ -285,5 +300,21 @@ public class ManageStock extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+    private void calculateRevenue(double currentRevenue, double totalCost){
+        double newRevenue = currentRevenue - totalCost;
+
+        CompanyReference.child(user.getUid()).child("revenue").setValue(newRevenue).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ManageStock.this, "Revenue updated successfully.", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(ManageStock.this, "Server error, please try again later.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }

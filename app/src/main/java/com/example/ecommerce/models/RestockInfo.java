@@ -3,16 +3,26 @@ package com.example.ecommerce.models;
 public class RestockInfo {
     private String itemID, itemName, restockTime;
     private Integer quantity;
+    private Double totalCost;
 
     RestockInfo(){
 
     }
 
-    public RestockInfo(String itemID, String itemName, String restockTime,  Integer quantity) {
+    public RestockInfo(String itemID, String itemName, String restockTime,  Integer quantity, Double totalCost) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.restockTime = restockTime;
         this.quantity = quantity;
+        this.totalCost = totalCost;
+    }
+
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Double totalCost) {
+        this.totalCost = totalCost;
     }
 
     public String getItemID() {
