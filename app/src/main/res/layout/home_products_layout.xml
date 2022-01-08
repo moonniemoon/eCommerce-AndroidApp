@@ -4,30 +4,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="205dp"
-    android:layout_height="370dp"
+    android:layout_height="360dp"
     android:layout_marginTop="5dp"
     app:cardElevation="0dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
         android:layout_width="185dp"
         android:layout_height="270dp"
         android:layout_marginLeft="10dp"
         android:scaleType="centerCrop"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="0dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        />
 
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:fontFamily="sans-serif-light"
-        android:textSize="16sp"
-        android:layout_marginTop="280dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="277dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginBottom="30dp"
+        android:text="Name"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/text_dolar"
@@ -36,7 +38,7 @@
         android:text="$"
         android:textColor="@color/black"
         android:fontFamily="@font/constan"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="330dp"
         android:layout_marginStart="10dp"/>
@@ -46,11 +48,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:textColor="@color/black"
         android:layout_marginTop="330dp"
         android:fontFamily="@font/constan"
         android:text="Price"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 </androidx.cardview.widget.CardView>

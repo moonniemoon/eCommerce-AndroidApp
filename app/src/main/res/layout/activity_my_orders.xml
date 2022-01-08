@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+
+    <ImageView
+        android:id="@+id/bbackbackbackbutton"
+        android:layout_width="55dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="5dp"
+        android:rotationX="0"
+        android:rotationY="-180"
+        android:src="@drawable/back_icon"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+           android:layout_marginBottom="100dp"
+            android:background="@color/gray"
+            >
+        </FrameLayout>-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myorders_recycler_menu"
+        android:layout_width="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+</RelativeLayout>

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ecommerce">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce"
-        tools:replace="android:theme"
-        >
-        <activity android:name=".activities.user.ProductDetails">
-
-        </activity>
+        tools:replace="android:theme">
+        <activity android:name=".activities.user.SearchResults"></activity>
+        <activity android:name=".activities.company.ShipmentDetails" />
+        <activity android:name=".activities.company.Shipments" />
+        <activity android:name=".activities.user.OrderDetails" />
+        <activity android:name=".activities.user.MyOrders" />
+        <activity android:name=".activities.user.PaymentMethod" />
+        <activity android:name=".activities.user.ChooseAddressForShipping" />
+        <activity android:name=".activities.user.AddressBook" />
+        <activity android:name=".activities.user.ProductDetails" />
         <activity android:name=".activities.user.InsideBoutique" />
-
         <activity android:name=".activities.user.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +31,6 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.user.ShoppingBag" />
         <activity android:name=".activities.user.Wishlist" />
         <activity android:name=".activities.user.Search" />
@@ -66,7 +69,6 @@
                 <category android:name="android.intent.category.ALTERNATIVE" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.company.ManageStock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

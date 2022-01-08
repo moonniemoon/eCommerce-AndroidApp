@@ -297,9 +297,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) { }
 
 
     private void removeItem(String idName){
