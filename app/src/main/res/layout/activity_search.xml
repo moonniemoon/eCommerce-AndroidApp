@@ -1,22 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.user.Search">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        app:labelVisibilityMode="unlabeled"
-        app:itemRippleColor="@null"
-        app:itemIconTint="@drawable/selector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu"/>
+        android:layout_height="match_parent"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                app:labelVisibilityMode="unlabeled"
+                app:elevation="0dp"
+                app:itemRippleColor="@null"
+                app:itemIconTint="@drawable/selector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/bottom_menu"
+                >
+                <View
+                    android:id="@+id/saved_divider2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:backgroundTint="@color/dark_gray"
+                    android:layout_marginTop="0dp"
+                    android:background="?android:attr/listDivider" />
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            >
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="31dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="70dp"
+                android:drawablePadding="5dp"
+                android:paddingStart="10dp"
+                android:textSize="14sp"
+                android:hint="Search"
+                android:fontFamily="sans-serif-light"
+                android:paddingEnd="12dp"
+                android:background="@drawable/home_custom_search_bar"
+                android:drawableStart="@drawable/home_search_bar"
+                android:autofillHints="Search"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="51dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="10dp"
+                android:text="GO"
+                android:textSize="10sp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/productdetails_button"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_beauty"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="565dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/search_image_beauty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:src="@drawable/beauty"
+                        android:scaleType="centerInside">
+                    </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:text="Beauty"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_tshirts"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="765dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_tshirts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:src="@drawable/tshirtiesss"
+                    android:scaleType="centerInside">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:text="T-Shirts"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_skirts"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="665dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_shirts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/tshirts"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:text="Skirts"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_trousers"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="465dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_trousers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/trousers"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:text="Trousers"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_shirts"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="365dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_skirts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shirts"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Shirts"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_footwear"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="265dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_footwear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shoes"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Footwear"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_accessories"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="165dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_accessories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bags"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Accessories"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_cardview_outerwear"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="65dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="25dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/search_image_outerwear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:src="@drawable/outerwear"
+                    android:scaleType="centerCrop">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Outerwear"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/average_sans"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"/>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>
+

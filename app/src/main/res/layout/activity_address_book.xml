@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+
+    <ImageView
+        android:id="@+id/backbackButton"
+        android:layout_width="55dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="14dp"
+        android:rotationX="0"
+        android:rotationY="-180"
+        android:src="@drawable/back_icon"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/book_textAddressBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/constan"
+        android:text="Address Book"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:text="CONTACT DETAILS"
+                    android:fontFamily="@font/constan"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/book_firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:text="First name"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editFirstName"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="75dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/book_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="130dp"
+                android:text="Last name"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editLastName"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="155dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/book_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="210dp"
+                android:text="Phone"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editPhone"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="236dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="phone"
+                android:textSize="14sp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/gray"
+                android:layout_marginTop="300dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:text="ADDRESS DETAILS"
+                    android:fontFamily="@font/constan"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    />
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/book_townCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="350dp"
+                android:text="Town/City"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editTownCity"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="375dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/book_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="430dp"
+                android:text="Address"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editAddress"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="455dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/book_postCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="510dp"
+                android:text="Postcode"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editPostCode"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="536dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/book_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="590dp"
+                android:text="Country"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/book_editCountry"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="616dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="14sp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/gray"
+                android:layout_marginTop="670dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:text="ADDRESS SHROTCUT NAME"
+                    android:fontFamily="@font/constan"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/book_editShortcutName"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="720dp"
+                android:layout_marginStart="20dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="14sp"/>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/gray"
+                android:layout_marginTop="780dp">
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/book_saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="800dp"
+                android:background="@drawable/wishlist_button"
+                android:text="SAVE ADDRESS"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp"
+                app:iconTint="@color/pink" />
+
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

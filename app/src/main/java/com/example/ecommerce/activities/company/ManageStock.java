@@ -236,7 +236,7 @@ public class ManageStock extends AppCompatActivity {
     private void saveRestockInfoToDatabase(String companyName, Item item, int quantity){
         Date currentTime = Calendar.getInstance().getTime();
 
-        double totalCost = item.getPrice() * item.getQuantity();
+        double totalCost = item.getPrice() * quantity;
 
         RestockInfo restockInfo = new RestockInfo(item.getID(), item.getName(), currentTime.toString(), quantity, totalCost);
 
@@ -265,18 +265,20 @@ public class ManageStock extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ItemReference.child(companyName).child(item.getID()).child("quantity").setValue(Integer.parseInt(stockAmountInput.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                int newQuantity = Integer.parseInt(stockAmountInput.getText().toString());
+
+                ItemReference.child(companyName).child(item.getID()).child("quantity").setValue(item.getQuantity() + newQuantity).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(ManageStock.this, "Item restocked successfully!", Toast.LENGTH_LONG).show();
-                            saveRestockInfoToDatabase(companyName, item, Integer.parseInt(stockAmountInput.getText().toString()));
+                            saveRestockInfoToDatabase(companyName, item, newQuantity);
                             CompanyReference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     Company companyDetails = snapshot.getValue(Company.class);
                                     double currentRevenue = companyDetails.getRevenue();
-                                    double totalCost = item.getPrice()* item.getQuantity();
+                                    double totalCost = item.getPrice() * newQuantity;
                                     calculateRevenue(currentRevenue, totalCost);
                                 }
 

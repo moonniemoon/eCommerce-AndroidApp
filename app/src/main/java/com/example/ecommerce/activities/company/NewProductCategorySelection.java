@@ -22,20 +22,22 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NewProductCategorySelection extends AppCompatActivity {
 
-    private ImageView tees, shirts, trousers, skirts, footwear, accessories, beauty;
+    private FrameLayout tees, shirts, trousers, skirts, footwear, accessories, beauty, outerwear;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newproductcategoryselection);
         getSupportActionBar().hide();
 
-        tees = (ImageView)  findViewById(R.id.teesIcon);
-        shirts = (ImageView)  findViewById(R.id.shirtsIcon);
-        trousers = (ImageView)  findViewById(R.id.trousersIcon);
-        skirts = (ImageView)  findViewById(R.id.skirtsIcon);
-        footwear = (ImageView)  findViewById(R.id.footwearIcon);
-        accessories = (ImageView)  findViewById(R.id.accessoriesIcon);
-        beauty = (ImageView)  findViewById(R.id.beautyIcon);
+        tees = (FrameLayout)  findViewById(R.id.teesFrameLayout);
+        shirts = (FrameLayout)  findViewById(R.id.shirtsFrameLayout);
+        trousers = (FrameLayout)  findViewById(R.id.trousersFrameLayout);
+        skirts = (FrameLayout)  findViewById(R.id.skirtsFrameLayout);
+        footwear = (FrameLayout)  findViewById(R.id.footwearFrameLayout);
+        accessories = (FrameLayout)  findViewById(R.id.accessoriesFrameLayout);
+        beauty = (FrameLayout)  findViewById(R.id.beautyFrameLayout);
+        outerwear = (FrameLayout)  findViewById(R.id.outerwearFrameLayout);
+
 
         tees.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +92,14 @@ public class NewProductCategorySelection extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddOtherItem.class);
                 intent.putExtra("Category", "Beauty");
+                startActivity(intent);
+            }
+        });
+        outerwear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
+                intent.putExtra("Category", "Outerwear");
                 startActivity(intent);
             }
         });

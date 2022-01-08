@@ -189,19 +189,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addItemButton"
         android:layout_width="192dp"
         android:layout_height="49dp"
-        android:layout_marginTop="860dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/design_default_color_on_primary"
+        android:layout_marginTop="832dp"
+        android:background="@drawable/rounded_whitebutton"
         android:text="ADD ITEM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black"
-        app:backgroundTint="@color/white"
         app:iconTint="@color/black"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -226,13 +223,12 @@
         android:id="@+id/addItemPhotoButton"
         android:layout_width="118dp"
         android:layout_height="45dp"
-        android:layout_marginTop="788dp"
-        android:background="@color/black"
+        android:layout_marginTop="792dp"
+        android:background="@drawable/productdetails_button"
         android:text="ADD"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:elevation="0dp"
-        app:iconTint="#000000"
-        app:layout_constraintHorizontal_bias="0.101"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

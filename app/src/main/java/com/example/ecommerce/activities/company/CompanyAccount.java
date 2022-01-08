@@ -21,6 +21,7 @@ import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.user.JoinUsAsASeller;
 import com.example.ecommerce.fragments.company.AddClothingItem;
 import com.example.ecommerce.fragments.company.CompanyDetails;
+import com.example.ecommerce.fragments.user.AboutUs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -92,6 +93,13 @@ public class CompanyAccount extends AppCompatActivity {
                     startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
                 }
             });
+        FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);
+        aboutUsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new AboutUs());
+            }
+        });
             FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);
             contactUsLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

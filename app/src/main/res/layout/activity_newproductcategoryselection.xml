@@ -10,6 +10,40 @@
     tools:context=".fragments.user.FragmentAccount">
 
     <FrameLayout
+        android:id="@+id/outerwearFrameLayout"
+        android:layout_width="97dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/layout_border"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/outerwearIcon"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addproduct_outerwear_selector" />
+
+    <TextView
+        android:id="@+id/outerwearTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:fontFamily="@font/comfortaa"
+        android:text="Outerwear"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
         android:id="@+id/beautyFrameLayout"
         android:layout_width="97dp"
         android:layout_height="108dp"
@@ -218,22 +252,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addItemButton"
-        android:layout_width="192dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="588dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/design_default_color_on_primary"
-        android:text="ADD ITEM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/black"
-        app:backgroundTint="@color/white"
-        app:iconTint="@color/black"
-        app:layout_constraintHorizontal_bias="0.899"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/backButton"

@@ -7,7 +7,6 @@
     tools:context=".activities.user.HomeActivity"
     >
 
-
     <TextView
         android:id="@+id/shoppingBagTextView"
         android:layout_width="242dp"
@@ -28,18 +27,28 @@
         android:layout_height="50dp"
         android:background="@color/white"
         app:labelVisibilityMode="unlabeled"
+        app:elevation="0dp"
         app:itemRippleColor="@null"
         app:itemIconTint="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu"
+        >
+        <View
+            android:id="@+id/saved_divider2"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:backgroundTint="@color/dark_gray"
+            android:layout_marginTop="0dp"
+            android:background="?android:attr/listDivider" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="110dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".activities.user.HomeActivity"
         >
@@ -56,51 +65,51 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/buyButton"
-        android:layout_width="196dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="572dp"
-        android:background="@color/black"
-        android:text="BUY"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"
-        app:elevation="0dp"
-        app:iconTint="#000000"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/totalPrice"
-        android:layout_width="83dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="572dp"
-        android:fontFamily="@font/average_sans"
-        android:text="price"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        app:layout_constraintHorizontal_bias="0.31"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/totalTextView"
-        android:layout_width="102dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="572dp"
-        android:fontFamily="@font/average_sans"
-        android:text="Total: $"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="34sp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="588dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buyButton"
+            android:layout_width="196dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="210dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/productdetails_button"
+            android:text="BUY NOW"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/average_sans"
+            android:text="price"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/totalTextView"
+            android:layout_width="102dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/average_sans"
+            android:text="Total: $"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

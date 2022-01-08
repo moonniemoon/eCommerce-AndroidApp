@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
@@ -50,7 +51,8 @@ public class AddShoeItem extends AppCompatActivity {
     private RadioButton womanItemButton, manItemButton;
     private Spinner sizeSpinner, colourSpinner;
     private TextView itemGenderTextView;
-    private Button addItemImageButton, addItemButton;
+    private Button addItemImageButton;
+    private AppCompatButton addItemButton;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private StorageReference itemImage;
@@ -121,7 +123,7 @@ public class AddShoeItem extends AppCompatActivity {
         manItemButton = (RadioButton) findViewById(R.id.manRadioButton);
         itemGenderTextView = (TextView) findViewById(R.id.itemGenderTextView);
         addItemImageButton = (Button) findViewById(R.id.addItemPhotoButton);
-        addItemButton = (Button) findViewById(R.id.addItemButton);
+        addItemButton = (AppCompatButton) findViewById(R.id.addItemButton);
         addItemImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

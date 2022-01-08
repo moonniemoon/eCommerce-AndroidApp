@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
@@ -32,7 +33,8 @@ public class UserLogIn extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
     private FirebaseUser user;
-    private Button logInButton, becomeAMemberButton, logInAsCorporateButton;
+    private Button logInButton, logInAsCorporateButton;
+    private AppCompatButton becomeAMemberButton;
     private String email, password;
     private EditText emailInput, passwordInput;
 
@@ -50,7 +52,7 @@ public class UserLogIn extends AppCompatActivity {
                 logIn();
             }
         });
-        becomeAMemberButton = (Button) findViewById(R.id.becomeAMemberButton);
+        becomeAMemberButton = (AppCompatButton) findViewById(R.id.becomeAMemberButton);
         becomeAMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

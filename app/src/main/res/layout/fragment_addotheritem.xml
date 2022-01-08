@@ -1,281 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_companydetails"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:tag="accountDetails"
-    tools:context=".fragments.user.FragmentAccount">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/fragment_addotheritem"
+    tools:context=".fragments.company.AddOtherItem">
 
-    <EditText
-        android:id="@+id/itemQuantityEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintHorizontal_bias="0.178"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addItemButton"
-        android:layout_width="192dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="604dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/design_default_color_on_primary"
-        android:text="ADD ITEM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/black"
-        app:backgroundTint="@color/white"
-        app:iconTint="@color/black"
-        app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider7"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="432dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioButton
-        android:id="@+id/manRadioButton"
-        android:layout_width="128dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="368dp"
-        android:text="Man"
-        android:textSize="12sp"
-        app:layout_constraintHorizontal_bias="0.674"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/colour_spinner"
-        android:layout_width="269dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="468dp"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/itemQuantityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Item Quantity"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/attachItemPhotoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Attach item photo (.jpg or .png)"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/black"
-        app:elevation="0dp"
-        app:iconTint="#000000"
-        app:layout_constraintHorizontal_bias="0.182"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider6"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="512dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider10"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="252dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addItemPhotoButton"
-        android:layout_width="118dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="552dp"
-        android:background="@color/black"
-        android:text="ADD"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:elevation="0dp"
-        app:iconTint="#000000"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/itemGenderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="340dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Gender"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/colourTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="432dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Colour"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioButton
-        android:id="@+id/womanRadioButton"
-        android:layout_width="128dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="368dp"
-        android:text="Woman"
-        android:textSize="12sp"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider9"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="340dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/productDescriptionEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintHorizontal_bias="0.174"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/itemNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Item Name"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="72dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.639"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="156dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintHorizontal_bias="0.639"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/itemNameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintHorizontal_bias="0.174"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/itemDescriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Item Description"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="56dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:rotationX="0"
-        android:rotationY="-180"
-        android:src="@drawable/back_icon"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_companydetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:tag="accountDetails"
+        tools:context=".fragments.user.FragmentAccount">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/itemNameEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="196dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.128"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="248dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/itemIdEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Item ID"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Item Name"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="160dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/productDescriptionEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="280dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.128"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/addItemPhotoButton"
+            android:layout_width="118dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="728dp"
+            android:background="@drawable/productdetails_button"
+            android:text="ADD"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addItemButton"
+            android:layout_width="192dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="768dp"
+            android:background="@drawable/rounded_whitebutton"
+            android:text="ADD ITEM"
+            android:textColor="@color/black"
+            app:iconTint="@color/black"
+            app:layout_constraintHorizontal_bias="0.926"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/itemQuantityEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="384dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.129"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="440dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/attachItemPhotoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="700dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Attach item photo (.jpg or .png)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/black"
+            app:elevation="0dp"
+            app:iconTint="#000000"
+            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="612dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/womanRadioButton"
+            android:layout_width="128dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="468dp"
+            android:text="Woman"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_bias="0.102"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/colour_spinner"
+            android:layout_width="269dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="568dp"
+            app:layout_constraintHorizontal_bias="0.204"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="612dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Item Price"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemQuantityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="352dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Item Quantity"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.082"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemGenderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="440dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Gender"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="532dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="352dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/itemPriceEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="644dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.133"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colourTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="532dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Colour"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="700dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/manRadioButton"
+            android:layout_width="128dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="468dp"
+            android:text="Man"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="248dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Item Description"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="336dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="56dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:rotationX="0"
+            android:rotationY="-180"
+            android:src="@drawable/back_icon"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout></ScrollView>

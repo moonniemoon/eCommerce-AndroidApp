@@ -21,13 +21,22 @@
             android:layout_height="50dp"
             android:background="@color/white"
             app:labelVisibilityMode="unlabeled"
+            app:elevation="0dp"
             app:itemRippleColor="@null"
             app:itemIconTint="@drawable/selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_menu"
-            />
+            >
+            <View
+                android:id="@+id/saved_divider2"
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:backgroundTint="@color/dark_gray"
+                android:layout_marginTop="0dp"
+                android:background="?android:attr/listDivider" />
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,13 +47,13 @@
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="fill_parent"
-                android:layout_height="33dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="70dp"
-                android:drawablePadding="12dp"
-                android:paddingStart="12dp"
-                android:textSize="15sp"
+                android:drawablePadding="5dp"
+                android:paddingStart="10dp"
+                android:textSize="14sp"
                 android:hint="Search"
                 android:fontFamily="sans-serif-light"
                 android:paddingEnd="12dp"
@@ -56,8 +65,8 @@
             <ImageButton
                 android:id="@+id/barcode_button"
                 android:layout_width="35dp"
-                android:layout_height="33dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginEnd="17dp"
                 android:background="@null"
                 android:layout_alignParentRight="true"
@@ -67,26 +76,24 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="62dp">
+                android:layout_marginTop="52dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:context=".activities.user.HomeActivity"
-                    >
+                    tools:context=".activities.user.HomeActivity">
 
 
                     <RadioGroup
                         android:id="@+id/radioGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-10dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="-12dp"
                         android:layout_marginEnd="190dp"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/radio_women"
@@ -94,11 +101,11 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:button="@null"
-                            android:padding="4dp"
                             android:fontFamily="@font/constan"
+                            android:padding="4dp"
                             android:text="@string/women_text"
-                            android:textSize="23sp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
                         <RadioButton
                             android:id="@+id/radio_men"
@@ -106,26 +113,26 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:button="@null"
-                            android:padding="10dp"
                             android:fontFamily="@font/constan"
+                            android:padding="10dp"
                             android:text="MEN"
-                            android:textSize="23sp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
                     </RadioGroup>
 
                     <Button
                         android:id="@+id/button_categories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-10dp"
-                        android:layout_marginStart="210dp"
+                        android:layout_marginStart="205dp"
+                        android:layout_marginTop="-12dp"
                         android:layout_marginEnd="2dp"
+                        android:background="@android:color/transparent"
                         android:fontFamily="@font/constan"
-                        android:textSize="23sp"
                         android:text="CATEGORIES"
                         android:textColor="@color/black"
-                        android:background="@android:color/transparent"
-                        >
+                        android:textAlignment="textStart"
+                        android:textSize="18sp">
 
                     </Button>
 
@@ -139,7 +146,7 @@
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="85dp"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>

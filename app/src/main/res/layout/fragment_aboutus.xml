@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_account"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:foregroundTint="#F86BAD"
+    tools:context=".fragments.user.FragmentAccount">
+
+
+    <ImageView
+        android:id="@+id/imageView48"
+        android:layout_width="428dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="64dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/accountbackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="56dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:rotationX="0"
+        android:rotationY="-180"
+        android:src="@drawable/back_icon"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        app:cardPreventCornerOverlap="false"
+        app:cardElevation="25dp"
+        app:cardCornerRadius="15dp"
+        android:layout_width="375dp"
+        android:layout_height="605dp"
+        android:layout_marginTop="96dp"
+        android:background="@color/pink"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="ABOUT US AND THE APP \n\n Ecommerce App"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaa"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:text="Course project \n Discipline: OOP - II \n Technical University of Varna\n\n\n\n Created by: \n Selin Kayar, KST, 1A, \n year 3, faculty number: 19621447 \n\n Hristina Georgieva, KST, 1A, \n year 3, faculty number: 19621325 \n\n\n\n\n\n Reachable at: \n [SELI EMAIL] \n h.georgieva00@gmail.com"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaa"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
