@@ -144,7 +144,7 @@ public class ShoppingBag extends AppCompatActivity {
                 shoppingBagViewHolder.productDescription.setText(item.getDescription());
                 shoppingBagViewHolder.productCategory.setText(item.getCategory());
                 double total = item.getPrice() * item.getQuantity();
-                shoppingBagViewHolder.productPrice.setText("$"+ total);
+                shoppingBagViewHolder.productPrice.setText("$"+ String.format("%.2f",total));
                 Picasso.get().load(item.getImageUrl()).into(shoppingBagViewHolder.productImage);
 
                 ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(ShoppingBag.this,
@@ -159,7 +159,7 @@ public class ShoppingBag extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         double total = item.getPrice() * item.getQuantity();
-                        shoppingBagViewHolder.productPrice.setText("$"+total);
+                        shoppingBagViewHolder.productPrice.setText("$"+String.format("%.2f",total));
                         spinnerInitialized = true;
                         ShoppingBagReference.child(user.getUid()).child("Items").child(item.getID()).child("quantity").setValue(shoppingBagViewHolder.quantitySpinner.getSelectedItemPosition()+1).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -248,7 +248,7 @@ public class ShoppingBag extends AppCompatActivity {
                             itemTotalPrice = item.getPrice() * item.getQuantity();
                             dlTotal += itemTotalPrice;
                         }
-                        totalPrice.setText(String.valueOf(dlTotal));
+                        totalPrice.setText(String.format("%.2f",dlTotal));
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
