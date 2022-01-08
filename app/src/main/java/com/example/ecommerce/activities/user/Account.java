@@ -1,6 +1,7 @@
 package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,14 +110,17 @@ public class Account extends AppCompatActivity {
             myOrdersLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(Account.this, MyOrders.class);
+                    startActivity(intent);
                 }
             });
             FrameLayout addressBookLayout = (FrameLayout) findViewById(R.id.addressBookFrameLayout);
             addressBookLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(Account.this, ChooseAddressForShipping.class);
+                    intent.putExtra("comingFrom", "account");
+                    startActivity(intent);
                 }
             });
             FrameLayout joinUsAsASellerLayout = (FrameLayout) findViewById(R.id.joinUsAsASellerFrameLayout);

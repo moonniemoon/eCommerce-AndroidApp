@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardElevation="0dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        android:background="@color/white"
+        >
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="0dp">
+
+            <TextView
+                android:id="@+id/saved_shortcutName"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:text="Address"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/saved_firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="52dp"
+            android:fontFamily="sans-serif-light"
+            android:text="First"
+            android:textColor="@color/dark_gray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/saved_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/saved_firstName"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginBottom="-27dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Last"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/saved_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@+id/saved_lastName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="-24dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Phone"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/saved_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/saved_phone"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-24dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Address"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/saved_town"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/saved_address"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-24dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Town/City"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/saved_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/saved_address"
+            android:layout_toRightOf="@+id/saved_town"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-24dp"
+            android:fontFamily="sans-serif-light"
+            android:text="- Country"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+<!--        <View
+            android:id="@+id/saved_divider1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="0dp"
+            android:background="?android:attr/listDivider" />-->
+
+<!--
+        <View
+            android:id="@+id/saved_divider3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="191dp"
+            android:background="?android:attr/listDivider" />
+-->
+
+        <View
+            android:id="@+id/saved_divider2"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="43dp"
+            android:background="?android:attr/listDivider" />
+        <View
+            android:id="@+id/saved_divider1"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="0dp"
+            android:background="?android:attr/listDivider" />
+        <View
+            android:id="@+id/saved_divider3"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="171.5dp"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="360dp"
+            android:src="@drawable/ic_pinkarrow"
+           />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

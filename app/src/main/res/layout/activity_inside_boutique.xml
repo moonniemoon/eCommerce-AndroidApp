@@ -22,12 +22,22 @@
             android:layout_height="50dp"
             android:background="@color/white"
             app:labelVisibilityMode="unlabeled"
+            app:elevation="0dp"
             app:itemRippleColor="@null"
             app:itemIconTint="@drawable/selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_menu"/>
+            app:menu="@menu/bottom_menu"
+            >
+            <View
+                android:id="@+id/saved_divider2"
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:backgroundTint="@color/dark_gray"
+                android:layout_marginTop="0dp"
+                android:background="?android:attr/listDivider" />
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
         <RelativeLayout
@@ -40,7 +50,7 @@
                 android:id="@+id/backkkButton"
                 android:layout_width="50dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginStart="5dp"
                 android:rotationX="0"
                 android:rotationY="-180"
@@ -53,8 +63,8 @@
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="fill_parent"
-                android:layout_height="33dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginStart="70dp"
                 android:layout_marginEnd="20dp"
                 android:drawablePadding="12dp"
@@ -80,12 +90,12 @@
                     <Button
                         android:id="@+id/button_filter"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="45dp"
                         android:layout_marginStart="0dp"
                         android:layout_marginEnd="205dp"
                         android:fontFamily="sans-serif-light"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="Filter"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"
@@ -94,12 +104,12 @@
                     <Button
                         android:id="@+id/button_sort"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="45dp"
                         android:layout_marginStart="205dp"
                         android:layout_marginEnd="0dp"
                         android:fontFamily="sans-serif-light"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="Sort"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"
@@ -118,7 +128,7 @@
         android:id="@+id/grid_menu"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
-        android:layout_marginTop="97dp"
+        android:layout_marginTop="87dp"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>

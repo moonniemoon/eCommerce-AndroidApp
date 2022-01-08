@@ -16,12 +16,22 @@
         android:layout_height="50dp"
         android:background="@color/white"
         app:labelVisibilityMode="unlabeled"
+        app:elevation="0dp"
         app:itemRippleColor="@null"
         app:itemIconTint="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu"
+        >
+        <View
+            android:id="@+id/saved_divider2"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:backgroundTint="@color/dark_gray"
+            android:layout_marginTop="0dp"
+            android:background="?android:attr/listDivider" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
     <ImageView
@@ -449,8 +459,8 @@
         android:id="@+id/myOrdersFrameLayout"
         android:layout_width="544dp"
         android:layout_height="48dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintHorizontal_bias="0.917"
+        android:layout_marginTop="320dp"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:layout_margin="15dp"
+    app:cardElevation="30dp"
+    app:cardCornerRadius="20dp"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp">
+
+
+        <TextView
+            android:id="@+id/myorders_textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-22dp"
+            android:text="Status:"
+            />
+
+        <TextView
+            android:id="@+id/orders_status"
+            android:layout_toEndOf="@+id/myorders_textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textStyle="bold"
+            android:layout_marginStart="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/dark_gray"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="-22dp"
+            android:text="status"
+            />
+
+        <ImageView
+            android:id="@+id/orders_productImage"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerCrop">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/orders_productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+            android:text="Name"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/orders_description"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/orders_productName"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-22dp"
+            android:text="Description"
+            />
+
+        <TextView
+            android:id="@+id/orders_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/orders_description"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-22dp"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:text="Size" />
+
+        <TextView
+            android:id="@+id/orders_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/orders_size"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="33dp"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:layout_marginBottom="-22dp"
+            android:text="Price"
+            />
+
+        <TextView
+            android:id="@+id/orders_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:layout_alignBottom="@+id/orders_price"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-22.5dp"
+            android:text="Quantity"
+            />
+
+        <TextView
+            android:id="@+id/orders_seller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/orders_quantity"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-22dp"
+            android:layout_toEndOf="@+id/orders_productImage"
+            android:text="Seller" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

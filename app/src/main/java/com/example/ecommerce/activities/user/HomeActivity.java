@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private FirebaseUser user;
 
-    private DatabaseReference ShoppingBagReference, ItemReference;
+    private DatabaseReference CompanyReference;
     private Query query;
 
     private boolean spinnerInitialized = false;
@@ -89,11 +89,8 @@ public class HomeActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-        ShoppingBagReference = FirebaseDatabase.getInstance().getReference();
-        query = ShoppingBagReference.child("Companies");
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.shopping_Bag);
+        CompanyReference = FirebaseDatabase.getInstance().getReference();
+        query = CompanyReference.child("Companies");
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);

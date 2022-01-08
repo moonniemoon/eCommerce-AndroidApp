@@ -37,6 +37,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +86,7 @@ public class ShoppingBag extends AppCompatActivity {
         query = ShoppingBagReference.child(user.getUid()).child("Items");
         ItemReference = ShoppingBagReference.child(user.getUid()).child("Items");
 
+        buyButton = (Button) findViewById(R.id.buyButton);
         totalPrice = (TextView) findViewById(R.id.totalPrice);
         calculateTotalPrice();
 
@@ -126,6 +128,34 @@ public class ShoppingBag extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
+        // i'm getting data if the user already has an address or not. - Seli
+        DatabaseReference addressRef = FirebaseDatabase.getInstance().getReference().child("Address Details");
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addressRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            // send to 'choose address'
+                            Intent intent = new Intent(ShoppingBag.this, ChooseAddressForShipping.class);
+                            intent.putExtra("comingFrom", "bagUserFound");
+                            startActivity(intent);
+                        }
+                        else {
+                            // send to 'create an address'
+                            Intent intent = new Intent(ShoppingBag.this, AddressBook.class);
+                            intent.putExtra("comingFrom", "bagUserNotFound");
+                            startActivity(intent);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) { }
+                });
+            }
+        });
     }
 
     @Override
