@@ -252,7 +252,7 @@ public class AddShoeItem extends AppCompatActivity {
 
     private void saveItemToDatabase() {
 
-        // 'duplicateItems' should to be added like in "AddClothingItem.activity". I was just too tired..
+        // 'duplicateItems' should to be added like in "clothing item activity". I was just too tired..
         // + id should contain += '-xxsmall'
         Item item = new Item(itemID, itemName,itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice, duplicateItems);
         reference = FirebaseDatabase.getInstance().getReference("Products");

@@ -118,7 +118,9 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
             selected_id = pID.replace("-xlarge", "");
         } else if (pID.contains("-xxlarge")) {
             selected_id = pID.replace("-xxlarge", "");
-        } // add more validations for shoe sizes
+        } else if(pID.contains("-nosize")){
+            selected_id = pID.replace("-nosize", ""); // add more validations for shoe sizes
+        }
 
 
         addToWishlistButton = (FloatingActionButton) findViewById(R.id.productDetails_wishlistButton);

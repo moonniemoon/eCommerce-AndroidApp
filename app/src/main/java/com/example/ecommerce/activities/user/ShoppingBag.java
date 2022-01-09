@@ -135,25 +135,31 @@ public class ShoppingBag extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addressRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            // send to 'choose address'
-                            Intent intent = new Intent(ShoppingBag.this, ChooseAddressForShipping.class);
-                            intent.putExtra("comingFrom", "bagUserFound");
-                            startActivity(intent);
+                if (layoutManager.getItemCount() == 0) {
+                   emptyShoppingBagPopup();
+                }
+                else {
+                    addressRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                // send to 'choose address'
+                                Intent intent = new Intent(ShoppingBag.this, ChooseAddressForShipping.class);
+                                intent.putExtra("comingFrom", "bagUserFound");
+                                startActivity(intent);
+                            } else {
+                                // send to 'create an address'
+                                Intent intent = new Intent(ShoppingBag.this, AddressBook.class);
+                                intent.putExtra("comingFrom", "bagUserNotFound");
+                                startActivity(intent);
+                            }
                         }
-                        else {
-                            // send to 'create an address'
-                            Intent intent = new Intent(ShoppingBag.this, AddressBook.class);
-                            intent.putExtra("comingFrom", "bagUserNotFound");
-                            startActivity(intent);
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
                         }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) { }
-                });
+                    });
+                }
             }
         });
     }
@@ -284,5 +290,26 @@ public class ShoppingBag extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
+    }
+
+    private void emptyShoppingBagPopup(){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            };
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingBag.this);
+        builder.setMessage("Your shopping bag is empty. Start shopping with us by picking out items from the Home tab!").setPositiveButton("OK", dialogClickListener)
+                .setNegativeButton("CANCEL", dialogClickListener).show();
     }
 }

@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/shoppingBagTextView"
-        android:layout_width="242dp"
+        android:layout_width="290dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/average_sans"
+        android:fontFamily="@font/comfortaa"
         android:text="Shopping Bag"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
@@ -78,7 +78,7 @@
         <Button
             android:id="@+id/buyButton"
             android:layout_width="196dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="210dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/productdetails_button"
