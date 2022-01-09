@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/fragment_joinUsAsASeller"
-    tools:context=".fragments.user.JoinUsAsASeller">
+    android:id="@+id/activity_joinUsAsASeller"
+    tools:context=".activities.user.JoinUsAsASeller">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,64 +13,6 @@
         android:background="@color/white"
         tools:context=".fragments.user.FragmentAccount">
 
-
-        <Button
-            android:id="@+id/attachBackgroundButton"
-            android:layout_width="120dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="588dp"
-            android:background="@color/white"
-            android:text="Select image"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/black"
-            app:iconTint="@color/white"
-            app:layout_constraintHorizontal_bias="0.099"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/attachLogo_Button"
-            android:layout_width="120dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="504dp"
-            android:background="@color/black"
-            android:text="Select image"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/black"
-            app:iconTint="@color/white"
-            app:layout_constraintHorizontal_bias="0.106"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/attachLogo_Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="476dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Attach your logo (.png or .jpg)"
-            android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.127"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/attachBackgroundText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="560dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Attach your background (.png or .jpg)"
-            android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.159"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/joinOurJourneyText"
@@ -85,79 +27,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/submitFormButton"
-            android:layout_width="340dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="650dp"
-            android:background="@color/white"
-            android:backgroundTint="@color/design_default_color_on_primary"
-            android:text="SUBMIT FORM"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:iconTint="@color/white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="350dp"
             android:layout_height="45dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="412dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:textSize="18sp"
-            app:layout_constraintHorizontal_bias="0.442"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/companyNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="172dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Company name"
-            android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.079"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/emailText"
-            android:layout_width="38dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="240dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Email"
-            android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/phoneNumberText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="312dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Phone number"
-            android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.077"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/phoneNumberEditText"
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="332dp"
-            android:ems="10"
-            android:inputType="phone"
             android:textSize="18sp"
             app:layout_constraintHorizontal_bias="0.426"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -168,11 +44,151 @@
             android:id="@+id/createAPasswordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
-            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="388dp"
+            android:fontFamily="@font/comfortaa"
             android:text="Create a password"
             android:textColor="@color/black"
-            app:layout_constraintHorizontal_bias="0.091"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/passwordRequirementsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="456dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Minimum of 8 characters, 1 number, 1 uppercase, \n1 lowercase"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_bias="0.268"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/attachLogo_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Attach your logo (.png or .jpg)"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.128"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/attachBackgroundButton"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="612dp"
+            android:background="@drawable/productdetails_button"
+            android:text="Select image"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/black"
+            app:iconTint="@color/white"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/attachLogo_Button"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="528dp"
+            android:background="@drawable/productdetails_button"
+            android:text="Select image"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/black"
+            app:iconTint="@color/white"
+            app:layout_constraintHorizontal_bias="0.089"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/attachBackgroundText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="584dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Attach your background (.png or .jpg)"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.181"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submitFormButton"
+            android:layout_width="340dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="668dp"
+            android:background="@drawable/rounded_whitebutton"
+            android:text="SUBMIT FORM"
+            android:fontFamily="@font/comfortaa"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintHorizontal_bias="0.464"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/companyNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Company name"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/emailText"
+            android:layout_width="45dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="240dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Email"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/phoneNumberEditText"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="340dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.426"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/phoneNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="316dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Phone number"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -204,25 +220,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/passwordRequirementsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="448dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Minimum of 8 characters, 1 number, 1 uppercase, 1 lowercase"
-            android:textSize="12sp"
-            app:layout_constraintHorizontal_bias="0.35"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
             android:fontFamily="@font/cormorant_garamond_bold"
-            android:text="- we're growing with you"
+            android:text="- we're growing with you!"
             android:textColor="@color/black"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -238,6 +241,19 @@
             android:fontFamily="sans-serif-light"
             android:textColor="@color/black"
             app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="56dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:rotationX="0"
+            android:rotationY="-180"
+            android:src="@drawable/back_icon"
+            app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

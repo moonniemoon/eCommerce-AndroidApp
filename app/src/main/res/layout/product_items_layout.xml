@@ -30,7 +30,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@id/itemImage"
                 android:text="ID"
-                android:textColor="@color/dark_gray"/>
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/comfortaa"/>
 
 
             <TextView
@@ -42,6 +43,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
                 android:text="Name"
+                android:fontFamily="@font/comfortaa"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/black" />
 
@@ -52,6 +54,7 @@
                 android:layout_below="@id/itemName"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/comfortaa"
                 android:layout_toRightOf="@id/itemImage"
                 android:text="Description"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
@@ -61,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemDescription"
+                android:fontFamily="@font/comfortaa"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
@@ -74,7 +78,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
-                android:text="Quantity" />
+                android:text="Quantity"
+                android:fontFamily="@font/comfortaa"/>
 
             <TextView
                 android:id="@+id/itemPrice"
@@ -85,6 +90,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/itemImage"
                 android:text="Price"
+                android:fontFamily="@font/comfortaa"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
@@ -98,6 +104,7 @@
                 android:layout_toRightOf="@id/itemPrice"
                 android:background="@drawable/productdetails_button"
                 android:text="REMOVE"
+                android:fontFamily="@font/comfortaa"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 

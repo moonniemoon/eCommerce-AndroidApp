@@ -290,6 +290,7 @@ public class AddOtherItem extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(AddOtherItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(AddOtherItem.this, NewProductCategorySelection.class));
+                                    overridePendingTransition(0,0);
                                 } else {
                                     String message = task.getException().toString();
                                     Toast.makeText(AddOtherItem.this, message, Toast.LENGTH_LONG).show();

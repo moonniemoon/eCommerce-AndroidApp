@@ -8,18 +8,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
+import com.example.ecommerce.activities.company.AddShoeItem;
 import com.example.ecommerce.activities.company.CompanyAccount;
+import com.example.ecommerce.activities.company.ManageStock;
+import com.example.ecommerce.activities.company.NewProductCategorySelection;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,34 +29,29 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.HashMap;
-import java.util.Locale;
-
 public class JoinUsAsASeller extends AppCompatActivity {
-    private Boolean flag = false;
-    private String companyName, companyID, email, phone, password;
+    private String companyName, email, phone, password;
     private EditText inputCompanyName, emailInput, phoneInput, passwordInput;
+    private ImageView backButton;
     private Button attachLogo, attachBackground, submitForm;
     private static final int GalleryPickLogo = 1, GalleryPickBG = 0;
     private Uri ImageUriLogo, ImageUriBG;
     private String downloadLogoUrl, downloadBackgroundUrl;
     private StorageReference companyLogo;
     private StorageReference companyBackground;
-    private DatabaseReference CompanyRef;
     private FirebaseAuth firebaseAuth;
     private String parentDatabaseName = "Companies";
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_joinusasaseller);
+        setContentView(R.layout.activity_joinusasaseller);
         getSupportActionBar().hide();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -68,6 +65,7 @@ public class JoinUsAsASeller extends AppCompatActivity {
         phoneInput = (EditText) findViewById(R.id.phoneNumberEditText);
         passwordInput = (EditText) findViewById(R.id.passwordEditText);
         attachBackground = (Button) findViewById(R.id.attachBackgroundButton);
+        backButton = (ImageView) findViewById(R.id.backButton);
 
         attachLogo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +85,12 @@ public class JoinUsAsASeller extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ValidateCompanyData();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(JoinUsAsASeller.this, Account.class));
             }
         });
     }
@@ -237,6 +241,7 @@ public class JoinUsAsASeller extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> loginTask) {
                                         if (loginTask.isSuccessful()) {
                                             startActivity(new Intent(JoinUsAsASeller.this, CompanyAccount.class));
+                                            overridePendingTransition(0,0);
                                         } else {
                                             Toast.makeText(JoinUsAsASeller.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                                         }

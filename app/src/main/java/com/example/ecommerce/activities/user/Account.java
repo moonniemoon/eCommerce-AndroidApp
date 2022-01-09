@@ -1,7 +1,6 @@
 package com.example.ecommerce.activities.user;
 
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +43,7 @@ public class Account extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        setContentView(R.layout.fragment_account);
+        setContentView(R.layout.activity_account);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -122,6 +121,7 @@ public class Account extends AppCompatActivity {
                     Intent intent = new Intent(Account.this, ChooseAddressForShipping.class);
                     intent.putExtra("comingFrom", "account");
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             });
             FrameLayout joinUsAsASellerLayout = (FrameLayout) findViewById(R.id.joinUsAsASellerFrameLayout);
@@ -129,6 +129,7 @@ public class Account extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(Account.this, JoinUsAsASeller.class));
+                    overridePendingTransition(0,0);
                 }
             });
             FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);

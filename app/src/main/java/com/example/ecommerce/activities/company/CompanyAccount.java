@@ -3,7 +3,6 @@ package com.example.ecommerce.activities.company;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,6 +85,7 @@ public class CompanyAccount extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(CompanyAccount.this, ManageStock.class));
+                    overridePendingTransition(0,0);
                 }
             });
             FrameLayout cashRegisterLayout = (FrameLayout) findViewById(R.id.virtualCashRegisterFrameLayout);
@@ -93,6 +93,7 @@ public class CompanyAccount extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
+                    overridePendingTransition(0,0);
                 }
             });
         FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);

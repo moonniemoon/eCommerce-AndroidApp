@@ -75,7 +75,7 @@ public class ManageStock extends AppCompatActivity {
                 intent.putExtra("companyN", companyName);   // This sends companyName to NewProductCategorySelection.class
                                                                   // Has to be accessed in that class too!
                 startActivity(intent);
-                //startActivity(new Intent(ManageStock.this, NewProductCategorySelection.class));
+                overridePendingTransition(0,0);
             }
         });
         backButton = (ImageView) findViewById(R.id.backButton);
@@ -83,6 +83,7 @@ public class ManageStock extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ManageStock.this, CompanyAccount.class));
+                overridePendingTransition(0,0);
             }
         });
 

@@ -15,13 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.accounts.User;
 import com.example.ecommerce.activities.company.CompanyAccount;
-import com.example.ecommerce.activities.company.CompanyLogIn;
 import com.example.ecommerce.activities.user.Account;
-import com.example.ecommerce.activities.user.UserLogIn;
-import com.example.ecommerce.fragments.company.AddClothingItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,8 +53,8 @@ public class AboutUs extends Fragment {
      * @return A new instance of fragment
      */
     // TODO: Rename and change types and number of parameters
-    public static AddClothingItem newInstance(String param1, String param2) {
-        AddClothingItem fragment = new AddClothingItem();
+    public static AboutUs newInstance(String param1, String param2) {
+        AboutUs fragment = new AboutUs();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

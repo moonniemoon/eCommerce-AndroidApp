@@ -25,11 +25,11 @@
         android:id="@+id/shopping_Bag"
         android:name="com.example.ecommerce.activities.user.ShoppingBag"
         android:label="activity_shoppingbag"
-        tools:layout="@layout/activity_shopping_bag" />
+        tools:layout="@layout/activity_shoppingbag" />
     <activity
         android:id="@+id/account"
         android:name="com.example.ecommerce.activities.user.Account"
         android:label="activity_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/activity_account" />
 
 </navigation>

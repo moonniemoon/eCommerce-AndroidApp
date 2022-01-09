@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/comfortaa"
                 android:text="Sell Time"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/black" />
@@ -42,7 +42,7 @@
                 android:layout_below="@id/itemId"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/comfortaa"
                 android:text="Name"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/dark_gray" />
@@ -54,7 +54,7 @@
                 android:layout_below="@id/itemName"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/comfortaa"
                 android:text="Quantity"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/dark_gray" />
@@ -66,7 +66,7 @@
                 android:layout_below="@id/itemQuantity"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/comfortaa"
                 android:text="Price"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@color/dark_gray" />
@@ -79,6 +79,7 @@
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="5dp"
                 android:text="Total Income"
+                android:fontFamily="@font/comfortaa"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 

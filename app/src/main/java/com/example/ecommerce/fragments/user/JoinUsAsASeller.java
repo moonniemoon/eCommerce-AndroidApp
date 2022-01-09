@@ -93,7 +93,7 @@ public class JoinUsAsASeller extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View RootView = inflater.inflate(R.layout.fragment_joinusasaseller, container, false);
+        View RootView = inflater.inflate(R.layout.activity_joinusasaseller, container, false);
 
         companyLogo = FirebaseStorage.getInstance().getReference().child("Company Logo");
         CompanyRef = FirebaseDatabase.getInstance().getReference().child("Companies");
@@ -234,7 +234,7 @@ public class JoinUsAsASeller extends Fragment {
     private void changeFragment(Fragment fragment){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_joinUsAsASeller, fragment);
+        fragmentTransaction.replace(R.id.activity_joinUsAsASeller, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

@@ -25,6 +25,7 @@
             android:layout_marginLeft="220dp"
             android:background="@drawable/productdetails_button"
             android:text="ADD"
+            android:fontFamily="@font/comfortaa"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:elevation="0dp"

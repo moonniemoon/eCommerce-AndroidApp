@@ -72,7 +72,7 @@ public class LogIn extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_login, container, false);
+        View RootView = inflater.inflate(R.layout.activity_userlogin, container, false);
 
         emailInput = (EditText) RootView.findViewById(R.id.loginEditTextEmailAddress);
         passwordInput = (EditText) RootView.findViewById(R.id.loginEditTextPassword);
