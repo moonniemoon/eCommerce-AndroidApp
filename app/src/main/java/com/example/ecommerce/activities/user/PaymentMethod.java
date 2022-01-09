@@ -34,8 +34,10 @@ import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.AddressViewHolder;
 import com.example.ecommerce.ViewHolder.PaymentViewHolder;
 import com.example.ecommerce.models.AddressDetail;
+import com.example.ecommerce.models.Boutiques;
 import com.example.ecommerce.models.Item;
 import com.example.ecommerce.models.OrderedProduct;
+import com.example.ecommerce.models.Sell;
 import com.example.ecommerce.models.Shipments;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -72,8 +74,9 @@ public class PaymentMethod extends AppCompatActivity {
     private TextView priceText;
     private double dlTotal = 0.0, itemTotalPrice;
     String currentDateandTime;
-    private String address, city, date, personName,  phone, userUID, status, paymentMethod, country;
+    private String address, city, date, personName,  phone, userUID, status, paymentMethod, country, seller;
     private Double totalAmount;
+    private String sel = "", sellers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +109,7 @@ public class PaymentMethod extends AppCompatActivity {
         chosenAddress = getIntent().getStringExtra("shortcutName");
         priceText = (TextView) findViewById(R.id.payment_price);
         calculateTotalPrice();
+        getSellers();
 
         recyclerView = findViewById(R.id.payment_recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -166,8 +170,7 @@ public class PaymentMethod extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
+                        String s;
                         for (DataSnapshot data : snapshot.getChildren()) {
                             Item item = data.getValue(Item.class);
 
@@ -178,6 +181,7 @@ public class PaymentMethod extends AppCompatActivity {
                             Double productPrice = item.getPrice();
                             String productSeller = item.getSeller();
                             String productSize = item.getSize();
+                            Double productTotalIncome = productQuantity * productPrice;
 
 
 
@@ -202,23 +206,24 @@ public class PaymentMethod extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference().child("Products").child(productSeller).child(productID).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        Double oldQuantity = Double.parseDouble(snapshot.child("quantity").getValue().toString());
+                                        Double newQuantity = oldQuantity - productQuantity;
 
-                                    Double oldQuantity = Double.parseDouble(snapshot.child("quantity").getValue().toString());
-                                    Double newQuantity = oldQuantity - productQuantity;
+                                        if (newQuantity < 0) {
 
-                                    if (newQuantity < 0) {
-
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(PaymentMethod.this);
-                                        builder.setMessage("Sorry, we don't have enough stock for" + productName + "...\nWe are sorry for the inconvenience...")
-                                                .setPositiveButton("OK",  new    DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        //Do your redirect here
-                                                        startActivity(new Intent(PaymentMethod.this, ShoppingBag.class));
-                                                    }
-                                                });
-                                    } else {
-                                        // Subtracting purchased quantity
-                                        ProductsReference.child(productSeller).child(productID).child("quantity").setValue(newQuantity);
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(PaymentMethod.this);
+                                            builder.setMessage("Sorry, we don't have enough stock for" + productName + "...\nWe are sorry for the inconvenience...")
+                                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            //Do your redirect here
+                                                            startActivity(new Intent(PaymentMethod.this, ShoppingBag.class));
+                                                        }
+                                                    });
+                                        } else {
+                                            // Subtracting purchased quantity
+                                            ProductsReference.child(productSeller).child(productID).child("quantity").setValue(newQuantity);
+                                        }
                                     }
                                 }
                                 @Override
@@ -243,7 +248,8 @@ public class PaymentMethod extends AppCompatActivity {
                                                 country = addressBook.getCountry();
                                                 phone = addressBook.getPhone();
 
-                                                Shipments shipments = new Shipments(address, city, currentDateandTime, personName, phone, userUID, status, paymentMethod, country, dlTotal);
+
+                                                Shipments shipments = new Shipments(address, city, currentDateandTime, personName, phone, userUID, status, paymentMethod, country, dlTotal, sellers);
 
                                                 FirebaseDatabase.getInstance().getReference("Shipments").child(currentDateandTime).setValue(shipments).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
@@ -262,6 +268,48 @@ public class PaymentMethod extends AppCompatActivity {
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) { }
                                     });
+
+
+                            // place order in 'Sale records'
+                            // Create/Put order in 'Current Orders'
+
+                            Sell soldProduct = new Sell(currentDateandTime, productID, productName, productQuantity, productPrice, productTotalIncome);
+
+                            FirebaseDatabase.getInstance().getReference("Sells Records")
+                                    .child(productSeller).child(currentDateandTime)
+                                    .setValue(soldProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(PaymentMethod.this, "Order has been successfully added to ordered products!", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        String message = task.getException().toString();
+                                        Toast.makeText(PaymentMethod.this, message, Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
+
+                            FirebaseDatabase.getInstance().getReference().child("Companies")
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                for (DataSnapshot data : snapshot.getChildren()) {
+                                                    Boutiques company = data.getValue(Boutiques.class);
+                                                    if (company.getCompanyName().equals(productSeller)) {
+                                                        Double oldRevenue = company.getRevenue();
+                                                        Double newRevenue = oldRevenue + productTotalIncome;
+                                                        FirebaseDatabase.getInstance().getReference().child("Companies").child(data.getKey()).child("revenue").setValue(newRevenue);
+                                                    }
+                                                }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
                         }
                     }
 
@@ -270,6 +318,24 @@ public class PaymentMethod extends AppCompatActivity {
                 });
     }
 
+    private void getSellers() {
+        sellers = "";
+        FirebaseDatabase.getInstance().getReference().child("Shopping Bags").child(user.getUid()).child("Items")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            Item item = data.getValue(Item.class);
+                            sel = item.getSeller();
+                            sellers += sel;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+    }
 
 
     @Override

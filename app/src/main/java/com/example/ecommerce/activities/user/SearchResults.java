@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.ecommerce.R;
@@ -37,6 +39,7 @@ public class SearchResults extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     String fromCardView, searchInput;
+    private EditText search_bar;
     private ImageView backButton;
 
     @Override
@@ -80,6 +83,22 @@ public class SearchResults extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), Account.class));
                         overridePendingTransition(0,0);
                         return true;
+                }
+                return false;
+            }
+        });
+
+        search_bar =  findViewById(R.id.search_bar3);
+        search_bar.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    Intent intent = new Intent(SearchResults.this, SearchResults.class);
+                    intent.putExtra("editTextValue", search_bar.getText().toString());
+                    startActivity(intent);
+                    return true;
                 }
                 return false;
             }
@@ -146,6 +165,12 @@ public class SearchResults extends AppCompatActivity {
                             if (allProducts.get("Beauty") == null) {
                                 allProducts.put("Beauty", new ArrayList<Item>());
                             }
+                            if (allProducts.get("Outerwear") == null) {
+                                allProducts.put("Outerwear", new ArrayList<Item>());
+                            }
+                            if (allProducts.get("Footwear") == null) {
+                                allProducts.put("Footwear", new ArrayList<Item>());
+                            }
 
 
                             if (item.getCategory().equals("Shirts") && item.getDuplicateItems().equals(false)) {
@@ -160,6 +185,10 @@ public class SearchResults extends AppCompatActivity {
                                 allProducts.get("Accessories").add(item);
                             } else if (item.getCategory().equals("Beauty") && item.getDuplicateItems().equals(false)) {
                                 allProducts.get("Beauty").add(item);
+                            } else if (item.getCategory().equals("Outerwear") && item.getDuplicateItems().equals(false)) {
+                                allProducts.get("Outerwear").add(item);
+                            } else if (item.getCategory().equals("Footwear") && item.getDuplicateItems().equals(false)) {
+                                allProducts.get("Footwear").add(item);
                             }
 
 
@@ -182,6 +211,12 @@ public class SearchResults extends AppCompatActivity {
                                 case "beauty":
                                     openAdapter("Beauty");
                                     break;
+                                case "outerwear":
+                                    openAdapter("Outerwear");
+                                    break;
+                                case "footwear":
+                                    openAdapter("Footwear");
+                                    break;
                             }
                         }
                     }
@@ -193,7 +228,7 @@ public class SearchResults extends AppCompatActivity {
     }
 
     private void openAdapter(String key) {
-        adapter = new SearchAdapter(allProducts.get(key), getApplicationContext());
+        adapter = new SearchAdapter(allProducts.get(key), this);
         recyclerView.setAdapter(adapter);
     }
 }

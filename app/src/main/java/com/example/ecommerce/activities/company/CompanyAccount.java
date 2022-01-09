@@ -18,6 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
+import com.example.ecommerce.activities.user.Account;
+import com.example.ecommerce.activities.user.ChooseAddressForShipping;
 import com.example.ecommerce.activities.user.JoinUsAsASeller;
 import com.example.ecommerce.fragments.company.AddClothingItem;
 import com.example.ecommerce.fragments.company.CompanyDetails;
@@ -97,14 +99,16 @@ public class CompanyAccount extends AppCompatActivity {
         aboutUsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new AboutUs());
+                Intent intent = new Intent(CompanyAccount.this, Shipments.class);
+                intent.putExtra("comingFrom", "CompanyAccount");
+                startActivity(intent);
             }
         });
             FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);
             contactUsLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    changeFragment(new AboutUs());
                 }
             });
     }

@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.MyOrdersViewHolder;
@@ -39,6 +41,7 @@ public class OrderDetails extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     private String purchasedDate = "";
+    private TextView statusTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,6 @@ public class OrderDetails extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-
 
         //OrderReference = FirebaseDatabase.getInstance().getReference().child("Ordered Products").child(user.getUid()).child("Current Orders").child("2022 01 04 at 15:06:29 GMT +02:00");
         //query = OrderReference.child("2022 01 04 at 15:06:29 GMT +02:00");
@@ -73,7 +75,7 @@ public class OrderDetails extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Shipments ship = snapshot.getValue(Shipments.class);*/
 
-        final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Ordered Products").child(user.getUid()).child("Current Orders").child("2022 01 04 at 17:16:59 GMT+02:00");
+        final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Ordered Products").child(user.getUid()).child("Current Orders").child(purchasedDate);
         query = productsRef.orderByChild("date").equalTo(purchasedDate);
 
         FirebaseRecyclerOptions<OrderedProduct> ordered = new FirebaseRecyclerOptions.Builder<OrderedProduct>()
@@ -83,9 +85,31 @@ public class OrderDetails extends AppCompatActivity {
         FirebaseRecyclerAdapter<OrderedProduct, OrderDetailsViewHolder> adapter = new FirebaseRecyclerAdapter<OrderedProduct, OrderDetailsViewHolder>(ordered) {
             @Override
             protected void onBindViewHolder(@NonNull OrderDetailsViewHolder myOrdersViewHolder, int i, @NonNull OrderedProduct orderedProduct1) {
+                String status = orderedProduct1.getStatus();
+                if (status.equals("not delivered")) {
+                    myOrdersViewHolder.status.setTextColor(Color.parseColor("#e60000"));
+                    status = "Your order is being processed.";
+                } else if (status.equals("shipping")) {
+                    myOrdersViewHolder.status.setTextColor(Color.parseColor("#ffbf00"));
+                    status = "Your order has been shipped.";
+                } else {
+                    myOrdersViewHolder.status.setTextColor(Color.parseColor("#00cc00"));
+                    status = "Your order has been delivered.";
+                }
+
+                myOrdersViewHolder.status.setText(status);
                 myOrdersViewHolder.name.setText(orderedProduct1.getName());
-                myOrdersViewHolder.price.setText(orderedProduct1.getPrice().toString());
-                myOrdersViewHolder.quantity.setText(orderedProduct1.getQuantity().toString());
+                myOrdersViewHolder.price.setText("Price: $" + orderedProduct1.getPrice().toString());
+                myOrdersViewHolder.quantity.setText("Quantity: " + orderedProduct1.getQuantity().toString());
+                myOrdersViewHolder.seller.setText("Seller: " + orderedProduct1.getSeller());
+                Picasso.get().load(orderedProduct1.getImage()).into(myOrdersViewHolder.image);
+
+                String shortSize = orderedProduct1.getSize();
+                if (shortSize.contains("-")) {
+                    shortSize = shortSize.substring(shortSize.indexOf("-"), shortSize.length());
+                }
+
+                myOrdersViewHolder.size.setText("Size: " + shortSize);
 
             }
 

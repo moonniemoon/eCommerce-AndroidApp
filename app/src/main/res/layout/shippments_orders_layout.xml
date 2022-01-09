@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="30dp"
+    app:cardCornerRadius="20dp"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/shipping_showProductsButton"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+
+            android:background="@drawable/rounded_whitebutton"
+            android:fontFamily="sans-serif"
+            android:text="Show Products"
+            android:textAllCaps="false"
+            android:textColor="#404040"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/shipping_shipProductsButton"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/rounded_whitebutton"
+            android:fontFamily="sans-serif"
+            android:text="Ship Products"
+            android:textAllCaps="false"
+            android:textColor="#404040"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/shipping_TextPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/payment_productImage"
+            android:text="Phone:"
+            android:textColor="@color/dark_gray"
+            />
+
+        <TextView
+            android:id="@+id/shipping_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/payment_productImage"
+            android:text="0881231123"
+            android:textColor="@color/dark_gray" />
+
+        <TextView
+            android:id="@+id/shipping_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="-22dp"
+            android:textStyle="bold"
+            android:text="Name"
+            />
+
+
+
+        <TextView
+            android:id="@+id/shipping_totalamount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/shipping_phone"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="-27dp"
+            android:text="Total Amount: "
+            />
+
+
+        <TextView
+            android:id="@+id/shipping_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/shipping_totalamount"
+            android:gravity="center"
+            android:layout_marginBottom="-22.5dp"
+            android:text="Shipping Address"
+            />
+
+        <TextView
+            android:id="@+id/shipping_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/shipping_address"
+            android:gravity="center"
+            android:layout_marginBottom="-22dp"
+            android:text="Order at"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

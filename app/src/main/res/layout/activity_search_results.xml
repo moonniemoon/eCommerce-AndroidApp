@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/search_bar"
+                android:id="@+id/search_bar3"
                 android:layout_width="fill_parent"
                 android:layout_height="31dp"
                 android:layout_marginTop="13dp"
@@ -79,42 +79,7 @@
                 android:inputType="text" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context=".activities.user.HomeActivity"
-                >
 
-                <Button
-                    android:id="@+id/button_filter"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="205dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="16sp"
-                    android:text="Filter"
-                    android:textColor="@color/black"
-                    android:background="@android:color/transparent"
-                    />
-
-                <Button
-                    android:id="@+id/button_sort"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginStart="205dp"
-                    android:layout_marginEnd="0dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="16sp"
-                    android:text="Sort"
-                    android:textColor="@color/black"
-                    android:background="@android:color/transparent"
-                    />
-            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -125,7 +90,7 @@
         android:id="@+id/searchResults_recycler_menu"
         android:layout_width="match_parent"
         android:layout_marginBottom="50dp"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="57dp"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>
