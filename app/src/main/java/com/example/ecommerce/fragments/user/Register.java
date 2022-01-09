@@ -75,7 +75,7 @@ public class Register extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_register, container, false);
+        View RootView = inflater.inflate(R.layout.activity_register, container, false);
 
         firstNameInput = (EditText)  RootView.findViewById(R.id.firstNameEditText);
         lastNameInput = (EditText)  RootView.findViewById(R.id.lastNameEditText);

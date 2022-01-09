@@ -81,6 +81,7 @@ public class CompanyAccount extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(CompanyAccount.this, ManageStock.class));
+                    overridePendingTransition(0,0);
                 }
             });
             FrameLayout cashRegisterLayout = (FrameLayout) findViewById(R.id.virtualCashRegisterFrameLayout);
@@ -88,6 +89,7 @@ public class CompanyAccount extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
+                    overridePendingTransition(0,0);
                 }
             });
         FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);

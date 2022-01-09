@@ -27,10 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AccountDetails extends Fragment {
-    private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private DatabaseReference reference;
-
     private String userID;
 
     // TODO: Rename parameter arguments, choose names that match

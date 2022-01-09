@@ -1,7 +1,5 @@
 package com.example.ecommerce.activities.user;
 
-import static java.security.AccessController.getContext;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,24 +18,17 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.ViewHolder.ProductViewHolder;
 import com.example.ecommerce.ViewHolder.ShoppingBagViewHolder;
-import com.example.ecommerce.accounts.Company;
-import com.example.ecommerce.accounts.User;
-import com.example.ecommerce.activities.company.AddClothingItem;
-import com.example.ecommerce.activities.company.ManageStock;
 import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,8 +38,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.security.AccessController;
 
 public class ShoppingBag extends AppCompatActivity {
 
@@ -77,7 +66,7 @@ public class ShoppingBag extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        setContentView(R.layout.activity_shopping_bag);
+        setContentView(R.layout.activity_shoppingbag);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -147,11 +136,13 @@ public class ShoppingBag extends AppCompatActivity {
                                 Intent intent = new Intent(ShoppingBag.this, ChooseAddressForShipping.class);
                                 intent.putExtra("comingFrom", "bagUserFound");
                                 startActivity(intent);
+                                overridePendingTransition(0,0);
                             } else {
                                 // send to 'create an address'
                                 Intent intent = new Intent(ShoppingBag.this, AddressBook.class);
                                 intent.putExtra("comingFrom", "bagUserNotFound");
                                 startActivity(intent);
+                                overridePendingTransition(0,0);
                             }
                         }
 

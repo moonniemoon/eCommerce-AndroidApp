@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.User;
@@ -21,19 +18,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.UUID;
 
 public class Register extends AppCompatActivity {
 
-    private String firstName, lastName, email, password, userID;
+    private String firstName, lastName, email, password;
     private EditText firstNameInput, lastNameInput, emailInput, passwordInput;
     FirebaseAuth firebaseAuth;
     private DatabaseReference userRef;
@@ -41,7 +31,7 @@ public class Register extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_register);
+        setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -62,9 +52,9 @@ public class Register extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(Register.this, HomeActivity.class);
+                Intent intent = new Intent(Register.this, UserLogIn.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }
@@ -74,7 +64,6 @@ public class Register extends AppCompatActivity {
         lastName = lastNameInput.getText().toString();
         email = emailInput.getText().toString();
         password = passwordInput.getText().toString();
-        userID = generateUserId();
 
         if(TextUtils.isEmpty(firstName)){
             firstNameInput.setError("Please enter a first name.");
@@ -97,28 +86,8 @@ public class Register extends AppCompatActivity {
             passwordInput.requestFocus();
         }
         else{
-            validateCredentials(userID);
+            createUser();
         }
-    }
-
-    private void validateCredentials(String userID) {
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!(snapshot.child(parentDatabaseName).child(userID).exists())){
-                    createUser();
-                }
-                else{
-                    emailInput.setError("This email address is already associated with a user.");
-                    emailInput.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     private void createUser(){
@@ -138,6 +107,7 @@ public class Register extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> loginTask) {
                                         if (loginTask.isSuccessful()) {
                                             startActivity(new Intent(Register.this, Account.class));
+                                            overridePendingTransition(0,0);
                                         } else {
                                             Toast.makeText(Register.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                                         }
@@ -164,18 +134,5 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String generateUserId(){
-        String userID = UUID.randomUUID().toString();
-        return userID;
-    }
-
-    private void changeFragment(Fragment fragment){
-            FragmentManager fragmentManager = this.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_register, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
     }
 }

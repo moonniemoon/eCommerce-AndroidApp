@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,10 +35,11 @@ public class CompanyLogIn extends AppCompatActivity {
     private DatabaseReference reference;
     private FirebaseUser user;
     private Button logInButton;
+    private ImageView xButton;
     private AppCompatButton becomeAMemberButton;
     private String email, password;
     private EditText emailInput, passwordInput;
-    private String userType, expectedUserType = "company";
+    private String expectedUserType = "company";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,15 @@ public class CompanyLogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CompanyLogIn.this, Register.class));
+                overridePendingTransition(0,0);
+            }
+        });
+        xButton = (ImageView) findViewById(R.id.xButton);
+        xButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CompanyLogIn.this, UserLogIn.class));
+                overridePendingTransition(0,0);
             }
         });
         emailInput = (EditText) findViewById(R.id.loginEditTextEmailAddress);
@@ -91,6 +102,7 @@ public class CompanyLogIn extends AppCompatActivity {
 
                 if (companyDetails.getUserType().equals(expectedUserType)) {
                     startActivity(new Intent(CompanyLogIn.this, CompanyAccount.class));
+                    overridePendingTransition(0,0);
                 } else{
                     Toast.makeText(CompanyLogIn.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                 }

@@ -13,9 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.accounts.User;
-import com.example.ecommerce.activities.company.CompanyAccount;
 import com.example.ecommerce.activities.company.CompanyLogIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +38,7 @@ public class UserLogIn extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_login);
+        setContentView(R.layout.activity_userlogin);
         getSupportActionBar().hide();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -57,6 +55,7 @@ public class UserLogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(UserLogIn.this, Register.class));
+                overridePendingTransition(0,0);
             }
         });
         logInAsCorporateButton = (Button) findViewById(R.id.logInAsCorporateButton);
@@ -64,6 +63,7 @@ public class UserLogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserLogIn.this, CompanyLogIn.class));
+                overridePendingTransition(0,0);
             }
         });
         emailInput = (EditText) findViewById(R.id.loginEditTextEmailAddress);
@@ -98,6 +98,7 @@ public class UserLogIn extends AppCompatActivity {
 
                 if (userType.equals("user")) {
                     startActivity(new Intent(UserLogIn.this, Account.class));
+                    overridePendingTransition(0,0);
 
                 } else{
                     Toast.makeText(UserLogIn.this, "Server error, please try again." , Toast.LENGTH_LONG).show();

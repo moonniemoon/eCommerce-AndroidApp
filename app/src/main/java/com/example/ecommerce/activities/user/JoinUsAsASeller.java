@@ -36,8 +36,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class JoinUsAsASeller extends AppCompatActivity {
-    private Boolean flag = false;
-    private String companyName, companyID, email, phone, password;
+    private String companyName, email, phone, password;
     private EditText inputCompanyName, emailInput, phoneInput, passwordInput;
     private ImageView backButton;
     private Button attachLogo, attachBackground, submitForm;
@@ -242,6 +241,7 @@ public class JoinUsAsASeller extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> loginTask) {
                                         if (loginTask.isSuccessful()) {
                                             startActivity(new Intent(JoinUsAsASeller.this, CompanyAccount.class));
+                                            overridePendingTransition(0,0);
                                         } else {
                                             Toast.makeText(JoinUsAsASeller.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
                                         }

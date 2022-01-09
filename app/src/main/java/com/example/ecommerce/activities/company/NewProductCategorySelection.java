@@ -45,6 +45,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
                 intent.putExtra("Category", "Tees");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         shirts.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
                 intent.putExtra("Category", "Shirts");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         trousers.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
                 intent.putExtra("Category", "Trousers");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         skirts.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +72,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
                 intent.putExtra("Category", "Skirts");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         footwear.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +81,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddShoeItem.class);
                 intent.putExtra("Category", "Footwear");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         accessories.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +90,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddOtherItem.class);
                 intent.putExtra("Category", "Accessories");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         beauty.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +99,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddOtherItem.class);
                 intent.putExtra("Category", "Beauty");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         outerwear.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +108,7 @@ public class NewProductCategorySelection extends AppCompatActivity {
                 Intent intent = new Intent(NewProductCategorySelection.this, AddClothingItem.class);
                 intent.putExtra("Category", "Outerwear");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }

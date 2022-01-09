@@ -263,6 +263,7 @@ public class AddShoeItem extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(AddShoeItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(AddShoeItem.this, NewProductCategorySelection.class));
+                    overridePendingTransition(0,0);
                 }
                 else{
                     String message = task.getException().toString();
