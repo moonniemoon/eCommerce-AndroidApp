@@ -113,6 +113,7 @@ public class Account extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(Account.this, MyOrders.class);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             });
             FrameLayout addressBookLayout = (FrameLayout) findViewById(R.id.addressBookFrameLayout);

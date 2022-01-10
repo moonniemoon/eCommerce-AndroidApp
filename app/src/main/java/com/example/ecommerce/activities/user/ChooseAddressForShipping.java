@@ -67,18 +67,23 @@ public class ChooseAddressForShipping extends AppCompatActivity {
 
                 if (comingFrom.equals("bagUserFound")) {
                     startActivity(new Intent(ChooseAddressForShipping.this, ShoppingBag.class));
+                    overridePendingTransition(0,0);
                 }
                 else if (comingFrom.equals("book")) {
                     startActivity(new Intent(ChooseAddressForShipping.this, Account.class));
+                    overridePendingTransition(0,0);
                 }
                 else if (comingFrom.equals("account")) {
                     startActivity(new Intent(ChooseAddressForShipping.this, Account.class));
+                    overridePendingTransition(0,0);
                 }
                 else if (comingFrom.equals("payment")) {
                     startActivity(new Intent(ChooseAddressForShipping.this, ShoppingBag.class));
+                    overridePendingTransition(0,0);
                 }
                 else {
                     startActivity(new Intent(ChooseAddressForShipping.this, Account.class));
+                    overridePendingTransition(0,0);
                 }
             }
         });
@@ -90,6 +95,7 @@ public class ChooseAddressForShipping extends AppCompatActivity {
                 Intent intent = new Intent(ChooseAddressForShipping.this, AddressBook.class);
                 intent.putExtra("comingFrom", "chooseAddress");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }
@@ -124,10 +130,12 @@ public class ChooseAddressForShipping extends AppCompatActivity {
                             Intent intent = new Intent(ChooseAddressForShipping.this, PaymentMethod.class);
                             intent.putExtra("shortcutName", addressDetail.getShortcutName());
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         } else {
                             Intent intent = new Intent(ChooseAddressForShipping.this, AddressBook.class);
                             intent.putExtra("comingFrom", "recyclerView");
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                     }
                 });

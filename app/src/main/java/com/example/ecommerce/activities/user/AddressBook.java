@@ -100,6 +100,7 @@ public class AddressBook extends AppCompatActivity {
                 Intent intent = new Intent(AddressBook.this, PaymentMethod.class);
                 intent.putExtra("shortcutName", shortcutN);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }

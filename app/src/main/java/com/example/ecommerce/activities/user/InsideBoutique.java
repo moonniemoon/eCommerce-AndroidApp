@@ -117,6 +117,7 @@ public class InsideBoutique extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(InsideBoutique.this, HomeActivity.class));
+                overridePendingTransition(0,0);
             }
         });
 
@@ -130,6 +131,7 @@ public class InsideBoutique extends AppCompatActivity {
                     Intent intent = new Intent(InsideBoutique.this, SearchResults.class);
                     intent.putExtra("editTextValue", search_bar.getText().toString());
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                     return true;
                 }
                 return false;
@@ -191,62 +193,5 @@ public class InsideBoutique extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
-
-    private void openAdapter(String key) {
-
-    }
-
-   /* @Override
-    protected void onStart() {
-        super.onStart();
-
-        final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(companyName);
-
-        query = productsRef.orderByChild("duplicateItems").equalTo(false);
-
-        FirebaseRecyclerOptions<Item> items =
-                new FirebaseRecyclerOptions.Builder<Item>()
-                        .setQuery(query, Item.class).build();
-
-
-        FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder> adapter = new FirebaseRecyclerAdapter<Item, InsideBoutiqueViewHolder>(items) {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            protected void onBindViewHolder(@NonNull InsideBoutiqueViewHolder insideBoutiqueViewHolder, int i, @NonNull Item item) {
-
-                insideBoutiqueViewHolder.productName.setText(item.getSeller() + " " + item.getName());
-                insideBoutiqueViewHolder.productPrice.setText(item.getPrice().toString());
-                Picasso.get().load(item.getImageUrl()).into(insideBoutiqueViewHolder.productImage);
-
-                insideBoutiqueViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(InsideBoutique.this, ProductDetails.class);
-                        intent.putExtra("page", "inside");
-                        intent.putExtra("companyName", companyName);
-                        intent.putExtra("ID", item.getID());
-                        intent.putExtra("category", item.getCategory());
-                        intent.putExtra("colour", item.getColour());
-                        intent.putExtra("description", item.getDescription());
-                        intent.putExtra("imageURL", item.getImageUrl());
-                        intent.putExtra("gender", item.getGender());
-                        intent.putExtra("price", item.getPrice().toString());
-                        intent.putExtra("name", item.getName());
-                        startActivity(intent);
-                    }
-                });
-            }
-
-            @NonNull
-            @Override
-            public InsideBoutiqueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_products_layout, parent, false);
-                InsideBoutiqueViewHolder holder = new InsideBoutiqueViewHolder(view);
-                return holder;
-            }
-        };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-    }*/
 }
 
