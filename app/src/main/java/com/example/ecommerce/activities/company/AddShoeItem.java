@@ -39,6 +39,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class AddShoeItem extends AppCompatActivity {
@@ -61,8 +63,9 @@ public class AddShoeItem extends AppCompatActivity {
     private String parentDatabaseName = "Companies";
     private String companyID, companyName;
 
-    private Boolean duplicateItems; // This is to check if there's a product with the same REF num.
-    // Seli needs this, so that she can only show one pic of a product. Not all (xxs/xs/s/m/l/xl/xxl)
+    private Boolean duplicateItems;
+    List<String> idList = new ArrayList<String>();
+    private String companyN = "";
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
@@ -252,25 +255,67 @@ public class AddShoeItem extends AppCompatActivity {
 
     private void saveItemToDatabase() {
 
-        // 'duplicateItems' should to be added like in "clothing item activity". I was just too tired..
-        // + id should contain += '-xxsmall'
-        Item item = new Item(itemID, itemName,itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice, duplicateItems);
-        reference = FirebaseDatabase.getInstance().getReference("Products");
+        // This is to check if a product named itemID, already exists in the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference()
+                .child("Products").child(companyName)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-        FirebaseDatabase.getInstance().getReference("Products").child(itemID).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(AddShoeItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AddShoeItem.this, NewProductCategorySelection.class));
-                    overridePendingTransition(0,0);
-                }
-                else{
-                    String message = task.getException().toString();
-                    Toast.makeText(AddShoeItem.this, message, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                            // This if-else if statement can be optimized. Seli is just too tired..
+                            String p_id = snapshot.getKey();
+                            String iiii = "";
+                            if (p_id.contains("-35")) {
+                                iiii = p_id.replace("-35", "");
+                            } else if (p_id.contains("-36")) {
+                                iiii = p_id.replace("-36", "");
+                            } else if (p_id.contains("-37")) {
+                                iiii = p_id.replace("-37", "");
+                            } else if (p_id.contains("-38")) {
+                                iiii = p_id.replace("-38", "");
+                            } else if (p_id.contains("-39")) {
+                                iiii = p_id.replace("-39", "");
+                            } else if (p_id.contains("-40")) {
+                                iiii = p_id.replace("-40", "");
+                            } else if (p_id.contains("-41")) {
+                                iiii = p_id.replace("-41", "");
+                            }
+
+                            if (!idList.contains(iiii)) {
+                                idList.add(iiii);
+                            }
+                        }
+
+                        String iput = itemIdInput.getText().toString();
+
+                        if (idList.contains(iput))
+                            duplicateItems = true;
+                        else duplicateItems = false;
+
+                        Item item = new Item(itemID, itemName, itemDescription, itemGender, itemSize, itemColor, itemQuantity, categoryName, companyName, downloadImageUrl, itemPrice, duplicateItems);
+                        reference = FirebaseDatabase.getInstance().getReference("Products");
+
+                        FirebaseDatabase.getInstance().getReference("Products").child(companyName).child(itemID).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AddShoeItem.this, "Item added successfully!", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(AddShoeItem.this, NewProductCategorySelection.class));
+                                    overridePendingTransition(0,0);
+                                } else {
+                                    String message = task.getException().toString();
+                                    Toast.makeText(AddShoeItem.this, message, Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     private void OpenGallery() {

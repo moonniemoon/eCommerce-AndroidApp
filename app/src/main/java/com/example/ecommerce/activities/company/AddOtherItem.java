@@ -254,22 +254,9 @@ public class AddOtherItem extends AppCompatActivity {
 
                             String p_id = snapshot.getKey();
                             String iiii = "";
-                            if (p_id.contains("-xxsmall")) {
-                                iiii = p_id.replace("-xxsmall", "");
-                            } else if (p_id.contains("-xsmall")) {
-                                iiii = p_id.replace("-xsmall", "");
-                            } else if (p_id.contains("-small")) {
-                                iiii = p_id.replace("-small", "");
-                            } else if (p_id.contains("-medium")) {
-                                iiii = p_id.replace("-medium", "");
-                            } else if (p_id.contains("-large")) {
-                                iiii = p_id.replace("-large", "");
-                            } else if (p_id.contains("-xlarge")) {
-                                iiii = p_id.replace("-xlarge", "");
-                            } else if (p_id.contains("xxlarge")) {
-                                iiii = p_id.replace("xxlarge", "");
+                            if (p_id.contains("-noSize")) {
+                                iiii = p_id.replace("-noSize", "");
                             }
-
                             if (!idList.contains(iiii)) {
                                 idList.add(iiii);
                             }
