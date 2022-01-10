@@ -34,17 +34,47 @@
             >
         </FrameLayout>-->
 
+    <RadioGroup
+        android:id="@+id/orders_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:padding="8dp"
+            android:fontFamily="@font/constan"
+            android:text="Active Orders"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/radio_shipped"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:padding="8dp"
+            android:fontFamily="@font/constan"
+            android:text="Shipped Orders"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+    </RadioGroup>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myorders_recycler_menu"
         android:layout_width="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="88dp"
         android:layout_height="match_parent"
         android:scrollbars="vertical">
     </androidx.recyclerview.widget.RecyclerView>
-
-
-
 
 
 </RelativeLayout>

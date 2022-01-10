@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.fragments.company.CompanyDetails;
-import com.example.ecommerce.fragments.user.AboutUs;
 import com.example.ecommerce.fragments.user.ContactUs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -93,11 +92,13 @@ public class CompanyAccount extends AppCompatActivity {
                     overridePendingTransition(0,0);
                 }
             });
-        FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);
-        aboutUsLayout.setOnClickListener(new View.OnClickListener() {
+        FrameLayout shipmentsLayout = (FrameLayout) findViewById(R.id.confirmShipmentsFrameLayout);
+        shipmentsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new AboutUs());
+                Intent intent = new Intent(CompanyAccount.this, Shipments.class);
+                intent.putExtra("comingFrom", "CompanyAccount");
+                startActivity(intent);
             }
         });
             FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);

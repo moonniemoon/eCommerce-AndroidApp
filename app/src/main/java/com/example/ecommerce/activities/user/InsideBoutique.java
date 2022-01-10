@@ -16,6 +16,7 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +24,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.BoutiqueViewHolder;
@@ -34,6 +37,7 @@ import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.company.CompanyAccount;
 import com.example.ecommerce.activities.company.ManageStock;
 import com.example.ecommerce.activities.company.NewProductCategorySelection;
+import com.example.ecommerce.adapters.SearchAdapter;
 import com.example.ecommerce.models.Item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -49,6 +53,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,20 +63,21 @@ public class InsideBoutique extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private ImageView backButton;
+    private EditText search_bar;
     private Query query;
 
-    private String companyName = "", productID, productSize;
-    private List<String> idList = new ArrayList<String>();
+    private String companyName = "", productID, productSize, genderCategory = "";
+
+    HashMap<String, List<Item>> allProducts;
+    RecyclerView.Adapter adapter;
 
     private DatabaseReference productsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inside_boutique);
 
         getSupportActionBar().hide();
-
         setContentView(R.layout.activity_inside_boutique);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -114,18 +120,83 @@ public class InsideBoutique extends AppCompatActivity {
             }
         });
 
+        search_bar = findViewById(R.id.search_bar1);
+        search_bar.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    Intent intent = new Intent(InsideBoutique.this, SearchResults.class);
+                    intent.putExtra("editTextValue", search_bar.getText().toString());
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         companyName = getIntent().getStringExtra("companyName");
+        genderCategory = getIntent().getStringExtra("gender");
 
-
+        allProducts = new HashMap<>();
 
         recyclerView = findViewById(R.id.grid_menu);
         layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
+
+
+        FirebaseDatabase.getInstance().getReference("Products").child(companyName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        Item item = s.getValue(Item.class);
+
+                        if (genderCategory != null) {
+                            if (allProducts.get("women") == null) {
+                                allProducts.put("women", new ArrayList<Item>());
+                            }
+                            if (allProducts.get("men") == null) {
+                                allProducts.put("men", new ArrayList<Item>());
+                            }
+
+
+                            if (item.getGender().equals("Woman") && item.getDuplicateItems().equals(false)) {
+                                allProducts.get("women").add(item);
+                            } else if (item.getGender().equals("Man") && item.getDuplicateItems().equals(false)) {
+                                allProducts.get("men").add(item);
+                            }
+
+
+                            switch (genderCategory) {
+                                case "women":
+                                    adapter = new SearchAdapter(allProducts.get("women"), InsideBoutique.this);
+                                    recyclerView.setAdapter(adapter);
+                                    break;
+                                case "men":
+                                    adapter = new SearchAdapter(allProducts.get("men"), InsideBoutique.this);
+                                    recyclerView.setAdapter(adapter);
+                                    break;
+                            }
+
+                        } else {
+                            Toast.makeText(InsideBoutique.this, "EMPTYYYYYYYY", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
     }
 
-    @Override
+    private void openAdapter(String key) {
+
+    }
+
+   /* @Override
     protected void onStart() {
         super.onStart();
 
@@ -176,6 +247,6 @@ public class InsideBoutique extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-    }
+    }*/
 }
 

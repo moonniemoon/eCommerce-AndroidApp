@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.CompoundButton;
@@ -70,6 +72,8 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference reference;
     private FirebaseUser user;
+    private String gender;
+    private EditText search_bar;
 
     private DatabaseReference CompanyReference;
     private Query query;
@@ -125,6 +129,31 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        Button categories_Button = findViewById(R.id.button_categories);
+        categories_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, Search.class);
+                startActivity(intent);
+            }
+        });
+
+        search_bar =  findViewById(R.id.search_bar);
+        search_bar.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    Intent intent = new Intent(HomeActivity.this, SearchResults.class);
+                    intent.putExtra("editTextValue", search_bar.getText().toString());
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -135,6 +164,8 @@ public class HomeActivity extends AppCompatActivity {
         RadioButton radioMen = (RadioButton) findViewById(R.id.radio_men);
 
         radioWomen.setChecked(true);
+        gender = "women";
+        onStart();
 
         radioWomen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -180,10 +211,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radio_men) {
-                    // Send info to the new fragment/activity, that in this class, MEN was checked
-                    // which means, only men's products must be displayed.
+                    gender = "men";
+                    onStart();
                 } else if (checkedId == R.id.radio_women){
-
+                    gender = "women";
+                    onStart();
                 }
             }
         });
@@ -209,6 +241,7 @@ public class HomeActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(HomeActivity.this, InsideBoutique.class);
                         intent.putExtra("companyName", item.getCompanyName());
+                        intent.putExtra("gender", gender);
                         startActivity(intent);
                     }
                 });

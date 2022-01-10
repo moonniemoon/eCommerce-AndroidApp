@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.interfaces.ItemClickListener;
+import com.google.android.material.imageview.ShapeableImageView;
 
 public class OrderDetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView status, name, description, size, price, quantity, seller;
-    public ImageView image;
+    public ShapeableImageView image;
     public ItemClickListener listener;
 
     public OrderDetailsViewHolder(@NonNull View itemView) {
@@ -22,12 +23,11 @@ public class OrderDetailsViewHolder extends RecyclerView.ViewHolder implements V
 
         status = (TextView) itemView.findViewById(R.id.orders_status);
         name = (TextView) itemView.findViewById(R.id.orders_productName);
-        description = (TextView) itemView.findViewById(R.id.orders_description);
         size = (TextView) itemView.findViewById(R.id.orders_size);
         price = (TextView) itemView.findViewById(R.id.orders_price);
         quantity = (TextView) itemView.findViewById(R.id.orders_quantity);
         seller = (TextView) itemView.findViewById(R.id.orders_seller);
-        image = (ImageView) itemView.findViewById(R.id.orders_productImage);
+        image = (ShapeableImageView) itemView.findViewById(R.id.orders_productImage);
 
     }
 

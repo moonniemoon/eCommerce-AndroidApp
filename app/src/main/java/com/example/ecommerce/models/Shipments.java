@@ -1,14 +1,14 @@
 package com.example.ecommerce.models;
 
 public class Shipments {
-    private String address, city, date, name, phone, userUID, status, paymentMethod, country;
+    private String address, city, date, name, phone, userUID, status, paymentMethod, country, sellers;
     private Double totalAmount;
 
     public Shipments(){
 
     }
 
-    public Shipments(String address, String city, String date, String name, String phone, String userUID, String status, String paymentMethod, String country, Double totalAmount) {
+    public Shipments(String address, String city, String date, String name, String phone, String userUID, String status, String paymentMethod, String country, Double totalAmount, String sellers) {
         this.address = address;
         this.city = city;
         this.date = date;
@@ -19,6 +19,15 @@ public class Shipments {
         this.paymentMethod = paymentMethod;
         this.country = country;
         this.totalAmount = totalAmount;
+        this.sellers = sellers;
+    }
+
+    public String getSellers() {
+        return sellers;
+    }
+
+    public void setSellers(String sellers) {
+        this.sellers = sellers;
     }
 
     public String getAddress() {
