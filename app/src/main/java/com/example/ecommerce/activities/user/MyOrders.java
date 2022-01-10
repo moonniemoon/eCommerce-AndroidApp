@@ -199,6 +199,7 @@ public class MyOrders extends AppCompatActivity {
                             Intent intent = new Intent(MyOrders.this, OrderDetails.class);
                             intent.putExtra("purchaseDate", orderedProduct1.getDate());
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                     });
                 }
@@ -250,6 +251,7 @@ public class MyOrders extends AppCompatActivity {
                             Intent intent = new Intent(MyOrders.this, OrderDetails.class);
                             intent.putExtra("purchaseDate", orderedProduct1.getDate());
                             startActivity(intent);
+                            overridePendingTransition(0,0);
                         }
                     });
                 }

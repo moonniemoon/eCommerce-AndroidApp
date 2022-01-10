@@ -69,11 +69,6 @@ public class OrderDetails extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-/*
-        FirebaseDatabase.getInstance().getReference("Shipments").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Shipments ship = snapshot.getValue(Shipments.class);*/
 
         final DatabaseReference  productsRef = FirebaseDatabase.getInstance().getReference().child("Ordered Products").child(user.getUid()).child("Current Orders").child(purchasedDate);
         query = productsRef.orderByChild("date").equalTo(purchasedDate);
@@ -123,72 +118,6 @@ public class OrderDetails extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-   /*             }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });*/
-
-       /* FirebaseDatabase.getInstance().getReference("Ordered Products").child(user.getUid()).child("Current Orders").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-
-
-                   *//*     OrderedProduct orderedProduct = d.getValue(OrderedProduct.class);
-                        String orderDate = orderedProduct.getDate();*//*
-                    query = OrderReference.child(data.getKey());
-
-
-                    FirebaseRecyclerOptions<OrderedProduct> ordered = new FirebaseRecyclerOptions.Builder<OrderedProduct>()
-                            .setQuery(query, OrderedProduct.class)
-                            .build();
-
-                    FirebaseRecyclerAdapter<OrderedProduct, MyOrdersViewHolder> adapter = new FirebaseRecyclerAdapter<OrderedProduct, MyOrdersViewHolder>(ordered) {
-                        @Override
-                        protected void onBindViewHolder(@NonNull MyOrdersViewHolder myOrdersViewHolder, int i, @NonNull OrderedProduct orderedProduct1) {
-                            myOrdersViewHolder.date.setText(orderedProduct1.getDate());
-
-                            FirebaseDatabase.getInstance().getReference("Shipments").child(orderedProduct1.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if (snapshot.exists()) {
-                                        Shipments ship = snapshot.getValue(Shipments.class);
-
-                                        myOrdersViewHolder.total.setText("$" + ship.getTotalAmount().toString());
-                                        myOrdersViewHolder.status.setText(ship.getStatus());
-
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-
-                        }
-
-                        @NonNull
-                        @Override
-                        public MyOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.myorders_order_layout, parent, false);
-                            MyOrdersViewHolder holder = new MyOrdersViewHolder(view);
-                            return holder;
-                        }
-                    };
-                    recyclerView.setAdapter(adapter);
-                    adapter.startListening();
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });*/
 
     }
 }

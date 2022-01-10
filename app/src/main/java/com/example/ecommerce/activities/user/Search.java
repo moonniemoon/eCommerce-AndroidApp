@@ -78,6 +78,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("editTextValue", inputText.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -88,6 +89,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "outerwear");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -98,6 +100,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "accessories");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -108,6 +111,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "footwear");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -118,6 +122,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "shirts");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -128,6 +133,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "trousers");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -138,6 +144,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "beauty");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -148,6 +155,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "skirts");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -158,6 +166,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this, SearchResults.class);
                 intent.putExtra("searchResult", "tshirts");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }

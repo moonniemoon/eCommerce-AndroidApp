@@ -153,6 +153,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
                 } else if (pageFrom.equals("wishlist")) {
                     Intent intent = new Intent(ProductDetails.this, Wishlist.class);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             }
 

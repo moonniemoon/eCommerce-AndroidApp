@@ -103,6 +103,7 @@ public class PaymentMethod extends AppCompatActivity {
                 Intent intent = new Intent(PaymentMethod.this, ChooseAddressForShipping.class);
                 intent.putExtra("comingFrom", "payment");
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -155,6 +156,7 @@ public class PaymentMethod extends AppCompatActivity {
 
                     Intent intent = new Intent(PaymentMethod.this, ShoppingBag.class);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
             }
@@ -218,6 +220,7 @@ public class PaymentMethod extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int id) {
                                                             //Do your redirect here
                                                             startActivity(new Intent(PaymentMethod.this, ShoppingBag.class));
+                                                            overridePendingTransition(0,0);
                                                         }
                                                     });
                                         } else {

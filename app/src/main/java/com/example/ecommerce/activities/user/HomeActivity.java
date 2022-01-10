@@ -148,6 +148,7 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, SearchResults.class);
                     intent.putExtra("editTextValue", search_bar.getText().toString());
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                     return true;
                 }
                 return false;

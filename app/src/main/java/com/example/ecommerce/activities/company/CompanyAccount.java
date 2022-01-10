@@ -20,7 +20,6 @@ import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.user.Account;
 import com.example.ecommerce.activities.user.ChooseAddressForShipping;
 import com.example.ecommerce.activities.user.JoinUsAsASeller;
-import com.example.ecommerce.fragments.company.AddClothingItem;
 import com.example.ecommerce.fragments.company.CompanyDetails;
 import com.example.ecommerce.fragments.user.AboutUs;
 import com.google.firebase.auth.FirebaseAuth;

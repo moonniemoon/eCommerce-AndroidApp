@@ -98,6 +98,7 @@ public class SearchResults extends AppCompatActivity {
                     Intent intent = new Intent(SearchResults.this, SearchResults.class);
                     intent.putExtra("editTextValue", search_bar.getText().toString());
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                     return true;
                 }
                 return false;
