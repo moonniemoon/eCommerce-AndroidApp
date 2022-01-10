@@ -135,6 +135,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, Search.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -244,6 +245,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("companyName", item.getCompanyName());
                         intent.putExtra("gender", gender);
                         startActivity(intent);
+                        overridePendingTransition(0,0);
                     }
                 });
 
@@ -271,10 +273,13 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (userType == "user") {
                     startActivity(new Intent(HomeActivity.this, Account.class));
+                    overridePendingTransition(0,0);
                 } else if (userType == "company") {
                     startActivity(new Intent(HomeActivity.this, CompanyAccount.class));
+                    overridePendingTransition(0,0);
                 } else {
                     startActivity(new Intent(HomeActivity.this, UserLogIn.class));
+                    overridePendingTransition(0,0);
                 }
             }
 

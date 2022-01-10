@@ -134,6 +134,7 @@ public class ChooseAddressForShipping extends AppCompatActivity {
                         } else {
                             Intent intent = new Intent(ChooseAddressForShipping.this, AddressBook.class);
                             intent.putExtra("comingFrom", "recyclerView");
+                            intent.putExtra("shortcutName", addressDetail.getShortcutName());
                             startActivity(intent);
                             overridePendingTransition(0,0);
                         }

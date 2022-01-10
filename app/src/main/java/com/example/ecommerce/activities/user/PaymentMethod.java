@@ -152,7 +152,6 @@ public class PaymentMethod extends AppCompatActivity {
                     currentDateandTime = currentDate.format(new Date());
 
                     placeOrderInOrderedProducts();
-                    // addToSalesRecords();
 
                     Intent intent = new Intent(PaymentMethod.this, ShoppingBag.class);
                     startActivity(intent);
@@ -274,8 +273,6 @@ public class PaymentMethod extends AppCompatActivity {
 
 
                             // place order in 'Sale records'
-                            // Create/Put order in 'Current Orders'
-
                             Sell soldProduct = new Sell(currentDateandTime, productID, productName, productQuantity, productPrice, productTotalIncome);
 
                             FirebaseDatabase.getInstance().getReference("Sells Records")

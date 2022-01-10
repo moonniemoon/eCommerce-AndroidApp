@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -67,6 +68,7 @@ public class MyOrders extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager, layoutManager2;
     private MyOrders.Tab tab;
     List<OrderDetails> allItems;
+    private ImageView backButton;
 
 
     @Override
@@ -88,6 +90,17 @@ public class MyOrders extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
+        backButton = (ImageView) findViewById(R.id.bbackbackbackbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyOrders.this, Account.class));
+                overridePendingTransition(0,0);
+            }
+        });
+
 
         RadioGroup myRadioGroup = (RadioGroup) findViewById(R.id.orders_radioGroup);
         RadioButton radioActive = (RadioButton) findViewById(R.id.radio_active);

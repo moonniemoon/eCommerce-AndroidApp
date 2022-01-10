@@ -82,7 +82,7 @@ public class ShipmentAdapter extends RecyclerView.Adapter<ShippingViewHolder> {
         holder.shipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // +++++++++ change in "ordered products", the specific products state = "shipping"
+                // change in "ordered products", the specific products state = "shipping"
                 // if all the products in the "ordered products" are shipped, change state of the order to "shipped" and delete it from the "shipments"
                 // create another table named "shipping history" and add the shipping to it.
                 changeOrderedProductsState(

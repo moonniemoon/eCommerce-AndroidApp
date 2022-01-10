@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ecommerce.R;
@@ -42,6 +43,7 @@ public class OrderDetails extends AppCompatActivity {
 
     private String purchasedDate = "";
     private TextView statusTextView;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class OrderDetails extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        backButton = (ImageView) findViewById(R.id.bbackbackbackbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OrderDetails.this, MyOrders.class));
+                overridePendingTransition(0,0);
+            }
+        });
     }
 
     @Override

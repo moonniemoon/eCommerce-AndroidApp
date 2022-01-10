@@ -70,7 +70,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
     private Double d_Price;
     private Integer i_Quantity;
     private ImageView backButton;
-    private String pageFrom;
+    private String pageFrom, message;
 
     private String selected_id = "";
     private FirebaseAuth firebaseAuth;
@@ -101,6 +101,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
         pColour = getIntent().getStringExtra("colour");
         pImageURL = getIntent().getStringExtra("imageURL");
         pageFrom = getIntent().getStringExtra("page");
+        message = getIntent().getStringExtra("message");
 
 
 
@@ -149,9 +150,16 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
                 if (pageFrom.equals("inside")) {
                     Intent intent = new Intent(ProductDetails.this, InsideBoutique.class);
                     intent.putExtra("companyName", companyName);
+                    intent.putExtra("gender", message);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 } else if (pageFrom.equals("wishlist")) {
                     Intent intent = new Intent(ProductDetails.this, Wishlist.class);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
+                } else if (pageFrom.equals("search")) {
+                    Intent intent = new Intent(ProductDetails.this, SearchResults.class);
+                    intent.putExtra("editTextValue", message);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
@@ -303,7 +311,7 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
 
 
     private void removeItem(String idName){
-       databaseReference.child(user.getUid()).child(idName).removeValue();
+        databaseReference.child(user.getUid()).child(idName).removeValue();
         Toast.makeText(ProductDetails.this, "You have successfully deleted this product from your wishlist!", Toast.LENGTH_LONG).show();
     }
 

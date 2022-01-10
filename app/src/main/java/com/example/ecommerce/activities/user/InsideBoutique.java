@@ -174,11 +174,11 @@ public class InsideBoutique extends AppCompatActivity {
 
                             switch (genderCategory) {
                                 case "women":
-                                    adapter = new SearchAdapter(allProducts.get("women"), InsideBoutique.this);
+                                    adapter = new SearchAdapter(allProducts.get("women"), InsideBoutique.this, "inside", "women", companyName);
                                     recyclerView.setAdapter(adapter);
                                     break;
                                 case "men":
-                                    adapter = new SearchAdapter(allProducts.get("men"), InsideBoutique.this);
+                                    adapter = new SearchAdapter(allProducts.get("men"), InsideBoutique.this, "inside", "men", companyName);
                                     recyclerView.setAdapter(adapter);
                                     break;
                             }

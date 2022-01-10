@@ -110,6 +110,7 @@ public class SearchResults extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SearchResults.this, Search.class));
+                overridePendingTransition(0,0);
             }
         });
 
@@ -143,7 +144,7 @@ public class SearchResults extends AppCompatActivity {
                                 allItems.add(item);
                             }
 
-                            adapter = new SearchAdapter(allItems, getApplicationContext());
+                            adapter = new SearchAdapter(allItems, SearchResults.this, "search", searchInput, searchInput);
                             recyclerView.setAdapter(adapter);
                         }
 
@@ -229,7 +230,7 @@ public class SearchResults extends AppCompatActivity {
     }
 
     private void openAdapter(String key) {
-        adapter = new SearchAdapter(allProducts.get(key), this);
+        adapter = new SearchAdapter(allProducts.get(key), this, "search", fromCardView, fromCardView);
         recyclerView.setAdapter(adapter);
     }
 }

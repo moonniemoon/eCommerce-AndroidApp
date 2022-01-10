@@ -22,10 +22,16 @@ public class SearchAdapter extends RecyclerView.Adapter<InsideBoutiqueViewHolder
 
     List<Item> recyclerList;
     Context context;
+    String page;
+    String message;
+    String companyName;
 
-    public SearchAdapter(List<Item> recyclerList, Context context) {
+    public SearchAdapter(List<Item> recyclerList, Context context, String page, String message, String companyName) {
         this.recyclerList = recyclerList;
         this.context = context;
+        this.page = page;
+        this.message = message;
+        this.companyName = companyName;
     }
 
     @NonNull
@@ -56,6 +62,9 @@ public class SearchAdapter extends RecyclerView.Adapter<InsideBoutiqueViewHolder
                 intent.putExtra("gender", item.getGender());
                 intent.putExtra("price", item.getPrice().toString());
                 intent.putExtra("name", item.getName());
+                intent.putExtra("page", page);
+                intent.putExtra("message", message);
+                intent.putExtra("companyName", companyName);
                 context.startActivity(intent);
             }
         });

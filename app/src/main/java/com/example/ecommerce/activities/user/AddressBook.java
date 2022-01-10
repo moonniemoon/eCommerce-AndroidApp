@@ -24,9 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddressBook extends AppCompatActivity {
 
@@ -36,7 +39,9 @@ public class AddressBook extends AppCompatActivity {
     private Button saveButton, deleteButton;
     private ImageView backButton;
 
-    private String comingFrom;
+    private String comingFrom, comingShortcutName;
+
+    DatabaseReference reference;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
@@ -52,6 +57,7 @@ public class AddressBook extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         comingFrom = getIntent().getStringExtra("comingFrom");
+        comingShortcutName = getIntent().getStringExtra("shortcutName");
 
         titleText = (TextView) findViewById(R.id.book_textAddressBook);
         bookFirstName = (EditText) findViewById(R.id.book_editFirstName);
@@ -68,6 +74,27 @@ public class AddressBook extends AppCompatActivity {
         if (comingFrom.equals("bagUserNotFound")) {
             titleText.setText("Add address");
             saveButton.setText("Save address & Continue");
+        } else if (comingFrom.equals("recyclerView")) {
+            reference = FirebaseDatabase.getInstance().getReference("Address Details").child(user.getUid());
+            reference.child(comingShortcutName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    AddressDetail addressDetail = snapshot.getValue(AddressDetail.class);
+                    bookFirstName.setText(addressDetail.getFirstName());
+                    bookLastName.setText(addressDetail.getLastName());
+                    bookPhone.setText(addressDetail.getPhone());
+                    bookCity.setText(addressDetail.getTownCity());
+                    bookAddress.setText(addressDetail.getAddress());
+                    bookPostcode.setText(addressDetail.getPostcode());
+                    bookCountry.setText(addressDetail.getCountry());
+                    bookShortcut.setText(addressDetail.getShortcutName());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
 
@@ -78,16 +105,19 @@ public class AddressBook extends AppCompatActivity {
 
                 if (comingFrom.equals("bagUserNotFound")) {
                     startActivity(new Intent(AddressBook.this, ShoppingBag.class));
+                    overridePendingTransition(0,0);
                 }
                 else if (comingFrom.equals("recyclerView")) {
                     Intent intent = new Intent(AddressBook.this, ChooseAddressForShipping.class);
                     intent.putExtra("comingFrom", "book");
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
                 else if (comingFrom.equals("chooseAddress")) {
                     Intent intent = new Intent(AddressBook.this, ChooseAddressForShipping.class);
                     intent.putExtra("comingFrom", "book");
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             }
         });
@@ -162,6 +192,7 @@ public class AddressBook extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(AddressBook.this, "Item added successfully!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(AddressBook.this, ChooseAddressForShipping.class));
+                    overridePendingTransition(0,0);
                 } else {
                     String message = task.getException().toString();
                     Toast.makeText(AddressBook.this, message, Toast.LENGTH_LONG).show();
