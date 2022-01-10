@@ -26,10 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.TimeoutException;
+
 public class AboutUs extends Fragment {
-    private FirebaseAuth firebaseAuth;
-    private DatabaseReference reference;
-    private FirebaseUser user;
     private ImageView backButton;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,40 +75,14 @@ public class AboutUs extends Fragment {
                              Bundle savedInstanceState) {
         View RootView = inflater.inflate(R.layout.fragment_aboutus, container, false);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
         backButton = (ImageView) RootView.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkUserType();
+                startActivity(new Intent(getActivity(), Account.class));
             }
         });
         return RootView;
     }
 
-
-    private void checkUserType() {
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        user = firebaseAuth.getCurrentUser();
-        reference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User userDetails = dataSnapshot.getValue(User.class);
-                String userType = userDetails.getUserType();
-
-                if (userType.equals("user")) {
-                    startActivity(new Intent(getActivity(), Account.class));
-
-                } else{
-                    startActivity(new Intent(getActivity(), CompanyAccount.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 }

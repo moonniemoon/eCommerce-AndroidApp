@@ -19,6 +19,7 @@ import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.fragments.company.CompanyDetails;
 import com.example.ecommerce.fragments.user.AboutUs;
+import com.example.ecommerce.fragments.user.ContactUs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -103,7 +104,7 @@ public class CompanyAccount extends AppCompatActivity {
             contactUsLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    changeFragment(new ContactUs());
                 }
             });
     }

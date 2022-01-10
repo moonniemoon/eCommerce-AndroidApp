@@ -106,31 +106,6 @@ public class ContactUs extends Fragment {
         return RootView;
     }
 
-
-    private void checkUserType() {
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        user = firebaseAuth.getCurrentUser();
-        reference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User userDetails = dataSnapshot.getValue(User.class);
-                String userType = userDetails.getUserType();
-
-                if (userType.equals("user")) {
-                    startActivity(new Intent(getActivity(), Account.class));
-
-                } else{
-                    startActivity(new Intent(getActivity(), CompanyAccount.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
     private void thankYouPopup(){
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -163,5 +138,32 @@ public class ContactUs extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Uh oh, you seem to haven't written anything yet. Compose your query and tap the SUBMIT QUERY button again!").setPositiveButton("GOT IT", dialogClickListener).show();
+    }
+
+
+    private void checkUserType() {
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        user = firebaseAuth.getCurrentUser();
+        reference.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User userDetails = dataSnapshot.getValue(User.class);
+                try {
+                    String userType = userDetails.getUserType();
+                    if (userType.equals("user")) {
+                        startActivity(new Intent(getActivity(), Account.class));
+
+                    }
+                }
+                catch(Exception e){
+                    startActivity(new Intent(getActivity(), CompanyAccount.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
