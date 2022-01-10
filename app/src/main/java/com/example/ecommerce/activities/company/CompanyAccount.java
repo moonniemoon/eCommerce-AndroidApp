@@ -17,11 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
-import com.example.ecommerce.activities.user.Account;
-import com.example.ecommerce.activities.user.ChooseAddressForShipping;
-import com.example.ecommerce.activities.user.JoinUsAsASeller;
 import com.example.ecommerce.fragments.company.CompanyDetails;
-import com.example.ecommerce.fragments.user.AboutUs;
+import com.example.ecommerce.fragments.user.ContactUs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,52 +48,52 @@ public class CompanyAccount extends AppCompatActivity {
         ImageView companyBackground = (ImageView) findViewById(R.id.companyBackground);
 
         reference.child(companyID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                      @Override
-                                                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                          Company companyDetails = snapshot.getValue(Company.class);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Company companyDetails = snapshot.getValue(Company.class);
 
-                                                                          if (companyDetails != null) {
-                                                                              companyName.setText(companyDetails.getCompanyName());
-                                                                              if(companyDetails.getBackgroundURL()!=null) {
-                                                                                  Glide.with(CompanyAccount.this).load(companyDetails.backgroundURL).into(companyBackground);
-                                                                              }
-                                                                          }
-                                                                          else{
-                                                                              Toast.makeText(CompanyAccount.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
-                                                                          }
-                                                                      }
+                if (companyDetails != null) {
+                    companyName.setText(companyDetails.getCompanyName());
+                    if(companyDetails.getBackgroundURL()!=null) {
+                        Glide.with(CompanyAccount.this).load(companyDetails.backgroundURL).into(companyBackground);
+                    }
+                }
+                else{
+                    Toast.makeText(CompanyAccount.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
+                }
+            }
 
-                                                                      @Override
-                                                                      public void onCancelled(@NonNull DatabaseError error) {
-                                                                          Toast.makeText(CompanyAccount.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
-                                                                      }
-                                                                  });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(CompanyAccount.this, "Server error, please try again." , Toast.LENGTH_LONG).show();
+            }
+        });
 
-            FrameLayout companyDetailsLayout= (FrameLayout) findViewById(R.id.companyDetailsFrameLayout);
+        FrameLayout companyDetailsLayout= (FrameLayout) findViewById(R.id.companyDetailsFrameLayout);
         companyDetailsLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                  changeFragment(new CompanyDetails());
-                }
-            });
-            FrameLayout manageStockLayout = (FrameLayout) findViewById(R.id.manageStockFrameLayout);
+            @Override
+            public void onClick(View v) {
+                changeFragment(new CompanyDetails());
+            }
+        });
+        FrameLayout manageStockLayout = (FrameLayout) findViewById(R.id.manageStockFrameLayout);
         manageStockLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(CompanyAccount.this, ManageStock.class));
-                    overridePendingTransition(0,0);
-                }
-            });
-            FrameLayout cashRegisterLayout = (FrameLayout) findViewById(R.id.virtualCashRegisterFrameLayout);
-            cashRegisterLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
-                    overridePendingTransition(0,0);
-                }
-            });
-        FrameLayout aboutUsLayout = (FrameLayout) findViewById(R.id.aboutUsFrameLayout);
-        aboutUsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CompanyAccount.this, ManageStock.class));
+                overridePendingTransition(0,0);
+            }
+        });
+        FrameLayout cashRegisterLayout = (FrameLayout) findViewById(R.id.virtualCashRegisterFrameLayout);
+        cashRegisterLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CompanyAccount.this, VirtualCashRegister.class));
+                overridePendingTransition(0,0);
+            }
+        });
+        FrameLayout shipmentsLayout = (FrameLayout) findViewById(R.id.confirmShipmentsFrameLayout);
+        shipmentsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CompanyAccount.this, Shipments.class);
@@ -104,13 +101,13 @@ public class CompanyAccount extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-            FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);
-            contactUsLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    changeFragment(new AboutUs());
-                }
-            });
+        FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);
+        contactUsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragment(new ContactUs());
+            }
+        });
     }
 
     private void changeFragment(Fragment fragment){
