@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:tag="accountDetails"
     android:background="@color/white"
-    tools:context=".fragments.user.FragmentAccount">
+    tools:context=".fragments.user.AccountDetails">
 
 
     <EditText

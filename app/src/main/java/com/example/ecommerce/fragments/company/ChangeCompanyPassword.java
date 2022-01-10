@@ -2,7 +2,6 @@ package com.example.ecommerce.fragments.company;
 
 
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +17,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.ecommerce.R;
-import com.example.ecommerce.activities.user.ProductDetails;
-import com.example.ecommerce.fragments.user.AccountDetails;
-import com.example.ecommerce.fragments.user.FragmentAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -58,8 +54,8 @@ public class ChangeCompanyPassword extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentAccount newInstance(String param1, String param2) {
-        FragmentAccount fragment = new FragmentAccount();
+    public static ChangeCompanyPassword newInstance(String param1, String param2) {
+        ChangeCompanyPassword fragment = new ChangeCompanyPassword();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

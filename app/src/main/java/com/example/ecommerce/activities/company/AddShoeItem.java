@@ -264,7 +264,6 @@ public class AddShoeItem extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                            // This if-else if statement can be optimized. Seli is just too tired..
                             String p_id = snapshot.getKey();
                             String iiii = "";
                             if (p_id.contains("-35")) {

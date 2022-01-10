@@ -184,7 +184,7 @@ public class InsideBoutique extends AppCompatActivity {
                             }
 
                         } else {
-                            Toast.makeText(InsideBoutique.this, "EMPTYYYYYYYY", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InsideBoutique.this, "Empty", Toast.LENGTH_LONG).show();
                         }
                     }
 

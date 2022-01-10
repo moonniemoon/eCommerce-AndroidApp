@@ -144,7 +144,6 @@ public class ManageStock extends AppCompatActivity {
                                         }
                                     }
                                 });
-                                // here you can inflate your menu
                                 popup.inflate(R.menu.managestock_options_menu);
                                 popup.show();
                             }

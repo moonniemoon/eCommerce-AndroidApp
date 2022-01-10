@@ -157,11 +157,7 @@ public class MyOrders extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-/*
-        FirebaseDatabase.getInstance().getReference("Shipments").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Shipments ship = snapshot.getValue(Shipments.class);*/
+
         if (tab == Tab.activesTab) {
             query = FirebaseDatabase.getInstance().getReference().child("Shipments").orderByChild("userUID").equalTo(user.getUid());
 

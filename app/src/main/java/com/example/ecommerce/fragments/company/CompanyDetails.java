@@ -18,8 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.ecommerce.R;
 import com.example.ecommerce.accounts.Company;
 import com.example.ecommerce.activities.company.CompanyAccount;
-import com.example.ecommerce.fragments.user.ChangeUserPassword;
-import com.example.ecommerce.fragments.user.FragmentAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,8 +55,8 @@ public class CompanyDetails extends Fragment {
      * @return A new instance of fragment Account.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentAccount newInstance(String param1, String param2) {
-        FragmentAccount fragment = new FragmentAccount();
+    public static CompanyDetails newInstance(String param1, String param2) {
+        CompanyDetails fragment = new CompanyDetails();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

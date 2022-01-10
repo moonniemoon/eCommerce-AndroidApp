@@ -161,7 +161,6 @@ public class ProductDetails extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-        // https://www.informationraja.com/2020/08/firebase-image-slider-source-code.html
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mainslider = findViewById(R.id.image_slider);
 

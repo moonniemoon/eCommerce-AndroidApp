@@ -8,12 +8,10 @@
     tools:context=".activities.company.AddOtherItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fragment_companydetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:tag="accountDetails"
-        tools:context=".fragments.user.FragmentAccount">
+        tools:context=".activities.company.AddOtherItem">
 
 
         <EditText

@@ -56,9 +56,6 @@ public class OrderDetails extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-        //OrderReference = FirebaseDatabase.getInstance().getReference().child("Ordered Products").child(user.getUid()).child("Current Orders").child("2022 01 04 at 15:06:29 GMT +02:00");
-        //query = OrderReference.child("2022 01 04 at 15:06:29 GMT +02:00");
-
         recyclerView = findViewById(R.id.orderdetails_recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
