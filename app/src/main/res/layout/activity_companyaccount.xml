@@ -213,12 +213,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/aboutUsText"
+        android:id="@+id/confirmShipmentsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="432dp"
         android:text="Confirm shipments"
         android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
         android:fontFamily="@font/comfortaa"
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -237,7 +238,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/aboutUsFrameLayout"
+        android:id="@+id/confirmShipmentsFrameLayout"
         android:layout_width="544dp"
         android:layout_height="48dp"
         android:layout_marginTop="424dp"
@@ -247,7 +248,7 @@
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
     <ImageView
-        android:id="@+id/aboutUsIcon"
+        android:id="@+id/confirmShipmentsIcon"
         android:layout_width="27dp"
         android:layout_height="26dp"
         android:layout_marginTop="428dp"
@@ -288,7 +289,9 @@
         app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imageView4"

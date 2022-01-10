@@ -20,6 +20,7 @@ import com.example.ecommerce.R;
 import com.example.ecommerce.fragments.user.AboutUs;
 import com.example.ecommerce.fragments.user.AccountDetails;
 import com.example.ecommerce.accounts.User;
+import com.example.ecommerce.fragments.user.ContactUs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -138,6 +139,13 @@ public class Account extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     changeFragment(new AboutUs());
+                }
+            });
+            FrameLayout contactUsLayout = (FrameLayout) findViewById(R.id.contactUsFrameLayout);
+            contactUsLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeFragment(new ContactUs());
                 }
             });
         }
