@@ -5,8 +5,7 @@
 
 # User Interface 
 ## Home Screen
-<img src="User-Interface/Picture1.png" height="600" width="320"><img src="User-Interface/Picture2.png" height="600" width="320"><img src="User-Interface/Picture3.png" height="600" width="320">
-<img src="User-Interface/Picture4.png" height="500" width="250">
+<img src="User-Interface/Picture1.png" height="600" width="320"><img src="User-Interface/Picture2.png" height="600" width="320"><img src="User-Interface/Picture3.png" height="600" width="320"><img src="User-Interface/Picture4.png" height="500" width="250">
 
 ## Search Screen
 
