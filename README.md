@@ -1,4 +1,4 @@
-# Seli's Branch
+# e-Commerce Android App 
 
 ## Documentation
 [Documentation](Documentationn.docx)
